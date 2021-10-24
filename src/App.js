@@ -1,10 +1,13 @@
-import React from 'react'
-import SignIn from './scenes/SignIn'
+import React from "react";
+
+import { createBrowserHistory } from "history";
+import { Router } from "react-router-dom";
+import { renderRoutes } from "react-router-config";
+import routes from "./routes";
+const history = createBrowserHistory();
 
 function App() {
-  return (
-    <SignIn></SignIn>
-  )
+  return <Router history={history}>{renderRoutes(routes)}</Router>;
 }
 
-export default App
+export default App;
