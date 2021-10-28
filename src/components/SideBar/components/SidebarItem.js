@@ -4,7 +4,7 @@ import { ListItem, Button, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   container: {
-    width: 270,
+    width: 250,
     height: 50,
     justifyContent: "flex-start",
   },
@@ -20,15 +20,17 @@ const useStyles = makeStyles(() => ({
     color: "#FAFAFB",
     textTransform: "none",
   },
-  activate: {},
+  activate: {
+    backgroundColor: "#696983",
+  },
 }));
 
 const SidebarItem = (props) => {
   const { title, icon: Icon } = props;
   const classes = useStyles();
   return (
-    <ListItem>
-      <Button className={classes.container}>
+    <ListItem disableGutters>
+      <Button className={classes.container} activeClassName={classes.activate}>
         {<Icon className={classes.icon} />}
         <Typography variant="h5" className={classes.title}>
           {title}

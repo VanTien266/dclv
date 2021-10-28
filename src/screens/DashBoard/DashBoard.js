@@ -5,29 +5,20 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   root: {
-    height: "100%",
     display: "flex",
-    flex: "1 1 auto",
-    overflow: "hidden",
+    alignContent: "flex-start",
   },
-  sideBar: {
-    zIndex: 3,
-    width: 280,
-    minWidth: 280,
-    //make full height
-    height: "100vh",
-    position: "fixed",
-    backgroundColor: "#000040",
-  },
+
+  content: {},
 }));
 function DashBoard() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <div className={classes.sideBar}>
+      <div>
         <Sidebar />
       </div>
-      <div>
+      <div className={classes.content}>
         <Typography paragraph>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium
           illum quos aperiam, doloribus, fuga maxime explicabo, natus possimus
