@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../../components/SideBar/Sidebar";
-import { Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   root: {

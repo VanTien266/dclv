@@ -1,8 +1,8 @@
-import StoreIcon from "@mui/icons-material/Store";
-import LocalMallIcon from "@mui/icons-material/LocalMall";
-import PersonPinRoundedIcon from "@mui/icons-material/PersonPinRounded";
-import LocalPostOfficeIcon from "@mui/icons-material/LocalPostOffice";
-import AddIcCallIcon from "@mui/icons-material/AddIcCall";
+import StoreIcon from "@material-ui/icons/Store";
+import LocalMallIcon from "@material-ui/icons/LocalMall";
+import PersonPinRoundedIcon from "@material-ui/icons/PersonPinRounded";
+import LocalPostOfficeIcon from "@material-ui/icons/LocalPostOffice";
+import AddIcCallIcon from "@material-ui/icons/AddIcCall";
 
 const sideBarConfig = [
   {

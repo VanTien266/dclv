@@ -1,7 +1,7 @@
 import React from "react";
 import sidebarConfig from "./sideBarConfig";
 import SidebarItem from "./components/SidebarItem";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles(() => ({
   sidebar: {

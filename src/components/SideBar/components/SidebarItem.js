@@ -1,8 +1,8 @@
 import React from "react";
-import { makeStyles } from "@mui/styles";
-import { ListItem, Button, Typography } from "@mui/material";
+import { makeStyles } from "@material-ui/styles";
+import { ListItem, Button, Typography } from "@material-ui/core";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(() => ({
   container: {
     width: 270,
     height: 50,
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     textTransform: "none",
   },
   activate: {},
-});
+}));
 
 const SidebarItem = (props) => {
   const { title, icon: Icon } = props;
@@ -30,7 +30,6 @@ const SidebarItem = (props) => {
     <ListItem>
       <Button className={classes.container}>
         {<Icon className={classes.icon} />}
-
         <Typography variant="h5" className={classes.title}>
           {title}
         </Typography>
