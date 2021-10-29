@@ -1,10 +1,10 @@
 import React from "react";
-import sidebarConfig from "./sideBarConfig";
-
+import { matchPath, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
 import SidebarItem from "./components/SidebarItem";
 import CardProfile from "../CardProfile/CardProfile";
 import { Box } from "@material-ui/core";
+import sidebarConfig from "./sideBarConfig";
 
 const useStyles = makeStyles(() => ({
   sidebar: {
@@ -29,6 +29,11 @@ const useStyles = makeStyles(() => ({
 
 function Sidebar() {
   const classes = useStyles();
+  const { pathname } = useLocation();
+  console.log(pathname);
+  //check path is activate
+  const match = (path) =>
+    path ? matchPath({ path, end: false }, pathname) : false;
   const sidebarContent = (
     <div className={classes.sidebar}>
       <img
@@ -38,7 +43,14 @@ function Sidebar() {
       />
       <nav>
         {sidebarConfig.map((list) => (
-          <SidebarItem key={list.tag} title={list.name} icon={list.icon} />
+          <SidebarItem
+            key={list.tag}
+            path={list.path}
+            icon={list.icon}
+            title={list.name}
+            tag={list.tag}
+            active={match}
+          />
         ))}
       </nav>
       <Box sx={{ flexGrow: 1 }} />
