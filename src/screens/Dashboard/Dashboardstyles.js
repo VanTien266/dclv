@@ -12,6 +12,10 @@ const useStyles = makeStyles({
       height: 48,
       padding: '0 30px',
     },
+
+    icons:{
+      fontSize: "large",
+    }
   });
 
 export default useStyles;

@@ -98,6 +98,7 @@ export default function SignIn() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                placeholder="Nhập địa chỉ Email"
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -115,6 +116,7 @@ export default function SignIn() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                placeholder="Nhập mật khẩu"
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">

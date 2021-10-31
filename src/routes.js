@@ -1,8 +1,9 @@
 import React from "react";
 import { Redirect } from "react-router";
 
-import SignIn from "./screens/SignIn";
+import SignIn from "./screens/SignIn/SignIn";
 import Dashboard from "./screens/Dashboard/Dashboard"
+import ChangePassword from "./screens/ChangePassword/ChangePassword"
 
 const routes = [
   {
@@ -14,6 +15,11 @@ const routes = [
     path: "/dashboard",
     exact: true,
     component: Dashboard,
+  },
+  {
+    path: "/resetpassword",
+    exact: true,
+    component: ChangePassword,
   },
 ];
 
