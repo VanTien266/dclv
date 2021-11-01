@@ -1,25 +1,38 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { renderRoutes } from "react-router-config";
 import Sidebar from "../../components/SideBar/Sidebar";
 import { makeStyles } from "@material-ui/styles";
 import { LinearProgress } from "@material-ui/core";
-import routes from "../../routes";
 
 const useStyles = makeStyles(() => ({
   root: {
+    width: "100%",
+    height: "100%",
     display: "flex",
-    alignContent: "flex-start",
+    overflow: "hidden",
+    position: "fixed",
   },
+  sideBar: { zIndex: 3, flex: "0 0 auto" },
 
-  content: {},
+  content: { flex: "1 1 auto", overflowY: "auto" },
 }));
 const Main = (props) => {
   const { route } = props;
   const classes = useStyles();
+  const [openSidebarMobile, setOpenSidebarMobile] = useState(false);
+
+  const handleSidebarMobileClose = () => {
+    setOpenSidebarMobile(false);
+  };
+
   return (
     <div className={classes.root}>
       <div>
-        <Sidebar />
+        <Sidebar
+          className={classes.sideBar}
+          onMobileClose={handleSidebarMobileClose}
+          openMobile={openSidebarMobile}
+        />
       </div>
       <div className={classes.content}>
         <Suspense fallback={<LinearProgress />}>
