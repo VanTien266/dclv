@@ -11,7 +11,9 @@ const useStyles = makeStyles(() => ({
     alignContent: "flex-start",
   },
 
-  content: {},
+  content: {
+    flexGrow: "1"
+  },
 }));
 const DashBoard = () => {
   const classes = useStyles();
