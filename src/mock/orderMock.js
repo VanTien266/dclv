@@ -1,12 +1,10 @@
 import uuid from "uuid/v1";
-import moment from "moment";
-import { colors } from "@material-ui/core";
 
-import mock from "utils/mock";
+import mock from "../utils/mock";
 mock.onGet("/api/order/orderlist").reply(200, {
   order: [
     {
-      id: uuid(),
+      id: uuidv4(),
       status: "pedding",
       note: "",
       orderTime: "",
@@ -17,7 +15,7 @@ mock.onGet("/api/order/orderlist").reply(200, {
       clientId: "",
       bill: [
         {
-          billId: uuid(),
+          billId: uuidv4(),
           status: "",
           value: "",
           exportTime: "",
