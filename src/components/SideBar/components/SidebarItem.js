@@ -1,5 +1,4 @@
 import React, { useState, forwardRef } from "react";
-import clsx from "clsx";
 import { NavLink as RouterLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
 import { ListItem, Button, Typography } from "@material-ui/core";
@@ -41,7 +40,6 @@ const useStyles = makeStyles(() => ({
 const SidebarItem = (props) => {
   const { path, tag, title, icon: Icon, active } = props;
   const isActivate = active(path);
-  console.log(isActivate);
   const [open, setOpen] = useState(isActivate);
   const classes = useStyles();
 

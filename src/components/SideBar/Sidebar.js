@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 import SidebarItem from "./components/SidebarItem";
 import CardProfile from "../CardProfile/CardProfile";
 import { Box } from "@material-ui/core";
-import sidebarConfig from "./sideBarConfig";
+import sidebarConfig from "./SalemanSidebarConfig";
 
 const useStyles = makeStyles(() => ({
   sidebar: {
@@ -30,7 +30,6 @@ const useStyles = makeStyles(() => ({
 function Sidebar() {
   const classes = useStyles();
   const { pathname } = useLocation();
-  console.log(pathname);
   //check path is activate
   const match = (path) =>
     path ? matchPath({ path, end: false }, pathname) : false;

@@ -13,9 +13,9 @@ const useStyles = makeStyles(() => ({
 
   content: {},
 }));
-const DashBoard = () => {
+const Main = (props) => {
+  const { route } = props;
   const classes = useStyles();
-  const route = routes[1];
   return (
     <div className={classes.root}>
       <div>
@@ -30,4 +30,4 @@ const DashBoard = () => {
   );
 };
 
-export default DashBoard;
+export default Main;

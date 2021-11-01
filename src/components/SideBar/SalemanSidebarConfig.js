@@ -1,6 +1,6 @@
 import StoreIcon from "@material-ui/icons/Store";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
-import PersonPinRoundedIcon from "@material-ui/icons/PersonPinRounded";
+import LocalParkingIcon from "@material-ui/icons/LocalParking";
 import LocalPostOfficeIcon from "@material-ui/icons/LocalPostOffice";
 import AddIcCallIcon from "@material-ui/icons/AddIcCall";
 
@@ -13,19 +13,20 @@ const sideBarConfig = [
     icon: StoreIcon,
   },
   {
+    tag: "product",
+    path: "/product",
+    name: "Sản phẩm",
+    href: "",
+    icon: LocalParkingIcon,
+  },
+  {
     tag: "order",
     path: "/order",
     name: "Đơn hàng",
     href: "",
     icon: LocalMallIcon,
   },
-  {
-    tag: "staff",
-    path: "/staff",
-    name: "Nhân viên",
-    href: "",
-    icon: PersonPinRoundedIcon,
-  },
+
   {
     tag: "notification",
     path: "/notification",
