@@ -1,36 +1,47 @@
 import { Redirect } from "react-router-dom";
 import SignIn from "./screens/SignIn";
-import DashBoardPage from "./page/DashBoardPage";
-import OrderPage from "./page/OrderPage";
-import DashBoard from "./screens/Dashboard/DashBoard";
-import ChangePassword from "./screens/ChangePassword/ChangePassword"
+import DashBoard from "./page/DashBoard";
+import Product from "./page/Product";
+import Order from "./page/Order";
+import Main from "./screens/Main/Main";
+import ChangePassword from "./screens/ChangePassword/ChangePassword";
 
 const routes = [
   {
     path: "/",
     exact: true,
-    component: () => < Redirect to="/dashboard" />,
+    component: () => <Redirect to="/dashboard" />,
   },
   {
-    route: "*",
-    component: DashBoard,
-    routes: [
-      {
-        path: "/dashboard",
-        exact: true,
-        component: DashBoardPage,
-      },
-      {
-        path: "/order",
-        exact: true,
-        component: OrderPage,
-      },
-    ],
+    path: "/signin",
+    exact: true,
+    component: SignIn,
   },
   {
     path: "/resetpassword",
     exact: true,
     component: ChangePassword,
+  },
+  {
+    route: "*",
+    component: Main,
+    routes: [
+      {
+        path: "/dashboard",
+        exact: true,
+        component: DashBoard,
+      },
+      {
+        path: "/product",
+        exact: true,
+        component: Product,
+      },
+      {
+        path: "/order",
+        exact: true,
+        component: Order,
+      },
+    ],
   },
 ];
 
