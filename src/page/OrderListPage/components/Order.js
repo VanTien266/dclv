@@ -39,7 +39,6 @@ const useStyles = makeStyles({
     backgroundColor: "#FFF",
     borderRadius: "5px",
     height: "70%",
-    paddingLeft: "10px",
   },
   billQuantity: {
     justifyContent: "center",
@@ -63,8 +62,15 @@ const useStyles = makeStyles({
   buttonWidth: {
     minWidth: "24px",
     padding: "0px",
-    height: "80%"
+    height: "80%",
   },
+  pLeft10: {
+    paddingLeft: "10px"
+  },
+  noPadding: {
+    paddingLeft: "10px",
+    paddingRight: "10px"
+  }
 });
 
 export default function Order({ order }) {
@@ -100,60 +106,54 @@ export default function Order({ order }) {
         </Grid>
       </Grid>
 
-      <Grid container item xs={4} className={classes.quantityGrid}>
-        <Grid item xs={4}>
-          <p className={classes.verticalAlign}>{order.products[0].productID}</p>
-        </Grid>
-        <Grid item xs={3}>
-          <p className={classes.verticalAlign}>{order.products[0].total}</p>
-        </Grid>
-        <Grid item xs={2}>
-          <p className={classes.verticalAlign}>{order.products[0].shipped}</p>
-        </Grid>
-        <Grid item xs={2}>
-          <p className={classes.verticalAlign}>{order.products[0].remain}</p>
-        </Grid>
-        <Grid item xs={1} className={classes.dropIcon}>
-          <Button className={classes.buttonWidth}>
-            {open ? <ExpandLess /> : <ExpandMore />}
-          </Button>
-        </Grid>
+      <Grid container item xs={4} className={classes.quantityGrid}>       
+          <Grid item xs={4} className={classes.pLeft10}>
+            <p className={classes.verticalAlign}>
+              {order.products[0].productID}
+            </p>
+          </Grid>
+          <Grid item xs={3}>
+            <p className={classes.verticalAlign}>{order.products[0].total}</p>
+          </Grid>
+          <Grid item xs={2}>
+            <p className={classes.verticalAlign}>{order.products[0].shipped}</p>
+          </Grid>
+          <Grid item xs={2}>
+            <p className={classes.verticalAlign}>{order.products[0].remain}</p>
+          </Grid>
+          <Grid item xs={1} className={classes.dropIcon}>
+            <Button className={classes.buttonWidth} onClick={handleClick}>
+              {open ? <ExpandLess /> : <ExpandMore />}
+            </Button>
+          </Grid>
+        
+        <Collapse in={open} timeout="auto" unmountOnExit style={{width: "100%", zIndex:"1", position:"relative"}}>
+          <List component="div" disablePadding style={{backgroundColor: "#696983", opacity:"1"}}>
+            {order.products.slice(1).map((product) => {
+              return (
+                <ListItem className={classes.noPadding}>
+                  <Grid container className={classes.quantityGrid}>
+                    <Grid item xs={4}>
+                      <p className={classes.verticalAlign}>
+                        {product.productID}
+                      </p>
+                    </Grid>
+                    <Grid item xs={3}>
+                      <p className={classes.verticalAlign}>{product.total}</p>
+                    </Grid>
+                    <Grid item xs={2}>
+                      <p className={classes.verticalAlign}>{product.shipped}</p>
+                    </Grid>
+                    <Grid item xs={2}>
+                      <p className={classes.verticalAlign}>{product.remain}</p>
+                    </Grid>
+                  </Grid>
+                </ListItem>
+              );
+            })}
+          </List>
+        </Collapse>
       </Grid>
-      {/* <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          {order.products.slice(1).map((product) => {
-            return (
-              <ListItem>
-                <Grid container className={classes.quantityGrid}>
-                  <Grid item xs={4}>
-                    <p className={classes.verticalAlign}>
-                      {product.productID}
-                    </p>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <p className={classes.verticalAlign}>
-                      {product.total}
-                    </p>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <p className={classes.verticalAlign}>
-                      {product.shipped}
-                    </p>
-                  </Grid>
-                  <Grid item xs={1}>
-                    <p className={classes.verticalAlign}>
-                      {product.remain}
-                    </p>
-                  </Grid>
-                  <Grid item xs={1} className={classes.dropIcon}>
-                    <Button>{open ? <ExpandLess /> : <ExpandMore />}</Button>
-                  </Grid>
-                </Grid>
-              </ListItem>
-            );
-          })}
-        </List>
-      </Collapse> */}
       <Grid container item xs={2}>
         <Grid item xs={8} className={classes.dropIcon}>
           <p className={classes.orderStatus}>{order.status}</p>
