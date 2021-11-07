@@ -2,13 +2,12 @@ import React from "react";
 import { Box, Avatar, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     width: 230,
-    height: 300,
     backgroundColor: "#FAFAFB",
     borderRadius: 5,
     marginBottom: 10,
@@ -16,19 +15,19 @@ const useStyles = makeStyles(() => ({
   avatar: {
     width: 120,
     height: 120,
-    margin: 10,
+    marginTop: theme.spacing(1),
   },
   content: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginBottom: 18,
+    margin: theme.spacing(1),
   },
   text: {
     fontWeight: "600",
   },
   button: {
-    margin: 10,
+    marginBottom: theme.spacing(2),
     width: 200,
     height: 50,
     border: "2px solid #DADADA",
