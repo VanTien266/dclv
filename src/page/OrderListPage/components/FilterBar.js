@@ -14,9 +14,9 @@ import { Notifications } from "@material-ui/icons";
 
 const useStyles = makeStyles({
   root: {
-    marginTop:"20px"
+    marginTop: "20px",
   },
-  
+
   verticalCenter: {
     direction: "row",
     display: "flex",

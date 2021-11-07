@@ -1,7 +1,7 @@
 import { Redirect } from "react-router-dom";
 import SignIn from "./screens/SignIn";
 import DashBoard from "./page/DashBoard";
-import Product from "./page/Product";
+import Product from "./page/ProductPage/ProductPage";
 import Main from "./screens/Main/Main";
 import OrderListPage from "./page/OrderListPage";
 import ChangePassword from "./screens/ChangePassword/ChangePassword";

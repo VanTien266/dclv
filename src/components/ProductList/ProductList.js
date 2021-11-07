@@ -14,10 +14,26 @@ import {
 } from "@material-ui/core";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { makeStyles } from "@material-ui/styles";
-const useStyles = makeStyles(() => ({
-  root: {},
+const useStyles = makeStyles((theme) => ({
+  tableHead: { backgroundColor: "#B4B4C1" },
+  headStyle: { ...theme.typography.titleM, color: "#000040" },
+  tableBody: {
+    backgroundColor: "#F6F6F8",
+  },
+  cardHeader: {
+    ...theme.typography.textParagraph,
+  },
   content: {
     padding: 0,
+  },
+  textCode: {
+    ...theme.typography.textCode,
+    color: "#000040",
+  },
+  textItem: {
+    ...theme.typography.textItem,
+    textTransform: "capitalize",
+    color: "#000040",
   },
   statusTrue: {
     color: "#5A9E4B",
@@ -26,7 +42,15 @@ const useStyles = makeStyles(() => ({
     color: "#FF0000",
   },
 }));
-
+const tableTilteConfig = [
+  "ID",
+  "Tên",
+  "Ngày nhập",
+  "Chiều dài",
+  "Lô vải",
+  "Kho",
+  "Trạng thái",
+];
 function ProductList(props) {
   const { className, product } = props;
 
@@ -39,60 +63,56 @@ function ProductList(props) {
         <CardContent className={classes.content}>
           <PerfectScrollbar>
             <Table>
-              <TableHead>
+              <TableHead className={classes.tableHead}>
                 <TableRow>
-                  <TableCell>ID</TableCell>
-                  <TableCell>Tên</TableCell>
-                  <TableCell>Ngày nhập</TableCell>
-                  <TableCell>Chiều dài</TableCell>
-                  <TableCell>Lô vải</TableCell>
-                  <TableCell>Kho</TableCell>
-                  <TableCell>Trạng thái</TableCell>
+                  {tableTilteConfig.map((item, index) => (
+                    <TableCell key={index} className={classes.headStyle}>
+                      {item}
+                    </TableCell>
+                  ))}
                 </TableRow>
               </TableHead>
-              <TableBody>
-                {product.map((item) => (
-                  <TableRow hover key={item.id}>
-                    <TableCell>{item.id.substring(0, 4)}</TableCell>{" "}
-                    <TableCell>{item.item.name}</TableCell>
-                    <TableCell>
-                      {moment(item.dateAdded).format("DD/MM/YYYY")}
-                    </TableCell>
-                    <TableCell>{item.length}</TableCell>
-                    <TableCell>{item.lot}</TableCell>
-                    <TableCell>{item.warehouseId}</TableCell>
-                    {item.status ? (
-                      <TableCell className={classes.statusTrue}>
-                        Đang có sẵn{" "}
+              <TableBody className={classes.tableBody}>
+                {product
+                  .filter((item) => item.status === true)
+                  .map((item) => (
+                    <TableRow hover key={item.id}>
+                      <TableCell className={classes.textCode}>
+                        {item.id.substring(0, 4)}
                       </TableCell>
-                    ) : (
-                      <TableCell className={classes.statusFalse}>
-                        Đã hết{" "}
+                      <TableCell className={classes.textItem}>
+                        {item.item.name}
                       </TableCell>
-                    )}
-                  </TableRow>
-                ))}
-                {product.map((item) => (
-                  <TableRow hover key={item.id}>
-                    <TableCell>{item.id.substring(0, 4)}</TableCell>{" "}
-                    <TableCell>{item.item.name}</TableCell>
-                    <TableCell>
-                      {moment(item.dateAdded).format("DD/MM/YYYY")}
-                    </TableCell>
-                    <TableCell>{item.length}</TableCell>
-                    <TableCell>{item.lot}</TableCell>
-                    <TableCell>{item.warehouseId}</TableCell>
-                    {item.status ? (
-                      <TableCell className={classes.statusTrue}>
-                        Đang có sẵn{" "}
+                      <TableCell className={classes.textItem}>
+                        {moment(item.dateAdded).format("DD/MM/YYYY")}
                       </TableCell>
-                    ) : (
-                      <TableCell className={classes.statusFalse}>
-                        Đã hết{" "}
+                      <TableCell className={classes.textItem}>
+                        {item.length}
                       </TableCell>
-                    )}
-                  </TableRow>
-                ))}
+                      <TableCell className={classes.textItem}>
+                        {item.lot}
+                      </TableCell>
+                      <TableCell className={classes.textItem}>
+                        {item.warehouseId}
+                      </TableCell>
+                      {item.status ? (
+                        <TableCell
+                          className={clsx(classes.statusTrue, classes.textCode)}
+                        >
+                          Đang có sẵn
+                        </TableCell>
+                      ) : (
+                        <TableCell
+                          className={clsx(
+                            classes.statusFalse,
+                            classes.textCode
+                          )}
+                        >
+                          Đã hết{" "}
+                        </TableCell>
+                      )}
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </PerfectScrollbar>
