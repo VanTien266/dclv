@@ -12,11 +12,10 @@ const useStyles = makeStyles({
     backgroundColor: "#B4B4C1",
     borderRadius: "5px",
     height: "50px",
-    marginTop: "20px",
-    marginBottom: "20px",
+    marginTop: "10px",
     paddingLeft: "5px",
   },
-  billQuantity: {
+  alignVerticalCenter: {
     justifyContent: "center",
     direction: "row",
     display: "flex",
@@ -33,36 +32,31 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
-  },
-  productList: {
-    justifyContent: "center",
-    direction: "row",
-    display: "flex",
-    alignItems: "center",
-  },
+  }
 });
 
-export default function ListHeader() {
+export default function BillHeader() {
   const classes = useStyles();
   return (
     <Grid container className={classes.root}>
-      <Grid item xs={2} className={clsx(classes.orderId, classes.verticalCenter)}>
-        <p>Mã đơn hàng</p>
+      <Grid
+        item
+        xs={2}
+        className={clsx(classes.orderId, classes.verticalCenter)}
+      >
+        <p>Mã hóa đơn</p>
       </Grid>
-      <Grid item xs={1} className={classes.verticalCenter}>
-        <p>Ngày đặt</p>
+      <Grid item xs={2} >
+        <p>Ngày tạo</p>
       </Grid>
-      <Grid item xs={1} className={classes.billQuantity}>
-        <p>Số hóa đơn</p>
+      <Grid item xs={2} >
+        <p>Người tạo</p>
       </Grid>
-      <Grid container item xs={2} className={classes.verticalCenter}>
+      <Grid item xs={2} >
         <p>Khách hàng</p>
       </Grid>
-      <Grid item xs={2} className={classes.verticalCenter}>
-        <p>Đã đặt cọc</p>
-      </Grid>
-      <Grid container item xs={2} className={classes.productList}>
-        <p>Mặt hàng đã đặt</p>
+      <Grid container item xs={2} className={classes.alignVerticalCenter}>
+        <p>Cây vải</p>
       </Grid>
       <Grid item xs={2} className={classes.verticalCenter}>
         <p>Trạng thái</p>
