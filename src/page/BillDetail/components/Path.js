@@ -1,0 +1,40 @@
+import React from "react";
+import {
+  Grid,
+  Button,
+  IconButton,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
+import PrintIcon from "@material-ui/icons/Print";
+import DefaultButton from "../../../components/Button/DefaultButton";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginBottom: theme.spacing(1),
+  },
+  title: {
+    ...theme.typography.largeTitle,
+  },
+}));
+
+function Path() {
+  const classes = useStyles();
+
+  return (
+    <Grid className={classes.root}>
+      <Grid item>
+        <Typography variant="h5" color="primary" className={classes.title}>
+          Hóa đơn bán hàng #MHD1234
+        </Typography>
+      </Grid>
+      <Grid item>
+        <DefaultButton icon={PrintIcon} title={"In hóa đơn"} />
+      </Grid>
+    </Grid>
+  );
+}
+
+export default Path;

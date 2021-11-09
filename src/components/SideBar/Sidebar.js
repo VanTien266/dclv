@@ -1,29 +1,26 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { matchPath, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
 import SidebarItem from "./components/SidebarItem";
 import CardProfile from "../CardProfile/CardProfile";
-import { Box, Drawer, Hidden, Paper } from "@material-ui/core";
+import { Drawer, Hidden } from "@material-ui/core";
 import sidebarConfig from "./SalemanSidebarConfig";
-import clsx from "clsx";
 
-const useStyles = makeStyles(() => ({
-  root: { height: "100%", overflowY: "auto" },
-  sidebar: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    width: 260,
-    minWidth: 260,
-    //make full height
-    height: "100vh",
+const useStyles = makeStyles((theme) => ({
+  sidebarBg: {
     backgroundColor: "#000040",
   },
-  body: {
+  head: {
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+  container: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-between",
+    height: "100%",
   },
 }));
 
@@ -35,46 +32,48 @@ function Sidebar(props) {
   const match = (path) =>
     path ? matchPath({ path, end: false }, pathname) : false;
   const sidebarContent = (
-    <div className={classes.sidebar}>
-      <img
-        src={process.env.PUBLIC_URL + "/assets/logo.png"}
-        alt="logo"
-        width="260"
-      />
-      <nav>
-        {sidebarConfig.map((list) => (
-          <SidebarItem
-            key={list.tag}
-            path={list.path}
-            icon={list.icon}
-            title={list.name}
-            tag={list.tag}
-            active={match}
-          />
-        ))}
-      </nav>
-      <Box sx={{ flexGrow: 1 }} />
+    <div className={classes.container}>
+      <div className={classes.head}>
+        <img
+          src={process.env.PUBLIC_URL + "/assets/logo.png"}
+          alt="logo"
+          width="260"
+        />
+        <nav>
+          {sidebarConfig.map((list) => (
+            <SidebarItem
+              key={list.tag}
+              path={list.path}
+              icon={list.icon}
+              title={list.name}
+              tag={list.tag}
+              active={match}
+            />
+          ))}
+        </nav>
+      </div>
       <CardProfile />
     </div>
   );
   return (
-    <Fragment>
+    <div className={className}>
       <Hidden lgUp>
         <Drawer
           anchor="left"
           onClose={onMobileClose}
           open={openMobile}
           variant="temporary"
+          classes={{ paper: classes.sidebarBg }}
         >
-          <div className={clsx(classes.root, className)}>{sidebarContent}</div>
+          {sidebarContent}
         </Drawer>
       </Hidden>
       <Hidden mdDown>
-        <Paper className={clsx(classes.root, className)} elevation={1} square>
+        <Drawer variant="permanent" open classes={{ paper: classes.sidebarBg }}>
           {sidebarContent}
-        </Paper>
+        </Drawer>
       </Hidden>
-    </Fragment>
+    </div>
   );
 }
 

@@ -1,33 +1,39 @@
 import React from "react";
 import { Box, Avatar, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import MenuItem from '@material-ui/core/MenuItem';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   container: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     width: 230,
+    height: 250,
     backgroundColor: "#FAFAFB",
     borderRadius: 5,
     marginBottom: 10,
+    borderColor: "black",
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    marginLeft: '10px'
   },
   avatar: {
     width: 120,
     height: 120,
-    marginTop: theme.spacing(1),
+    margin: 10,
   },
   content: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    margin: theme.spacing(1),
+    marginBottom: 18,
   },
   text: {
     fontWeight: "600",
   },
   button: {
-    marginBottom: theme.spacing(2),
+    margin: 10,
     width: 200,
     height: 50,
     border: "2px solid #DADADA",
@@ -36,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "none",
   },
 }));
-function CardProfile() {
+function InfoProfile() {
   const classes = useStyles();
   return (
     <Box className={classes.container}>
@@ -51,9 +57,8 @@ function CardProfile() {
         </Typography>
         <Typography variant="body1">Nhân viên bán hàng</Typography>
       </Box>
-      <Button className={classes.button}>Xem thông tin</Button>
     </Box>
   );
 }
 
-export default CardProfile;
+export default InfoProfile;

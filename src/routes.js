@@ -1,9 +1,10 @@
+import { lazy } from "react";
 import { Redirect } from "react-router-dom";
 import SignIn from "./screens/SignIn";
 import DashBoard from "./page/DashBoard";
-import Product from "./page/Product";
-import Order from "./page/Order";
+import Product from "./page/ProductPage/ProductPage";
 import Main from "./screens/Main/Main";
+import OrderListPage from "./page/OrderListPage";
 import ChangePassword from "./screens/ChangePassword/ChangePassword";
 
 const routes = [
@@ -39,7 +40,12 @@ const routes = [
       {
         path: "/order",
         exact: true,
-        component: Order,
+        component: OrderListPage,
+      },
+      {
+        path: "/order/bill-detail",
+        exact: true,
+        component: lazy(() => import("./page/BillDetail")),
       },
     ],
   },

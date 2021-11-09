@@ -38,7 +38,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const SidebarItem = (props) => {
-  const { path, tag, title, icon: Icon, active } = props;
+  const { path, title, icon: Icon, active } = props;
   const isActivate = active(path);
   const [open, setOpen] = useState(isActivate);
   const classes = useStyles();
