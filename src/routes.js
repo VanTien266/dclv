@@ -47,6 +47,11 @@ const routes = [
         exact: true,
         component: lazy(() => import("./page/BillDetail")),
       },
+      {
+        path: "/order/bill-export",
+        exact: true,
+        component: lazy(() => import("./page/BillExport")),
+      },
     ],
   },
 ];
