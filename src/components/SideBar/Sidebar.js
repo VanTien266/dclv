@@ -29,8 +29,8 @@ function Sidebar(props) {
   const classes = useStyles();
   const { pathname } = useLocation();
   //check path is activate
-  const match = (path) =>
-    path ? matchPath({ path, end: false }, pathname) : false;
+  const match = (path) => (path ? !!matchPath(pathname, { path }) : false);
+
   const sidebarContent = (
     <div className={classes.container}>
       <div className={classes.head}>
