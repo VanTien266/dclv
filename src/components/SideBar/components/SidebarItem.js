@@ -39,9 +39,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 const SidebarItem = (props) => {
-  const { path, tag, title, icon: Icon, active } = props;
+  const { path, title, icon: Icon, active } = props;
   const isActivate = active(path);
-  console.log(isActivate);
   const [open, setOpen] = useState(isActivate);
   const classes = useStyles();
 
@@ -52,8 +51,8 @@ const SidebarItem = (props) => {
   return (
     <ListItem disableGutters onClick={handleOpen}>
       <Button
-        activeClassName={classes.activate}
-        className={classes.container}
+        // activeClassName={classes.activate}
+        className={clsx(classes.container, isActivate ? classes.activate : "")}
         component={CustomRouterLink}
         exact
         to={path}

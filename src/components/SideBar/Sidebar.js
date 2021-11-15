@@ -3,61 +3,78 @@ import { matchPath, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
 import SidebarItem from "./components/SidebarItem";
 import CardProfile from "../CardProfile/CardProfile";
-import { Box } from "@material-ui/core";
-import sidebarConfig from "./sideBarConfig";
+import { Drawer, Hidden } from "@material-ui/core";
+import sidebarConfig from "./SalemanSidebarConfig";
 
-const useStyles = makeStyles(() => ({
-  sidebar: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    zIndex: 3,
-    width: 260,
-    minWidth: 260,
-    //make full height
-    height: "100vh",
-    flex: "0 0 auto",
+const useStyles = makeStyles((theme) => ({
+  sidebarBg: {
     backgroundColor: "#000040",
   },
-  body: {
+  head: {
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+  container: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-between",
+    height: "100%",
   },
 }));
 
-function Sidebar() {
+function Sidebar(props) {
+  const { openMobile, onMobileClose, className } = props;
   const classes = useStyles();
   const { pathname } = useLocation();
-  console.log(pathname);
   //check path is activate
-  const match = (path) =>
-    path ? matchPath({ path, end: false }, pathname) : false;
+  const match = (path) => (path ? !!matchPath(pathname, { path }) : false);
+
   const sidebarContent = (
-    <div className={classes.sidebar}>
-      <img
-        src={process.env.PUBLIC_URL + "/assets/logo.png"}
-        alt="logo"
-        width="260"
-      />
-      <nav>
-        {sidebarConfig.map((list) => (
-          <SidebarItem
-            key={list.tag}
-            path={list.path}
-            icon={list.icon}
-            title={list.name}
-            tag={list.tag}
-            active={match}
-          />
-        ))}
-      </nav>
-      <Box sx={{ flexGrow: 1 }} />
+    <div className={classes.container}>
+      <div className={classes.head}>
+        <img
+          src={process.env.PUBLIC_URL + "/assets/logo.png"}
+          alt="logo"
+          width="260"
+        />
+        <nav>
+          {sidebarConfig.map((list) => (
+            <SidebarItem
+              key={list.tag}
+              path={list.path}
+              icon={list.icon}
+              title={list.name}
+              tag={list.tag}
+              active={match}
+            />
+          ))}
+        </nav>
+      </div>
       <CardProfile />
     </div>
   );
-  return <div>{sidebarContent}</div>;
+  return (
+    <div className={className}>
+      <Hidden lgUp>
+        <Drawer
+          anchor="left"
+          onClose={onMobileClose}
+          open={openMobile}
+          variant="temporary"
+          classes={{ paper: classes.sidebarBg }}
+        >
+          {sidebarContent}
+        </Drawer>
+      </Hidden>
+      <Hidden mdDown>
+        <Drawer variant="permanent" open classes={{ paper: classes.sidebarBg }}>
+          {sidebarContent}
+        </Drawer>
+      </Hidden>
+    </div>
+  );
 }
 
 export default Sidebar;

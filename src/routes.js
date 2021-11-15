@@ -1,6 +1,9 @@
+import { lazy } from "react";
 import { Redirect } from "react-router-dom";
 import SignIn from "./screens/SignIn";
-import DashBoardPage from "./page/DashBoardPage";
+import DashBoard from "./page/DashBoard";
+import Product from "./page/ProductPage/ProductPage";
+import Main from "./screens/Main/Main";
 import OrderListPage from "./page/OrderListPage";
 import OrderDetail from "./page/OrderDetail";
 import OrderEdit from "./page/OrderEdit";
@@ -14,13 +17,28 @@ const routes = [
     component: () => <Redirect to="/dashboard" />,
   },
   {
+    path: "/signin",
+    exact: true,
+    component: SignIn,
+  },
+  {
+    path: "/resetpassword",
+    exact: true,
+    component: ChangePassword,
+  },
+  {
     route: "*",
-    component: DashBoard,
+    component: Main,
     routes: [
       {
         path: "/dashboard",
         exact: true,
-        component: DashBoardPage,
+        component: DashBoard,
+      },
+      {
+        path: "/product",
+        exact: true,
+        component: Product,
       },
       {
         path: "/order",
@@ -36,13 +54,18 @@ const routes = [
         path: "/orderedit",
         exact: true,
         component: OrderEdit,
-      }
+      },
+      {
+        path: "/order/bill-detail",
+        exact: true,
+        component: lazy(() => import("./page/BillDetail")),
+      },
+      {
+        path: "/order/bill-export",
+        exact: true,
+        component: lazy(() => import("./page/BillExport")),
+      },
     ],
-  },
-  {
-    path: "/resetpassword",
-    exact: true,
-    component: ChangePassword,
   },
 ];
 
