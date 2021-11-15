@@ -12,6 +12,7 @@ const useStyles = makeStyles({
   title: {
     color: "#000040",
     fontWeight: "bold",
+    marginBottom: "10px"
   },
   totalMoney: {
     color: "#000040",
@@ -29,8 +30,8 @@ const useStyles = makeStyles({
   containerNoPadding: {
     padding: "0",
     maxHeight: "40vh",
-    overflow: "auto"
-  }
+    overflow: "auto",
+  },
 });
 export default function OrderInfo() {
   const classes = useStyles();
@@ -39,13 +40,26 @@ export default function OrderInfo() {
       <Typography variant="h5" className={classes.title}>
         Thông tin đơn hàng
       </Typography>
-      <Container maxWidth="xl" className={classes.containerNoPadding}>
-        <ProductOrder />
-        <ProductOrder />
-        <ProductOrder />
-        <ProductOrder />
-        <ProductOrder />
-      </Container>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <ProductOrder />
+        </Grid>
+        <Grid item xs={12}>
+          <ProductOrder />
+        </Grid>
+        <Grid item xs={12}>
+          <ProductOrder />
+        </Grid>
+        <Grid item xs={12}>
+          <ProductOrder />
+        </Grid>
+        <Grid item xs={12}>
+          <ProductOrder />
+        </Grid>
+        <Grid item xs={12}>
+          <ProductOrder />
+        </Grid>
+      </Grid>
       <hr />
       <Grid container>
         <Grid item xs={6}>

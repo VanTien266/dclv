@@ -4,12 +4,13 @@ import { LocationOn, Email, Phone, Notes, Edit } from "@material-ui/icons";
 import clsx from "clsx";
 
 const useStyles = makeStyles({
-  info: {
+  customerInfo: {
     backgroundColor: "#F6F6F8",
     borderRadius: "5px",
     padding: "10px",
     fontFamily: "'Roboto', sans-serif",
     color: "#000040",
+    height: "100%"
   },
   infoTable: {
     margin: "0px",
@@ -33,7 +34,7 @@ const useStyles = makeStyles({
 export default function CustomerInfo() {
   const classes = useStyles();
   return (
-    <div className={classes.info}>
+    <div className={classes.customerInfo}>
       <Grid container>
         <Grid item xs={10}>
           <Typography variant="h5" className={classes.title}>
@@ -60,10 +61,8 @@ export default function CustomerInfo() {
                 >
                   Lưu Văn Tiến
                 </Typography>
-                <Typography component="p" className={classes.infoTable}>
-                  KTX Khu B
-                </Typography>
-                <Typography component="p" className={classes.infoTable}>
+                <Typography variant="subtitle1">KTX Khu B</Typography>
+                <Typography variant="subtitle1">
                   Đông Hòa - Dĩ An - Bình Dương
                 </Typography>
               </td>
@@ -72,13 +71,19 @@ export default function CustomerInfo() {
               <td>
                 <Email />
               </td>
-              <td>tien.luu.van@hcmut.edu.vn</td>
+              <td>
+                <Typography variant="subtitle1">
+                  tien.luu.van@hcmut.edu.vn
+                </Typography>
+              </td>
             </tr>
             <tr>
               <td>
                 <Phone />
               </td>
-              <td>0826755114</td>
+              <td>
+                <Typography variant="subtitle1">0826755114</Typography>
+              </td>
             </tr>
           </table>
         </Grid>
@@ -105,10 +110,8 @@ export default function CustomerInfo() {
                 >
                   Lưu Văn Tiến
                 </Typography>
-                <Typography component="p" className={classes.infoTable}>
-                  KTX khu A
-                </Typography>
-                <Typography component="p" className={classes.infoTable}>
+                <Typography variant="subtitle1">KTX khu A</Typography>
+                <Typography variant="subtitle1">
                   KP 6 - Tp Thủ Đức - Tp Hồ Chí Minh
                 </Typography>
               </td>
@@ -117,7 +120,9 @@ export default function CustomerInfo() {
               <td>
                 <Phone />
               </td>
-              <td>01296755114</td>
+              <td>
+                <Typography variant="subtitle1">01296755114</Typography>
+              </td>
             </tr>
           </table>
         </Grid>

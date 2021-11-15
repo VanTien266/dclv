@@ -8,7 +8,7 @@ import {
   TimelineContent,
   TimelineDot,
 } from "@material-ui/lab";
-import { Typography, Container } from "@material-ui/core";
+import { Typography, Container, Grid } from "@material-ui/core";
 import clsx from "clsx";
 
 const useStyles = makeStyles({
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     borderRadius: "5px",
     fontFamily: "'Roboto', sans-serif",
     padding: "10px",
-    width: "100%"
+    width: "100%",
   },
   title: {
     color: "#000040",
@@ -64,8 +64,24 @@ export default function TimelineStatus() {
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>
-            <p className={classes.status}>Chờ xử lý</p>
-            <p className={classes.statusDetail}>Đơn hàng đang chờ được xử lí</p>
+            <Grid container>
+              <Grid item xs={9}>
+                <Typography variant="subtitle1" className={classes.status}>
+                  Chờ xử lý
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  className={classes.statusDetail}
+                >
+                  Đơn hàng đang chờ được xử lí
+                </Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography variant="subtitle1" className={classes.status}>
+                  DD/MM/YYYY
+                </Typography>
+              </Grid>
+            </Grid>
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
@@ -74,10 +90,27 @@ export default function TimelineStatus() {
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>
-            <p className={clsx(classes.status, classes.active)}>Đang xử lý</p>
-            <p className={clsx(classes.statusDetail, classes.active)}>
-              Nhân viên đang xử lí đơn hàng
-            </p>
+            <Grid container>
+              <Grid item xs={9}>
+                <Typography
+                  variant="subtitle1"
+                  className={clsx(classes.status, classes.active)}
+                >
+                  Đang xử lý
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  className={clsx(classes.statusDetail, classes.active)}
+                >
+                  Nhân viên đang xử lí đơn hàng
+                </Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography variant="subtitle1" className={classes.status}>
+                  DD/MM/YYYY
+                </Typography>
+              </Grid>
+            </Grid>
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
@@ -86,11 +119,30 @@ export default function TimelineStatus() {
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>
-            <p className={classes.status}>Chờ xử lý</p>
-            <p className={classes.statusDetail}>
-              Đơn hàng đã được hoàn tất một phần
-            </p>
-            <p className={classes.statusDetail}>Đang đợi xử lí phần còn lại</p>
+            <Grid container>
+              <Grid item xs={9}>
+                <Typography variant="subtitle1" className={classes.status}>
+                  Chờ xử lý
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  className={classes.statusDetail}
+                >
+                  Đơn hàng đã được hoàn tất một phần
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  className={classes.statusDetail}
+                >
+                  Đang đợi xử lí phần còn lại
+                </Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography variant="subtitle1" className={classes.status}>
+                  DD/MM/YYYY
+                </Typography>
+              </Grid>
+            </Grid>
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
@@ -99,8 +151,24 @@ export default function TimelineStatus() {
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>
-            <p className={classes.status}>Đang xử lý</p>
-            <p className={classes.statusDetail}>Nhân viên xử lí phần còn lại</p>
+            <Grid container>
+              <Grid item xs={9}>
+                <Typography variant="subtitle1" className={classes.status}>
+                  Đang xử lý
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  className={classes.statusDetail}
+                >
+                  Nhân viên xử lí phần còn lại
+                </Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography variant="subtitle1" className={classes.status}>
+                  DD/MM/YYYY
+                </Typography>
+              </Grid>
+            </Grid>
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
@@ -108,10 +176,24 @@ export default function TimelineStatus() {
             <TimelineDot />
           </TimelineSeparator>
           <TimelineContent>
-            <p className={classes.status}>Đã xử lý xong</p>
-            <p className={classes.statusDetail}>
-              Đơn hàng đã được nhân viên xử lí xong
-            </p>
+            <Grid container>
+              <Grid item xs={9}>
+                <Typography variant="subtitle1" className={classes.status}>
+                  Đã xử lý xong
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  className={classes.statusDetail}
+                >
+                  Đơn hàng đã được nhân viên xử lí xong
+                </Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography variant="subtitle1" className={classes.status}>
+                  DD/MM/YYYY
+                </Typography>
+              </Grid>
+            </Grid>
           </TimelineContent>
         </TimelineItem>
       </Timeline>

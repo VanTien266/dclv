@@ -13,12 +13,11 @@ import {
   Publish,
 } from "@material-ui/icons";
 
-const useStyles = makeStyles({
-  orderDetailBox: {
+const useStyles = makeStyles((theme) => ({
+  orderEditBox: {
     padding: "10px",
-    display: "table",
   },
-  alignStatusRight: {
+  alignBtnRight: {
     direction: "row",
     display: "flex",
     alignItems: "center",
@@ -30,56 +29,85 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "center",
   },
-  heightCancleBtn: {
-    height: "100%"
-  }
-});
+  titlePage: {
+    fontWeight: "bold",
+    color: "#000040",
+  },
+  root: {
+    "& .MuiPaper-root": {
+      backgroundColor: "#fafafb",
+      color: theme.palette.primary.main,
+    },
+  },
+  container: {
+    display: "flex",
+  },
+  btnGroup: {
+    justifyContent: "flex-end",
+  },
+  btnCancel: {
+    backgroundColor: "#EAECFF",
+    color: "#696983",
+    "&:hover": {
+      backgroundColor: "red",
+      color: "black",
+    },
+    textTransform: "none",
+    padding: theme.spacing(1.5),
+  },
+  btnCancelTitle: {
+    ...theme.typography.buttonPrimary,
+  },
+}));
 
 export default function OrderEdit() {
   const classes = useStyles();
   return (
-    <Container maxWidth="xl" className={classes.orderDetailBox}>
+    <Container maxWidth="xl" className={classes.orderEditBox}>
       <Grid container spacing={2}>
         <Grid item xs={9}>
-          <Typography variant="h4" className={classes.infoTable}>
-            Đơn hàng <KeyboardArrowRight /> Chi tiết đơn đặt hàng MDH12345
+          <Typography variant="h4" className={classes.titlePage}>
+             Chi tiết đơn đặt hàng MDH12345
           </Typography>
         </Grid>
-        <Grid item xs={3} className={classes.alignStatusRight}>
+        <Grid item xs={3} className={classes.alignBtnRight}>
           <DefaultButton icon={Publish} title="Xuất hóa đơn" />
         </Grid>
       </Grid>
-      <Grid container spacing={2}>
-        <Grid container direction="column" item xs={7} spacing={2}>
-          <Grid item>
-            <OrderInfo />
-          </Grid>
-          <Grid item>
-            <ListBill />
-          </Grid>
+      <Grid container spacing={2} className={classes.root}>
+        <Grid item xs={12} md={7}>
+          <OrderInfo />
         </Grid>
-        <Grid container item xs={5} direction="column" spacing={2}>
-          <Grid item>
-            <TimelineStatus />
-          </Grid>
-          <Grid item>
-            <CustomerInfo />
-          </Grid>
-          <Grid container item>
-            <Grid item xs={4} className={classes.alignCenter}>
-              <Button startIcon={<Cancel />} size="large" className={classes.heightCancleBtn}>
-                <Typography variant="h6" color="secondary">
-                  Hủy
-                </Typography>
-              </Button>
-            </Grid>
-            <Grid item xs={4} className={classes.alignCenter}>
-              <DefaultButton icon={ArrowBack} title="Quay lại" />
-            </Grid>
-            <Grid item xs={4} className={classes.alignCenter}>
-              <DefaultButton icon={ArrowUpward} title="Cập nhật" />
-            </Grid>
-          </Grid>
+        <Grid item xs={12} md={5}>
+          <TimelineStatus />
+        </Grid>
+        <Grid item xs={12} md={7}>
+          <ListBill />
+        </Grid>
+        <Grid item xs={12} md={5}>
+          <CustomerInfo />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} className={classes.btnGroup}>
+        <Grid item>
+          <Button
+            startIcon={<Cancel />}
+            size="large"
+            className={classes.btnCancel}
+          >
+            <Typography
+              variant="h6"
+              className={classes.btnCancelTitle}
+            >
+              Hủy
+            </Typography>
+          </Button>
+        </Grid>
+        <Grid item>
+          <DefaultButton title="Quay lại" icon={ArrowBack} />
+        </Grid>
+        <Grid item>
+          <DefaultButton title="Cập nhật" icon={ArrowUpward} />
         </Grid>
       </Grid>
     </Container>

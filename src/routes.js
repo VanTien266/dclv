@@ -7,7 +7,6 @@ import Main from "./screens/Main/Main";
 import OrderListPage from "./page/OrderListPage";
 import OrderDetail from "./page/OrderDetail";
 import OrderEdit from "./page/OrderEdit";
-import DashBoard from "./screens/DashBoard/Dashboard";
 import ChangePassword from "./screens/ChangePassword/ChangePassword";
 
 const routes = [

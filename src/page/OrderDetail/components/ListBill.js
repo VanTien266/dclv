@@ -8,6 +8,7 @@ const useStyles = makeStyles({
     borderRadius: "5px",
     fontFamily: "'Roboto', sans-serif",
     padding: "10px",
+    height: "100%"
   },
   header: {
     fontSize: "14px",
@@ -28,11 +29,10 @@ const useStyles = makeStyles({
   title: {
     color: "#000040",
     fontWeight: "bold",
+    marginBottom: "10px"
   },
   containerNoPadding: {
-    padding: "0",
-    maxHeight: "40vh",
-    overflow: "auto"
+    padding: "0"
   }
 });
 export default function ListBill() {
