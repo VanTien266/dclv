@@ -34,9 +34,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#000040",
   },
   content: {
-    padding: theme.spacing(4),
+    padding: theme.spacing(6),
+    backgroundColor: "#fff",
     paddingTop: TOP_BAR_HEIGHT,
-    right: 0,
     overflowY: "auto",
     flex: "1 1 auto",
   },

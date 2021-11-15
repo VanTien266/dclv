@@ -1,12 +1,36 @@
 const typograpghy = {
-  textParagraph: {
-    fontSize: 14,
+  h5: {
+    //Big title
+    fontSize: 22,
+    fontWeight: 700,
+    lineHeight: "22px",
+    letterSpacing: "0.003em",
+  },
+  h6: {
+    //Title M
+    fontSize: 18,
+    fontWeight: 700,
+    lineHeight: "24px",
+    letterSpacing: "0.003em",
+  },
+
+  body1: {
+    //Text Item
+    fontSize: 16,
     fontWeight: 500,
     lineHeight: "24px",
     letterSpacing: "0.003em",
   },
-  textItem: {
-    fontSize: 16,
+  body2: {
+    //Text Status
+    fontSize: 18,
+    fontWeight: 800,
+    lineHeight: "21.1px",
+    // letterSpacing: "0.003em",
+  },
+  subtitle1: {
+    //Text Paragraph
+    fontSize: 14,
     fontWeight: 500,
     lineHeight: "24px",
     letterSpacing: "0.003em",
@@ -41,46 +65,31 @@ const typograpghy = {
     lineHeight: "24px",
     letterSpacing: "0.003em",
   },
-  titleM: {
-    fontSize: 18,
-    fontWeight: 700,
-    lineHeight: "24px",
-    letterSpacing: "0.003em",
-  },
+
   textCode: {
     fontSize: 18,
     fontWeight: 500,
     lineHeight: "21.1px",
     letterSpacing: "0.003em",
   },
-  textStatus: {
-    fontSize: 18,
-    fontWeight: 800,
-    lineHeight: "21.1px",
-    // letterSpacing: "0.003em",
-  },
+
   textItemBold: {
     fontSize: 16,
     fontWeight: 700,
     lineHeight: "24px",
     letterSpacing: "0.003em",
   },
-  bigTitle: {
-    fontSize: 22,
-    fontWeight: 700,
-    lineHeight: "21.1px",
-    letterSpacing: "0.003em",
-  },
+
   largeTitle: {
     fontSize: 30,
     fontWeight: 700,
-    lineHeight: "21.1px",
-    // letterSpacing: "0.003em",
+    lineHeight: "30px",
+    letterSpacing: "0.003em",
   },
   buttonBig: {
     fontSize: 20,
     fontWeight: 700,
-    lineHeight: "21.1px",
+    lineHeight: "20px",
     // letterSpacing: "0.003em",
   },
 };

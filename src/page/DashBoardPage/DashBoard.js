@@ -32,10 +32,10 @@ function DashBoard() {
             <DateFilter />
           </Grid>
           <Grid container item xs={12} sm={4} md={4} className={classes.notiSearch}>
-            <Grid item xs={12} sm={2} md={2}>
+            <Grid item xs={2} sm={2} md={2}>
               <NotificationButton />
             </Grid>
-            <Grid item xs={12} sm={10} md={10}>
+            <Grid item xs={10} sm={10} md={10}>
               <SearchField />
             </Grid>
           </Grid>

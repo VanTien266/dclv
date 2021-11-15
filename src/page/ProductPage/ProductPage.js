@@ -30,6 +30,7 @@ function Product() {
       axios.get("/product/fabric-roll").then((resonse) => {
         if (mounted) {
           setProduct(resonse.data.fabricRoll);
+          console.log(resonse.data.fabricRoll);
         }
       });
     };

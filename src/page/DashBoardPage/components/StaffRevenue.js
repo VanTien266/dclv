@@ -55,7 +55,7 @@ export default function StaffRevenue() {
       <IconWrapperStyle> 
         <Icon icon="dashicons:money-alt" color="rgb(183, 129, 3)" width="40" height="40" />
       </IconWrapperStyle>
-      <Typography variant="h4">120.000.000 VNĐ</Typography>
+      <Typography variant="h4">120.000.000VNĐ</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         Revenue
       </Typography>
