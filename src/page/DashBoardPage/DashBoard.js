@@ -5,6 +5,7 @@ import Box from '@material-ui/core/Box';
 
 import DateFilter from "../../components/DateFilter"
 import SearchField from "../../components/SearchField";
+import NotificationButton from "../../components/Button/NotificationButton";
 import { Notifications } from "@material-ui/icons";
 
 import StaffTotalSale from './components/StaffTotalSale'
@@ -25,18 +26,16 @@ function DashBoard() {
         
         <Grid container spacing={3}>
           <Grid item xs={12} sm={2} md={2}>
-            <Typography variant="h5">Tổng quan</Typography>
+            <Typography variant="h4">Tổng quan</Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={6}>
             <DateFilter />
           </Grid>
-          <Grid container item xs={12} sm={4} md={4}>
-            <Grid item xs={12} sm={2} md={2} className={classes.verticalCenter}>
-              <Button>
-                <Notifications fontSize="large" />
-              </Button>
+          <Grid container item xs={12} sm={4} md={4} className={classes.notiSearch}>
+            <Grid item xs={12} sm={2} md={2}>
+              <NotificationButton />
             </Grid>
-            <Grid item xs={12} sm={10} md={10} className={classes.verticalCenter}>
+            <Grid item xs={12} sm={10} md={10}>
               <SearchField />
             </Grid>
           </Grid>
@@ -106,18 +105,10 @@ const useStyles = makeStyles((theme) => ({
   Chart1: {
     //backgroundColor: '#A3A3A3',
   },
-  verticalCenter: {
-    direction: "row",
+  notiSearch: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-  },
-
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
   },
 }));
 

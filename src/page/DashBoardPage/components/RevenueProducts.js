@@ -18,23 +18,17 @@
 // export default StaffTotalSale
 
 
-//import { Icon } from '@iconify/react';
-//import androidFilled from '@iconify/icons-ant-design/android-filled';
-// material
+import { Icon } from '@iconify/react';
 import { alpha, styled } from '@material-ui/core/styles';
 import { Card, Typography } from '@material-ui/core';
 // utils
 //import { fShortenNumber } from '../../../utils/formatNumber';
 
-// ----------------------------------------------------------------------
-
 const RootStyle = styled(Card)(({ theme }) => ({
   boxShadow: 'none',
   textAlign: 'center',
   padding: theme.spacing(5, 0),
-  //padding: 10,#C8FACD
-  //color: theme.palette.primary.darker,
-  color: theme.palette.primary.darker,
+  color: theme.palette.primary.dark,
   //backgroundColor: theme.palette.primary.lighter
   backgroundColor: "#FFE7D9"
 }));
@@ -49,25 +43,22 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
   justifyContent: 'center',
   marginBottom: theme.spacing(3),
   color: theme.palette.primary.dark,
-  backgroundImage: `linear-gradient(135deg, ${alpha(theme.palette.primary.dark, 0)} 0%, ${alpha(
-    theme.palette.primary.dark,
-    0.24
-  )} 100%)`
+  // backgroundImage: `linear-gradient(135deg, ${alpha(theme.palette.primary.dark, 0)} 0%, ${alpha(
+  //   theme.palette.primary.dark,
+  //   0.24
+  // )} 100%)`
+  backgroundImage: 'linear-gradient(135deg, rgba(183, 33, 54, 0) 0%, rgba(183, 33, 54, 0.24) 100%)'
 }));
-
-// ----------------------------------------------------------------------
-
-const TOTAL = 714000;
 
 export default function RevenueProducts() {
   return (
     <RootStyle>
-      <IconWrapperStyle>
-        {/* <Icon icon={androidFilled} width={24} height={24} /> */}
+      <IconWrapperStyle> 
+        <Icon icon="ic:outline-mark-email-unread" color="rgb(183, 33, 54)" width="35" height="35" />
       </IconWrapperStyle>
       <Typography variant="h4">123</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-        Weekly Sales
+        New Feedback
       </Typography>
     </RootStyle>
   );
