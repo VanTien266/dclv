@@ -2,6 +2,8 @@ import { Redirect } from "react-router-dom";
 import SignIn from "./screens/SignIn";
 import DashBoardPage from "./page/DashBoardPage";
 import OrderListPage from "./page/OrderListPage";
+import OrderDetail from "./page/OrderDetail";
+import OrderEdit from "./page/OrderEdit";
 import DashBoard from "./screens/DashBoard/Dashboard";
 import ChangePassword from "./screens/ChangePassword/ChangePassword";
 
@@ -25,6 +27,16 @@ const routes = [
         exact: true,
         component: OrderListPage,
       },
+      {
+        path: "/orderdetail",
+        exact: true,
+        component: OrderDetail,
+      },
+      {
+        path: "/orderedit",
+        exact: true,
+        component: OrderEdit,
+      }
     ],
   },
   {

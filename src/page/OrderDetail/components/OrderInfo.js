@@ -1,0 +1,76 @@
+import { makeStyles } from "@material-ui/core/styles";
+import { Grid, Typography, Container } from "@material-ui/core";
+import ProductOrder from "./ProductOrder";
+
+const useStyles = makeStyles({
+  orderInfoBox: {
+    backgroundColor: "#F6F6F8",
+    borderRadius: "5px",
+    padding: "10px",
+    fontFamily: "'Roboto', sans-serif",
+  },
+  title: {
+    color: "#000040",
+    fontWeight: "bold",
+  },
+  totalMoney: {
+    color: "#000040",
+    fontSize: "20px",
+    fontWeight: "bolder",
+  },
+  alignMoneyRight: {
+    textAlign: "right",
+  },
+  estimateMoney: {
+    color: "#000040",
+    fontSize: "16px",
+    fontWeight: "bolder",
+  },
+  containerNoPadding: {
+    padding: "0",
+    maxHeight: "40vh",
+    overflow: "auto"
+  }
+});
+export default function OrderInfo() {
+  const classes = useStyles();
+  return (
+    <div className={classes.orderInfoBox}>
+      <Typography variant="h5" className={classes.title}>
+        Thông tin đơn hàng
+      </Typography>
+      <Container maxWidth="xl" className={classes.containerNoPadding}>
+        <ProductOrder />
+        <ProductOrder />
+        <ProductOrder />
+        <ProductOrder />
+        <ProductOrder />
+      </Container>
+      <hr />
+      <Grid container>
+        <Grid item xs={6}>
+          <Typography component="p" className={classes.estimateMoney}>
+            Ước tính
+          </Typography>
+          <Typography component="p" className={classes.estimateMoney}>
+            Đã đặt cọc
+          </Typography>
+          <Typography component="p" className={classes.totalMoney}>
+            Thành tiền
+          </Typography>
+        </Grid>
+        <Grid item xs={6} className={classes.alignMoneyRight}>
+          <Typography component="p" className={classes.estimateMoney}>
+            100.000.000 vnđ
+          </Typography>
+          <Typography component="p" className={classes.estimateMoney}>
+            50.000.000 vnđ
+          </Typography>
+          <Typography component="p" className={classes.totalMoney}>
+            50.000.000 vnđ
+          </Typography>
+        </Grid>
+      </Grid>
+    </div>
+  );
+}
