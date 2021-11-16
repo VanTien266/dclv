@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography, CssBaseline } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import Order from "./components/Order";
 import FilterBar from "./components/FilterBar";
 import ListHeader from "./components/ListHeader";
@@ -106,8 +106,8 @@ export default function OrderListPage() {
       <Container maxWidth="xl">
         <FilterBar/>
         <ListHeader/>
-        {data.map((item) => {
-            return <Order order={item}/>
+        {data.map((item ,idx) => {
+            return <Order key={idx} order={item}/>
         })}
       </Container>
     </>

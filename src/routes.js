@@ -5,6 +5,8 @@ import DashBoard from "./page/DashBoardPage/DashBoard";
 import Product from "./page/ProductPage/ProductPage";
 import Main from "./screens/Main/Main";
 import OrderListPage from "./page/OrderListPage";
+import OrderDetail from "./page/OrderDetail";
+import OrderEdit from "./page/OrderEdit";
 import NotificationPage from "./page/NotificationPage/NotificationPage";
 import ChangePassword from "./screens/ChangePassword/ChangePassword";
 
@@ -42,6 +44,16 @@ const routes = [
         path: "/order",
         exact: true,
         component: OrderListPage,
+      },
+      {
+        path: "/orderdetail",
+        exact: true,
+        component: OrderDetail,
+      },
+      {
+        path: "/orderedit",
+        exact: true,
+        component: OrderEdit,
       },
       {
         path: "/order/bill-detail",
