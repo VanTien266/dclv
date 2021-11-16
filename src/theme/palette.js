@@ -8,3 +8,5 @@ const palette = {
   btnBg: "#1B40FA",
 };
 export default palette;
+
+

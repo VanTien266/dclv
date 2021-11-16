@@ -1,12 +1,13 @@
 import { lazy } from "react";
 import { Redirect } from "react-router-dom";
 import SignIn from "./screens/SignIn";
-import DashBoard from "./page/DashBoard";
+import DashBoard from "./page/DashBoardPage/DashBoard";
 import Product from "./page/ProductPage/ProductPage";
 import Main from "./screens/Main/Main";
 import OrderListPage from "./page/OrderListPage";
 import OrderDetail from "./page/OrderDetail";
 import OrderEdit from "./page/OrderEdit";
+import NotificationPage from "./page/NotificationPage/NotificationPage";
 import ChangePassword from "./screens/ChangePassword/ChangePassword";
 
 const routes = [
@@ -64,6 +65,11 @@ const routes = [
         exact: true,
         component: lazy(() => import("./page/BillExport")),
       },
+      {
+        path: "/notification",
+        exact: true,
+        component: NotificationPage,
+      }
     ],
   },
 ];
