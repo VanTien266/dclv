@@ -8,6 +8,7 @@ const useStyles = makeStyles({
     borderRadius: "5px",
     fontFamily: "'Roboto', sans-serif",
     padding: "10px",
+    height: "100%"
   },
   header: {
     fontSize: "14px",

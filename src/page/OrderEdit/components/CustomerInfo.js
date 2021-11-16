@@ -17,12 +17,13 @@ const userInfo = {
 };
 
 const useStyles = makeStyles({
-  info: {
+  customerInfo: {
     backgroundColor: "#F6F6F8",
     borderRadius: "5px",
     padding: "10px",
     fontFamily: "'Roboto', sans-serif",
     color: "#000040",
+    height: "100%"
   },
   infoTable: {
     margin: "0px",
@@ -62,7 +63,7 @@ export default function CustomerInfo() {
   );
   const [receiverPhone, setReceiverPhone] = useState(userInfo.receiverPhone);
   return (
-    <div className={classes.info}>
+    <div className={classes.customerInfo}>
       <form>
         <Grid container>
           <Grid item xs={10}>
