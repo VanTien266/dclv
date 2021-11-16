@@ -8,6 +8,7 @@ const useStyles = makeStyles({
     borderRadius: "5px",
     padding: "10px",
     fontFamily: "'Roboto', sans-serif",
+    height: "100%"
   },
   title: {
     color: "#000040",
@@ -27,9 +28,9 @@ const useStyles = makeStyles({
     fontSize: "16px",
     fontWeight: "bolder",
   },
-  containerNoPadding: {
+  productScroll: {
     padding: "0",
-    maxHeight: "40vh",
+    maxHeight: "350px",
     overflow: "auto",
   },
 });
@@ -40,7 +41,7 @@ export default function OrderInfo() {
       <Typography variant="h5" className={classes.title}>
         Thông tin đơn hàng
       </Typography>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} className={classes.productScroll}>
         <Grid item xs={12}>
           <ProductOrder />
         </Grid>
