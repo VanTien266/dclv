@@ -1,8 +1,6 @@
 import React from "react";
-import { Container } from "@material-ui/core";
-import Order from "./components/Order";
-import FilterBar from "./components/FilterBar";
-import ListHeader from "./components/ListHeader";
+import { Container, Typography, CssBaseline } from "@material-ui/core";
+
 
 const data = [
     {
@@ -100,16 +98,10 @@ const data = [
     
 ];
 
-export default function OrderListPage() {
+export default function NotificationPage() {
   return (
     <>
-      <Container maxWidth="xl">
-        <FilterBar/>
-        <ListHeader/>
-        {data.map((item ,idx) => {
-            return <Order key={idx} order={item}/>
-        })}
-      </Container>
+      <Typography>Notification Page</Typography>
     </>
   );
 }

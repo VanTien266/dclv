@@ -1,5 +1,7 @@
 import { Grid, makeStyles } from "@material-ui/core";
+import { ArrowBack, ArrowUpward } from "@material-ui/icons";
 import React from "react";
+import DefaultButton from "../../components/Button/DefaultButton";
 import AnotherInfo from "./components/AnotherInfo/AnotherInfo";
 import BillInfo from "./components/BillInfo/BillInfo";
 import CustomerInfo from "./components/CustomerInfo/CustomerInfo";
@@ -15,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     display: "flex",
+  },
+  btnGroup: {
+    justifyContent: "flex-end",
   },
 }));
 
@@ -36,6 +41,14 @@ function BillDetail() {
         </Grid>
         <Grid item xs={12} md={5}>
           <CustomerInfo />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} className={classes.btnGroup}>
+        <Grid item>
+          <DefaultButton title="Quay lại" icon={ArrowBack} />
+        </Grid>
+        <Grid item>
+          <DefaultButton title="Cập nhật" icon={ArrowUpward} />
         </Grid>
       </Grid>
     </div>
