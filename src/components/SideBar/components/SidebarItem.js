@@ -4,6 +4,8 @@ import { NavLink as RouterLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
 import { ListItem, Button, Typography } from "@material-ui/core";
 
+const SIDEBAR_ITEM_WIDTH = 200;
+
 const CustomRouterLink = forwardRef((props, ref) => (
   <div ref={ref}>
     <RouterLink {...props} />
@@ -12,7 +14,7 @@ const CustomRouterLink = forwardRef((props, ref) => (
 
 const useStyles = makeStyles(() => ({
   container: {
-    width: 250,
+    width: SIDEBAR_ITEM_WIDTH,
     height: 50,
     justifyContent: "flex-start",
     "&:hover": {
