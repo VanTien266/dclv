@@ -12,7 +12,9 @@ function BillInfo() {
       <CardContent>
         <CardHeader title="Thông tin hóa đơn" />
         <Grid container spacing={1}>
-          <Item />
+          <Grid item xs={12}>
+            <Item />
+          </Grid>
           <Grid item xs={12}>
             <CostInfo />
           </Grid>
