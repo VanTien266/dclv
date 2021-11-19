@@ -50,8 +50,8 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.buttonPrimary,
   },
   orderDetailBox: {
-    padding: "10px"
-  }
+    padding: "10px",
+  },
 }));
 
 export default function OrderDetail() {
@@ -89,10 +89,7 @@ export default function OrderDetail() {
             size="large"
             className={classes.btnCancel}
           >
-            <Typography
-              variant="h6"
-              className={classes.btnCancelTitle}
-            >
+            <Typography variant="h6" className={classes.btnCancelTitle}>
               Hủy
             </Typography>
           </Button>

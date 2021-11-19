@@ -46,12 +46,12 @@ const routes = [
         component: OrderListPage,
       },
       {
-        path: "/orderdetail",
+        path: "/order/orderdetail",
         exact: true,
         component: OrderDetail,
       },
       {
-        path: "/orderedit",
+        path: "/order/orderedit",
         exact: true,
         component: OrderEdit,
       },
@@ -69,7 +69,7 @@ const routes = [
         path: "/notification",
         exact: true,
         component: NotificationPage,
-      }
+      },
     ],
   },
 ];
