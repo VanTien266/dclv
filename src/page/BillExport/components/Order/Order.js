@@ -2,7 +2,6 @@ import React from "react";
 import {
   Card,
   CardContent,
-  CardHeader,
   Divider,
   Grid,
   makeStyles,
@@ -30,12 +29,6 @@ function Order() {
           Đơn đặt hàng
         </Typography>
         <Grid container spacing={1}>
-          <Grid item xs={12}>
-            <Item />
-          </Grid>
-          <Grid item xs={12}>
-            <Item />
-          </Grid>
           <Grid item xs={12}>
             <Item />
           </Grid>

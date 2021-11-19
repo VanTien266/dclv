@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 
 import mock from "../utils/mock";
@@ -6,7 +5,7 @@ import mock from "../utils/mock";
 mock.onGet("product/fabric-roll").reply(200, {
   fabricRoll: [
     {
-      id: uuidv4(),
+      id: "SP1111",
       billID: "",
       warehouseId: 1,
       status: true,
@@ -46,7 +45,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L1",
     },
     {
-      id: uuidv4(),
+      id: "SP1112",
       billID: "",
       warehouseId: 2,
       status: true,
@@ -79,7 +78,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L2",
     },
     {
-      id: uuidv4(),
+      id: "SP1113",
       billID: 2,
       warehouseId: 3,
       status: false,
@@ -105,7 +104,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L2",
     },
     {
-      id: uuidv4(),
+      id: "SP1114",
       billID: "",
       warehouseId: 2,
       status: true,
@@ -138,7 +137,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L3",
     },
     {
-      id: uuidv4(),
+      id: "SP1115",
       billID: "",
       warehouseId: 3,
       status: true,
@@ -178,7 +177,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L1",
     },
     {
-      id: uuidv4(),
+      id: "SP1116",
       billID: 3,
       warehouseId: 1,
       status: false,
@@ -211,7 +210,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L3",
     },
     {
-      id: uuidv4(),
+      id: "SP1117",
       billID: 1,
       warehouseId: 1,
       status: false,
@@ -237,7 +236,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L2",
     },
     {
-      id: uuidv4(),
+      id: "SP1118",
       billID: "",
       warehouseId: 2,
       status: true,
@@ -277,7 +276,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L1",
     },
     {
-      id: uuidv4(),
+      id: "SP1119",
       billID: 7,
       warehouseId: 2,
       status: false,
@@ -310,7 +309,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L3",
     },
     {
-      id: uuidv4(),
+      id: "SP1120",
       billID: "",
       warehouseId: 1,
       status: true,
@@ -350,7 +349,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L1",
     },
     {
-      id: uuidv4(),
+      id: "SP1121",
       billID: "",
       warehouseId: 2,
       status: true,
@@ -383,7 +382,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L2",
     },
     {
-      id: uuidv4(),
+      id: "SP1122",
       billID: 2,
       warehouseId: 3,
       status: false,
@@ -409,7 +408,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L2",
     },
     {
-      id: uuidv4(),
+      id: "SP1123",
       billID: "",
       warehouseId: 2,
       status: true,
@@ -442,7 +441,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L3",
     },
     {
-      id: uuidv4(),
+      id: "SP1124",
       billID: "",
       warehouseId: 3,
       status: true,
@@ -482,7 +481,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L1",
     },
     {
-      id: uuidv4(),
+      id: "SP1125",
       billID: 3,
       warehouseId: 1,
       status: false,
@@ -515,7 +514,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L3",
     },
     {
-      id: uuidv4(),
+      id: "SP1126",
       billID: 1,
       warehouseId: 1,
       status: false,
@@ -541,7 +540,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L2",
     },
     {
-      id: uuidv4(),
+      id: "SP1127",
       billID: "",
       warehouseId: 2,
       status: true,
@@ -581,7 +580,7 @@ mock.onGet("product/fabric-roll").reply(200, {
       lot: "L1",
     },
     {
-      id: uuidv4(),
+      id: "SP1128",
       billID: 7,
       warehouseId: 2,
       status: false,

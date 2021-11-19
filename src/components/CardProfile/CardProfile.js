@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginBottom: theme.spacing(2),
-    width: 160,
+    width: 140,
     height: 40,
     border: "2px solid #DADADA",
     fontSize: 14,
