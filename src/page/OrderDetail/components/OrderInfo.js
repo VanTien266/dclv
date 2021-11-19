@@ -8,12 +8,12 @@ const useStyles = makeStyles({
     borderRadius: "5px",
     padding: "10px",
     fontFamily: "'Roboto', sans-serif",
-    height: "100%"
+    height: "100%",
   },
   title: {
     color: "#000040",
     fontWeight: "bold",
-    marginBottom: "10px"
+    marginBottom: "10px",
   },
   totalMoney: {
     color: "#000040",
