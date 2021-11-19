@@ -10,7 +10,7 @@ import {
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 100,
+    minWidth: 120,
   },
   input: {
     padding: "8px",
@@ -20,19 +20,36 @@ const useStyles = makeStyles((theme) => ({
 function Filter() {
   const classes = useStyles();
   const [wareHouseId, setWareHouseId] = useState("");
+  const [status, setStatus] = useState("");
+  const [fabricType, setFabricType] = useState("");
+  const [color, setColor] = useState("");
+  const [lot, setLot] = useState("");
 
-  const handleChange = (e) => {
+  const handleWareHouseChange = (e) => {
     setWareHouseId(e.target.value);
+  };
+  const handleStatusChange = (e) => {
+    setStatus(e.target.value);
+  };
+  const handleFabricTypeChange = (e) => {
+    setFabricType(e.target.value);
+  };
+  const handleColorChange = (e) => {
+    setColor(e.target.value);
+  };
+  const handleLotChange = (e) => {
+    setLot(e.target.value);
   };
   return (
     <Fragment>
+      {/* Warehouse filter */}
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel id="demo-simple-select-outlined-label">Kho</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
           value={wareHouseId}
-          onChange={handleChange}
+          onChange={handleWareHouseChange}
           label="Kho"
         >
           <MenuItem className={classes.input} value="">
@@ -43,14 +60,17 @@ function Filter() {
           <MenuItem value={30}>3</MenuItem>
         </Select>
       </FormControl>
+      {/* Status filter */}
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">Kho</InputLabel>
+        <InputLabel id="demo-simple-select-outlined-label">
+          Trạng thái
+        </InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value={wareHouseId}
-          onChange={handleChange}
-          label="Kho"
+          value={status}
+          onChange={handleStatusChange}
+          label="Trạng thái"
         >
           <MenuItem value="">
             <em>None</em>
@@ -60,14 +80,15 @@ function Filter() {
           <MenuItem value={30}>3</MenuItem>
         </Select>
       </FormControl>
+      {/* Fabric type filter */}
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">Kho</InputLabel>
+        <InputLabel id="demo-simple-select-outlined-label">Loại vải</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value={wareHouseId}
-          onChange={handleChange}
-          label="Kho"
+          value={fabricType}
+          onChange={handleFabricTypeChange}
+          label="Loại vải"
         >
           <MenuItem value="">
             <em>None</em>
@@ -77,14 +98,15 @@ function Filter() {
           <MenuItem value={30}>3</MenuItem>
         </Select>
       </FormControl>
+      {/* Fabric color filter */}
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">Kho</InputLabel>
+        <InputLabel id="demo-simple-select-outlined-label">Màu vải</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value={wareHouseId}
-          onChange={handleChange}
-          label="Kho"
+          value={color}
+          onChange={handleColorChange}
+          label="Màu vải"
         >
           <MenuItem value="">
             <em>None</em>
@@ -94,14 +116,15 @@ function Filter() {
           <MenuItem value={30}>3</MenuItem>
         </Select>
       </FormControl>
+      {/* Lot filter */}
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">Kho</InputLabel>
+        <InputLabel id="demo-simple-select-outlined-label">Lô vải</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value={wareHouseId}
-          onChange={handleChange}
-          label="Kho"
+          value={lot}
+          onChange={handleLotChange}
+          label="Lô vải"
         >
           <MenuItem value="">
             <em>None</em>
