@@ -108,25 +108,25 @@ const useStyles = makeStyles(() => ({
 }));
 function NotificationPage() {
   const classes = useStyles();
-  // const [notification, setNotification] = useState([]);
-  // useEffect(() => {
-  //   let mounted = true;
+  const [notification, setNotification] = useState([]);
+  useEffect(() => {
+    let mounted = true;
 
-  //   const fetchNotification = () => {
-  //     axios.get("notificationsstaff").then((response) => {
-  //       if (mounted) {
-  //         //setNotification(response.data.notificationStaff);
-  //         console.log(response.data.notificationStaff);
-  //       }
-  //     });
-  //   };
+    const fetchNotification = () => {
+      axios.get("notificationsstaff").then((response) => {
+        if (mounted) {
+          setNotification(response.data.notificationStaff);
+          console.log(response.data.notificationStaff);
+        }
+      });
+    };
 
-  //   fetchNotification();
+    fetchNotification();
 
-  //   return () => {
-  //     mounted = false;
-  //   };
-  // }, []);
+    return () => {
+      mounted = false;
+    };
+  }, []);
   return (
     <div className={classes.root}>
       <Grid container className={classes.contain}>
@@ -142,7 +142,9 @@ function NotificationPage() {
           </Grid>
         </Grid>
       </Grid>
-      <NotificationsList className={classes.notificationList} />
+      {notification && (
+        <NotificationsList className={classes.notificationList} notification={notification} />
+      )}
     </div>
   );
 }
