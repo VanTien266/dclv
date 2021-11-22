@@ -18,12 +18,12 @@ const useStyles = makeStyles({
     fontFamily: "'Roboto', sans-serif",
     padding: "10px",
     width: "100%",
-    height: "100%"
+    height: "100%",
   },
   title: {
     color: "#000040",
     fontWeight: "bold",
-    marginBottom: "10px"
+    marginBottom: "10px",
   },
   status: {
     margin: "0px",

@@ -8,7 +8,7 @@ const useStyles = makeStyles({
     borderRadius: "5px",
     fontFamily: "'Roboto', sans-serif",
     padding: "10px",
-    height: "100%"
+    height: "100%",
   },
   header: {
     fontSize: "14px",
@@ -29,11 +29,11 @@ const useStyles = makeStyles({
   title: {
     color: "#000040",
     fontWeight: "bold",
-    marginBottom: "10px"
+    marginBottom: "10px",
   },
   containerNoPadding: {
-    padding: "0"
-  }
+    padding: "0",
+  },
 });
 export default function ListBill() {
   const classes = useStyles();
@@ -44,22 +44,22 @@ export default function ListBill() {
       </Typography>
       <Grid container className={classes.header}>
         <Grid item xs={2} className={classes.alignVerticalCenter}>
-          <Typography variant="p">Mã hóa đơn</Typography>
+          <Typography variant="subtitle1">Mã hóa đơn</Typography>
         </Grid>
         <Grid item xs={2} className={classes.alignVerticalCenter}>
-          <Typography variant="p">Người tạo</Typography>
+          <Typography variant="subtitle1">Người tạo</Typography>
         </Grid>
         <Grid item xs={2} className={classes.alignVerticalCenter}>
-          <Typography variant="p">Ngày xuất</Typography>
+          <Typography variant="subtitle1">Ngày xuất</Typography>
         </Grid>
         <Grid item xs={2} className={classes.alignVerticalCenter}>
-          <Typography variant="p">Mã sản phẩm</Typography>
+          <Typography variant="subtitle1">Mã sản phẩm</Typography>
         </Grid>
         <Grid item xs={2} className={classes.alignVerticalCenter}>
-          <Typography variant="p">Chiều dài</Typography>
+          <Typography variant="subtitle1">Chiều dài</Typography>
         </Grid>
         <Grid item xs={2} className={classes.alignVerticalCenter}>
-          <Typography variant="p">Trạng thái</Typography>
+          <Typography variant="subtitle1">Trạng thái</Typography>
         </Grid>
       </Grid>
       <Container maxWidth="xl" className={classes.containerNoPadding}>

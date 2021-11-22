@@ -18,11 +18,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function DefaultButton(props) {
-  const { icon: Icon, title } = props;
+  const { icon: Icon, title, clickEvent } = props;
   const classes = useStyles();
 
   return (
-    <Button startIcon={<Icon />} size="large" className={clsx(classes.root)}>
+    <Button
+      startIcon={<Icon />}
+      size="large"
+      className={clsx(classes.root)}
+      onClick={clickEvent}
+    >
       <Typography variant="h6" color="secondary" className={classes.btnTitle}>
         {title}
       </Typography>

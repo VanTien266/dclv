@@ -46,22 +46,22 @@ const routes = [
         component: OrderListPage,
       },
       {
-        path: "/order/orderdetail",
+        path: "/order/orderDetail",
         exact: true,
         component: OrderDetail,
       },
       {
-        path: "/order/orderedit",
+        path: "/order/orderEdit",
         exact: true,
         component: OrderEdit,
       },
       {
-        path: "/order/bill-detail",
+        path: "/order/billDetail",
         exact: true,
         component: lazy(() => import("./page/BillDetail")),
       },
       {
-        path: "/order/bill-export",
+        path: "/order/billExport",
         exact: true,
         component: lazy(() => import("./page/BillExport")),
       },
