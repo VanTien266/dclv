@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import {
   FormControl,
   InputLabel,
@@ -15,30 +15,31 @@ const useStyles = makeStyles((theme) => ({
   input: {
     padding: "8px",
   },
+  capitalize: {
+    textTransform: "capitalize",
+  },
 }));
 
-function Filter() {
+function Filter(props) {
+  const { handleFilterChange, filter, data } = props;
   const classes = useStyles();
-  const [wareHouseId, setWareHouseId] = useState("");
-  const [status, setStatus] = useState("");
-  const [fabricType, setFabricType] = useState("");
-  const [color, setColor] = useState("");
-  const [lot, setLot] = useState("");
 
+  const getWareHouseList = () =>
+    Array.from(new Set(data.map((item) => item.warehouseId)));
+  const getTypeList = () =>
+    Array.from(new Set(data.map((item) => item.item.fabricType.name)));
+  const getLotList = () => Array.from(new Set(data.map((item) => item.lot)));
+
+  // getTypeList().forEach((value) => console.log(value));
+  console.log("Filter render");
   const handleWareHouseChange = (e) => {
-    setWareHouseId(e.target.value);
-  };
-  const handleStatusChange = (e) => {
-    setStatus(e.target.value);
+    handleFilterChange({ ...filter, warehouse: e.target.value });
   };
   const handleFabricTypeChange = (e) => {
-    setFabricType(e.target.value);
-  };
-  const handleColorChange = (e) => {
-    setColor(e.target.value);
+    handleFilterChange({ ...filter, type: e.target.value });
   };
   const handleLotChange = (e) => {
-    setLot(e.target.value);
+    handleFilterChange({ ...filter, lot: e.target.value });
   };
   return (
     <Fragment>
@@ -48,36 +49,18 @@ function Filter() {
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value={wareHouseId}
+          value={filter.warehouse}
           onChange={handleWareHouseChange}
           label="Kho"
         >
           <MenuItem className={classes.input} value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>1</MenuItem>
-          <MenuItem value={20}>2</MenuItem>
-          <MenuItem value={30}>3</MenuItem>
-        </Select>
-      </FormControl>
-      {/* Status filter */}
-      <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">
-          Trạng thái
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
-          value={status}
-          onChange={handleStatusChange}
-          label="Trạng thái"
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>1</MenuItem>
-          <MenuItem value={20}>2</MenuItem>
-          <MenuItem value={30}>3</MenuItem>
+          {getWareHouseList().map((item) => (
+            <MenuItem value={item} key={item}>
+              {item}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
       {/* Fabric type filter */}
@@ -86,34 +69,19 @@ function Filter() {
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value={fabricType}
+          value={filter.type}
           onChange={handleFabricTypeChange}
           label="Loại vải"
+          className={classes.capitalize}
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>1</MenuItem>
-          <MenuItem value={20}>2</MenuItem>
-          <MenuItem value={30}>3</MenuItem>
-        </Select>
-      </FormControl>
-      {/* Fabric color filter */}
-      <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">Màu vải</InputLabel>
-        <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
-          value={color}
-          onChange={handleColorChange}
-          label="Màu vải"
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>1</MenuItem>
-          <MenuItem value={20}>2</MenuItem>
-          <MenuItem value={30}>3</MenuItem>
+          {getTypeList().map((item) => (
+            <MenuItem value={item} key={item} className={classes.capitalize}>
+              {item}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
       {/* Lot filter */}
@@ -122,16 +90,18 @@ function Filter() {
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value={lot}
+          value={filter.lot}
           onChange={handleLotChange}
           label="Lô vải"
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>1</MenuItem>
-          <MenuItem value={20}>2</MenuItem>
-          <MenuItem value={30}>3</MenuItem>
+          {getLotList().map((item) => (
+            <MenuItem value={item} key={item}>
+              {item}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Fragment>
