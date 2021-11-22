@@ -29,15 +29,15 @@ function Sidebar(props) {
   const classes = useStyles();
   const { pathname } = useLocation();
   //check path is activate
-  const match = (path) =>
-    path ? matchPath({ path, end: false }, pathname) : false;
+  const match = (path) => (path ? !!matchPath(pathname, { path }) : false);
+
   const sidebarContent = (
     <div className={classes.container}>
       <div className={classes.head}>
         <img
           src={process.env.PUBLIC_URL + "/assets/logo.png"}
           alt="logo"
-          width="260"
+          width="210"
         />
         <nav>
           {sidebarConfig.map((list) => (

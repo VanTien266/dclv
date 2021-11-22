@@ -187,9 +187,9 @@ export default function Order({ order }) {
                   <th className={classes.headerTable}>Đã giao</th>
                   <th className={classes.headerTable}>Còn lại</th>
                 </tr>
-                {order.products.map((item) => {
+                {order.products.map((item, idx) => {
                   return (
-                    <tr>
+                    <tr key={idx}>
                       <td className={classes.tableContentBlack}>{item.productID}</td>
                       <td className={classes.tableContentBlack}>{item.total}</td>
                       <td className={classes.tableContentBlack}>{item.shipped}</td>
