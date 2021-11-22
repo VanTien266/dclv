@@ -13,19 +13,22 @@ const data = [
         deposit: "10.000.000 đ",
         products: [
             {
-                productID: "KT1234",
+                typeID: "KT1234",
+                colorCode: "2365",
                 total: "100m",
                 shipped: "100m",
                 remain: "9000m"
             },
             {
-                productID: "KT1234",
+                typeID: "KT1234",
+                colorCode: "2365",
                 total: "100m",
                 shipped: "100m",
                 remain: "100m"
             },
             {
-                productID: "KT1234",
+                typeID: "KT1234",
+                colorCode: "2365",
                 total: "100m",
                 shipped: "100m",
                 remain: "9000m"
@@ -41,7 +44,8 @@ const data = [
         deposit: "10.000.000 đ",
         products: [
             {
-                productID: "KT1234",
+                typeID: "KT1234",
+                colorCode: "2365",
                 total: "100m",
                 shipped: "100m",
                 remain: "0m"
@@ -57,7 +61,8 @@ const data = [
         deposit: "10.000.000 đ",
         products: [
             {
-                productID: "KT1234",
+                typeID: "KT1234",
+                colorCode: "2365",
                 total: "100m",
                 shipped: "100m",
                 remain: "0m"
@@ -73,7 +78,8 @@ const data = [
         deposit: "10.000.000 đ",
         products: [
             {
-                productID: "KT1234",
+                typeID: "KT1234",
+                colorCode: "2365",
                 total: "100m",
                 shipped: "100m",
                 remain: "0m"
@@ -89,7 +95,8 @@ const data = [
         deposit: "10.000.000 đ",
         products: [
             {
-                productID: "KT1234",
+                typeID: "KT1234",
+                colorCode: "2365",
                 total: "100m",
                 shipped: "100m",
                 remain: "0m"

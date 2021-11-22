@@ -91,10 +91,10 @@ const useStyles = makeStyles((theme) => ({
   headerTable: {
     textAlign:"left",
     color:"black",
-    fontSize:"16px"
+    fontSize:"18px"
   },
   tableContentBlack: {
-    color:"black",
+    color:"#000040",
     fontSize:"16px"
   }
 }));
@@ -182,7 +182,8 @@ export default function Order({ order }) {
             <Typography variant="body2" color="textSecondary">
               <table style={{width:"40vw"}}>
                 <tr>
-                  <th className={classes.headerTable}>Mã sản phẩm</th>
+                  <th className={classes.headerTable}>Loại vải</th>
+                  <th className={classes.headerTable}>Mã màu</th>
                   <th className={classes.headerTable}>Tổng số</th>
                   <th className={classes.headerTable}>Đã giao</th>
                   <th className={classes.headerTable}>Còn lại</th>
@@ -190,7 +191,8 @@ export default function Order({ order }) {
                 {order.products.map((item, idx) => {
                   return (
                     <tr key={idx}>
-                      <td className={classes.tableContentBlack}>{item.productID}</td>
+                      <td className={classes.tableContentBlack}>{item.typeID}</td>
+                      <td className={classes.tableContentBlack}>{item.colorCode}</td>
                       <td className={classes.tableContentBlack}>{item.total}</td>
                       <td className={classes.tableContentBlack}>{item.shipped}</td>
                       <td className={classes.tableContentBlack}>{item.remain}</td>
