@@ -10,15 +10,11 @@ import {
   Typography,
   CardContent,
 } from "@material-ui/core";
-import {
-  KeyboardArrowDown,
-  MoreVert,
-  ExpandLess,
-  ExpandMore,
-} from "@material-ui/icons";
+import { MoreVert, ExpandLess, ExpandMore } from "@material-ui/icons";
 import BillHeader from "./BillHeader";
 import clsx from "clsx";
 import Bill from "./Bill";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,8 +27,12 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "20px",
     paddingLeft: "5px",
     display: "flex",
-    direction: "row",
     alignItems: "center",
+    cursor: "pointer",
+    "&:hover": {
+      boxShadow: theme.shadows[5],
+      transition: "box-shadow 0.3s ease-in-out",
+    },
   },
   orderId: {
     color: "#000040",
@@ -46,20 +46,17 @@ const useStyles = makeStyles((theme) => ({
   },
   billQuantity: {
     justifyContent: "center",
-    direction: "row",
     display: "flex",
     alignItems: "center",
   },
   dropIcon: {
     textAlign: "center",
-    direction: "row",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
   },
   productList: {
     justifyContent: "center",
-    direction: "row",
     display: "flex",
     alignItems: "center",
   },
@@ -89,36 +86,48 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
   headerTable: {
-    textAlign:"left",
-    color:"black",
-    fontSize:"16px"
+    textAlign: "left",
+    color: "black",
+    fontSize: "16px",
   },
   tableContentBlack: {
-    color:"black",
-    fontSize:"16px"
-  }
+    color: "black",
+    fontSize: "16px",
+  },
 }));
 
 export default function Order({ order }) {
   const classes = useStyles();
+  const history = useHistory();
+
   const [open, setOpen] = useState(false);
 
-  const handleOpen = () => {
+  const handleOpen = (e) => {
+    //Seperate onClick in child and parents component
+    e.stopPropagation();
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = (e) => {
+    //Seperate onClick in child and parents component
+    e.stopPropagation();
     setOpen(false);
   };
 
   const [expanded, setExpanded] = useState(false);
 
-  const handleExpandClick = () => {
+  const handleExpandClick = (e) => {
+    //Seperate onClick in child and parents component
+    e.stopPropagation();
     setExpanded(!expanded);
   };
 
+  const handleClick = () => {
+    history.push("/order/orderDetail");
+  };
+
   return (
-    <Grid container className={classes.root}>
+    <Grid container className={classes.root} onClick={handleClick}>
       <Grid
         item
         xs={2}
@@ -180,7 +189,7 @@ export default function Order({ order }) {
               Mặt hàng đã đặt
             </Typography>
             <Typography variant="body2" color="textSecondary">
-              <table style={{width:"40vw"}}>
+              <table style={{ width: "40vw" }}>
                 <tr>
                   <th className={classes.headerTable}>Mã sản phẩm</th>
                   <th className={classes.headerTable}>Tổng số</th>
@@ -190,10 +199,18 @@ export default function Order({ order }) {
                 {order.products.map((item, idx) => {
                   return (
                     <tr key={idx}>
-                      <td className={classes.tableContentBlack}>{item.productID}</td>
-                      <td className={classes.tableContentBlack}>{item.total}</td>
-                      <td className={classes.tableContentBlack}>{item.shipped}</td>
-                      <td className={classes.tableContentBlack}>{item.remain}</td>
+                      <td className={classes.tableContentBlack}>
+                        {item.productID}
+                      </td>
+                      <td className={classes.tableContentBlack}>
+                        {item.total}
+                      </td>
+                      <td className={classes.tableContentBlack}>
+                        {item.shipped}
+                      </td>
+                      <td className={classes.tableContentBlack}>
+                        {item.remain}
+                      </td>
                     </tr>
                   );
                 })}

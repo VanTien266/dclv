@@ -33,6 +33,21 @@ function Product() {
   useEffect(() => {
     let mounted = true;
 
+    const handleFilter = (products) => {
+      if (filter.warehouse !== "")
+        products = products.filter(
+          (item) => item.warehouseId === filter.warehouse
+        );
+      if (filter.type !== "")
+        products = products.filter(
+          (item) => item.item.fabricType.name === filter.type
+        );
+      if (filter.lot !== "")
+        products = products.filter((item) => item.lot === filter.lot);
+
+      return products;
+    };
+
     const fetchProduct = () => {
       axios.get("/product/fabric-roll").then((resonse) => {
         if (mounted) {
@@ -47,21 +62,6 @@ function Product() {
       mounted = false;
     };
   }, [filter]);
-
-  const handleFilter = (products) => {
-    if (filter.warehouse !== "")
-      products = products.filter(
-        (item) => item.warehouseId === filter.warehouse
-      );
-    if (filter.type !== "")
-      products = products.filter(
-        (item) => item.item.fabricType.name === filter.type
-      );
-    if (filter.lot !== "")
-      products = products.filter((item) => item.lot === filter.lot);
-
-    return products;
-  };
 
   const handleFilterChange = (filter) => {
     setFilter(filter);

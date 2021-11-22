@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Button, Typography } from "@material-ui/core";
 import { LocationOn, Email, Phone, Notes, Edit } from "@material-ui/icons";
 import clsx from "clsx";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
   customerInfo: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles({
     padding: "10px",
     fontFamily: "'Roboto', sans-serif",
     color: "#000040",
-    height: "100%"
+    height: "100%",
   },
   infoTable: {
     margin: "0px",
@@ -33,6 +34,12 @@ const useStyles = makeStyles({
 
 export default function CustomerInfo() {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push("/order/orderEdit");
+  };
+
   return (
     <div className={classes.customerInfo}>
       <Grid container>
@@ -42,7 +49,7 @@ export default function CustomerInfo() {
           </Typography>
         </Grid>
         <Grid item xs={2}>
-          <Button>
+          <Button onClick={handleClick}>
             <Edit color="primary" fontSize="large" />
           </Button>
         </Grid>
@@ -50,41 +57,43 @@ export default function CustomerInfo() {
       <Grid container>
         <Grid item xs={9}>
           <table>
-            <tr>
-              <td>
-                <LocationOn />
-              </td>
-              <td>
-                <Typography
-                  component="p"
-                  className={clsx(classes.infoTable, classes.name)}
-                >
-                  Lưu Văn Tiến
-                </Typography>
-                <Typography variant="subtitle1">KTX Khu B</Typography>
-                <Typography variant="subtitle1">
-                  Đông Hòa - Dĩ An - Bình Dương
-                </Typography>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Email />
-              </td>
-              <td>
-                <Typography variant="subtitle1">
-                  tien.luu.van@hcmut.edu.vn
-                </Typography>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Phone />
-              </td>
-              <td>
-                <Typography variant="subtitle1">0826755114</Typography>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>
+                  <LocationOn />
+                </td>
+                <td>
+                  <Typography
+                    component="p"
+                    className={clsx(classes.infoTable, classes.name)}
+                  >
+                    Lưu Văn Tiến
+                  </Typography>
+                  <Typography variant="subtitle1">KTX Khu B</Typography>
+                  <Typography variant="subtitle1">
+                    Đông Hòa - Dĩ An - Bình Dương
+                  </Typography>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <Email />
+                </td>
+                <td>
+                  <Typography variant="subtitle1">
+                    tien.luu.van@hcmut.edu.vn
+                  </Typography>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <Phone />
+                </td>
+                <td>
+                  <Typography variant="subtitle1">0826755114</Typography>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </Grid>
         <Grid item xs={3}>
@@ -99,31 +108,33 @@ export default function CustomerInfo() {
       <Grid container>
         <Grid item>
           <table>
-            <tr>
-              <td>
-                <LocationOn />
-              </td>
-              <td>
-                <Typography
-                  variant="p"
-                  className={clsx(classes.infoTable, classes.name)}
-                >
-                  Lưu Văn Tiến
-                </Typography>
-                <Typography variant="subtitle1">KTX khu A</Typography>
-                <Typography variant="subtitle1">
-                  KP 6 - Tp Thủ Đức - Tp Hồ Chí Minh
-                </Typography>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Phone />
-              </td>
-              <td>
-                <Typography variant="subtitle1">01296755114</Typography>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>
+                  <LocationOn />
+                </td>
+                <td>
+                  <Typography
+                    variant="subtitle1"
+                    className={clsx(classes.infoTable, classes.name)}
+                  >
+                    Lưu Văn Tiến
+                  </Typography>
+                  <Typography variant="subtitle1">KTX khu A</Typography>
+                  <Typography variant="subtitle1">
+                    KP 6 - Tp Thủ Đức - Tp Hồ Chí Minh
+                  </Typography>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <Phone />
+                </td>
+                <td>
+                  <Typography variant="subtitle1">01296755114</Typography>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </Grid>
       </Grid>
