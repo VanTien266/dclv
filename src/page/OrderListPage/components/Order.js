@@ -9,6 +9,13 @@ import {
   Collapse,
   Typography,
   CardContent,
+  Table,
+  TableCell,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
 } from "@material-ui/core";
 import { MoreVert, ExpandLess, ExpandMore } from "@material-ui/icons";
 import BillHeader from "./BillHeader";
@@ -88,11 +95,19 @@ const useStyles = makeStyles((theme) => ({
   headerTable: {
     textAlign: "left",
     color: "black",
-    fontSize: "16px",
+    fontSize: "18px",
   },
   tableContentBlack: {
-    color: "black",
+    color: "#000040",
     fontSize: "16px",
+  },
+  productScroll: {
+    padding: "0",
+    maxHeight: "500px",
+    overflow: "auto",
+    "&::-webkit-scrollbar": {
+      width: 0,
+    },
   },
 }));
 
@@ -185,37 +200,68 @@ export default function Order({ order }) {
       >
         <Card>
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography gutterBottom variant="h4" component="h2">
               Mặt hàng đã đặt
             </Typography>
-            <Typography variant="body2" color="textSecondary">
-              <table style={{ width: "40vw" }}>
-                <tr>
-                  <th className={classes.headerTable}>Mã sản phẩm</th>
-                  <th className={classes.headerTable}>Tổng số</th>
-                  <th className={classes.headerTable}>Đã giao</th>
-                  <th className={classes.headerTable}>Còn lại</th>
-                </tr>
-                {order.products.map((item, idx) => {
-                  return (
-                    <tr key={idx}>
-                      <td className={classes.tableContentBlack}>
-                        {item.productID}
-                      </td>
-                      <td className={classes.tableContentBlack}>
-                        {item.total}
-                      </td>
-                      <td className={classes.tableContentBlack}>
-                        {item.shipped}
-                      </td>
-                      <td className={classes.tableContentBlack}>
-                        {item.remain}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </table>
-            </Typography>
+            <TableContainer component={Paper} className={classes.productScroll}>
+              <Table sx={{ minWidth: "40vh" }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell className={classes.headerTable}>STT</TableCell>
+                    <TableCell className={classes.headerTable}>
+                      Loại vải
+                    </TableCell>
+                    <TableCell className={classes.headerTable}>
+                      Mã màu
+                    </TableCell>
+                    <TableCell className={classes.headerTable}>
+                      Tổng số&nbsp;(m)
+                    </TableCell>
+                    <TableCell className={classes.headerTable}>
+                      Đã giao&nbsp;(m)
+                    </TableCell>
+                    <TableCell className={classes.headerTable}>
+                      Còn lại&nbsp;(m)
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {order.products.map((row, idx) => (
+                    <TableRow
+                      key={idx}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        className={classes.tableContentBlack}
+                      >
+                        {idx + 1}
+                      </TableCell>
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        className={classes.tableContentBlack}
+                      >
+                        {row.typeID}
+                      </TableCell>
+                      <TableCell className={classes.tableContentBlack}>
+                        {row.colorCode}
+                      </TableCell>
+                      <TableCell className={classes.tableContentBlack}>
+                        {row.total}
+                      </TableCell>
+                      <TableCell className={classes.tableContentBlack}>
+                        {row.shipped}
+                      </TableCell>
+                      <TableCell className={classes.tableContentBlack}>
+                        {row.remain}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
           </CardContent>
         </Card>
       </Modal>

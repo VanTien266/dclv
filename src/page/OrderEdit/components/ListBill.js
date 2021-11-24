@@ -32,8 +32,14 @@ const useStyles = makeStyles({
     marginBottom: "10px",
   },
   containerNoPadding: {
-    padding: "0",
+    padding: "0"
   },
+  productList: {
+    justifyContent: "center",
+    direction: "row",
+    display: "flex",
+    alignItems: "center",
+  }
 });
 export default function ListBill() {
   const classes = useStyles();
@@ -46,19 +52,16 @@ export default function ListBill() {
         <Grid item xs={2} className={classes.alignVerticalCenter}>
           <Typography variant="subtitle1">Mã hóa đơn</Typography>
         </Grid>
-        <Grid item xs={2} className={classes.alignVerticalCenter}>
+        <Grid item xs={3} className={classes.alignVerticalCenter}>
           <Typography variant="subtitle1">Người tạo</Typography>
         </Grid>
         <Grid item xs={2} className={classes.alignVerticalCenter}>
           <Typography variant="subtitle1">Ngày xuất</Typography>
         </Grid>
-        <Grid item xs={2} className={classes.alignVerticalCenter}>
-          <Typography variant="subtitle1">Mã sản phẩm</Typography>
+        <Grid item xs={2} className={classes.productList}>
+          <Typography variant="subtitle1">Cây vải</Typography>
         </Grid>
-        <Grid item xs={2} className={classes.alignVerticalCenter}>
-          <Typography variant="subtitle1">Chiều dài</Typography>
-        </Grid>
-        <Grid item xs={2} className={classes.alignVerticalCenter}>
+        <Grid item xs={3} className={classes.alignVerticalCenter}>
           <Typography variant="subtitle1">Trạng thái</Typography>
         </Grid>
       </Grid>
