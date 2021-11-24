@@ -37,7 +37,7 @@ function Sidebar(props) {
         <img
           src={process.env.PUBLIC_URL + "/assets/logo.png"}
           alt="logo"
-          width="260"
+          width="210"
         />
         <nav>
           {sidebarConfig.map((list) => (

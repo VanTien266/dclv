@@ -1,81 +1,199 @@
 import React from "react";
+import NumberFormat from "react-number-format";
 import {
-  Card,
-  Grid,
-  Typography,
   makeStyles,
-  CardMedia,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  cardItem: {
-    padding: theme.spacing(1),
-    "&:hover": {
-      cursor: "pointer",
-      backgroundColor: "#fff",
-      boxShadow: theme.shadows[5],
+  root: {
+    backgroundColor: "#fff",
+    maxHeight: 350, //Max height of table
+    //Hide scroll bar
+    overflowX: "scroll",
+    "&::-webkit-scrollbar": {
+      width: 0,
     },
   },
-  itemInfoMain: {
-    justifyContent: "space-between",
-    marginBottom: theme.spacing(1),
-  },
-  itemInfoExt: {
-    justifyContent: "space-between",
-  },
-  color: {
-    color: theme.palette.btnBg,
+  tableHead: {
+    backgroundColor: "#fff",
+    "& th:first-child": {
+      borderRadius: "5px 0 0 5px",
+    },
+    "& th:last-child": {
+      borderRadius: "0 5px 5px 0",
+    },
   },
 }));
 
 function Item() {
   const classes = useStyles();
-
+  const tableTilteConfig = [
+    "STT",
+    "Mã sản phẩm",
+    "Tên",
+    "Chiều dài (m)",
+    "Lô",
+    "Đơn giá (vnđ/m)",
+    "Giá (vnđ)",
+  ];
+  const items = [
+    {
+      id: "SP1112",
+      name: "Vải kaki trắng",
+      length: 600,
+      lot: "L7",
+      price: 200000,
+    },
+    {
+      id: "SP1113",
+      name: "Vải len đen",
+      length: 700,
+      lot: "L8",
+      price: 150000,
+    },
+    {
+      id: "SP1114",
+      name: "Vải jean đen",
+      length: 400,
+      lot: "L1",
+      price: 300000,
+    },
+    {
+      id: "SP1115",
+      name: "Vải coton đỏ",
+      length: 650,
+      lot: "L2",
+      price: 50000,
+    },
+    {
+      id: "SP1116",
+      name: "Vải kaki đen",
+      length: 100,
+      lot: "L2",
+      price: 70000,
+    },
+  ];
+  const getTotalLength = (prevVal, nextItem) => {
+    return prevVal + nextItem.length;
+  };
+  const getTotalPrice = (prevVal, nextItem) =>
+    prevVal + nextItem.price * nextItem.length;
   return (
-    <Card className={classes.cardItem}>
-      <Grid container spacing={1}>
-        <Grid item xs={3}>
-          <CardMedia
-            component="img"
-            className={classes.cardImage}
-            image={process.env.PUBLIC_URL + "/assets/fabricRoll.jpg"}
-            title="Fabric roll"
-          />
-        </Grid>
-        <Grid item xs={9}>
-          <Grid
-            container
-            className={classes.itemInfoMain}
-            alignItems="flex-end"
-          >
-            <Grid item>
-              <Typography variant="h6">Vải KT trắng</Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="h6">100.000 vnđ/mét</Typography>
-            </Grid>
-          </Grid>
-          <Grid container className={classes.itemInfoExt}>
-            <Typography variant="body1">Mã sản phẩm: KT1234</Typography>
-            <Typography variant="body1" className={classes.color}>
-              1000 mét
-            </Typography>
-          </Grid>
-          <Grid container className={classes.itemInfoExt}>
-            <Typography variant="body1">Lô</Typography>
-            <Typography variant="body1" className={classes.color}>
-              12A
-            </Typography>
-          </Grid>
-          <Grid container className={classes.itemInfoExt}>
-            <Typography variant="body1">Giá</Typography>
-            <Typography variant="body1" className={classes.color}>
-              100.000.000 vnđ
-            </Typography>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Card>
+    <TableContainer className={classes.root}>
+      <Table stickyHeader className={classes.tableContainer}>
+        <TableHead className={classes.tableHead}>
+          <TableRow>
+            {tableTilteConfig.map((item, index) => (
+              <TableCell key={index}>
+                <Typography variant="subtitle1">{item}</Typography>
+              </TableCell>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {items.map((item, index) => (
+            <TableRow key={index}>
+              <TableCell>
+                <Typography variant="subtitle2">{index + 1}</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2">{item.id}</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2">{item.name}</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2">
+                  <NumberFormat
+                    value={item.length}
+                    thousandsGroupStyle="thousand"
+                    displayType="text"
+                    decimalScale={0}
+                    thousandSeparator="."
+                    decimalSeparator=","
+                  />
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2">{item.lot}</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2">
+                  <NumberFormat
+                    value={item.price}
+                    thousandsGroupStyle="thousand"
+                    displayType="text"
+                    decimalScale={0}
+                    thousandSeparator="."
+                    decimalSeparator=","
+                  />
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2">
+                  <NumberFormat
+                    value={item.length * item.price}
+                    thousandsGroupStyle="thousand"
+                    displayType="text"
+                    decimalScale={0}
+                    thousandSeparator="."
+                    decimalSeparator=","
+                  />
+                </Typography>
+              </TableCell>
+            </TableRow>
+          ))}
+          <TableRow>
+            <TableCell>
+              <Typography variant="subtitle1">Tổng</Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="subtitle1"></Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="subtitle1"></Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="subtitle1">
+                <NumberFormat
+                  value={items.reduce(getTotalLength, 0)}
+                  thousandsGroupStyle="thousand"
+                  displayType="text"
+                  decimalScale={0}
+                  thousandSeparator="."
+                  decimalSeparator=","
+                />
+              </Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="subtitle1"></Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="subtitle1"></Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="subtitle1">
+                <NumberFormat
+                  value={items.reduce(getTotalPrice, 0)}
+                  thousandsGroupStyle="thousand"
+                  displayType="text"
+                  decimalScale={0}
+                  thousandSeparator="."
+                  decimalSeparator=","
+                />
+              </Typography>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
 

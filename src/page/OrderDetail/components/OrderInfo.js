@@ -2,14 +2,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   Grid,
   Typography,
-  Container,
   Table,
   TableCell,
   TableBody,
   TableContainer,
   TableHead,
   TableRow,
-  Paper
+  Paper,
 } from "@material-ui/core";
 
 function createData(typeID, colorCode, shipped, remaining, unitPrice) {
@@ -58,7 +57,10 @@ const useStyles = makeStyles({
     padding: "0",
     maxHeight: "350px",
     minHeight: "349px",
-    overflow: "auto",
+    overflowX: "auto",
+    "&::-webkit-scrollbar": {
+      width: 0,
+    },
   },
 });
 export default function OrderInfo() {
@@ -68,41 +70,39 @@ export default function OrderInfo() {
       <Typography variant="h5" className={classes.title}>
         Thông tin đơn hàng
       </Typography>
-      <Container className={classes.productScroll}>
-      <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>STT</TableCell>
-            <TableCell>Loại vải</TableCell>
-            <TableCell>Mã màu</TableCell>
-            <TableCell>Đã giao&nbsp;(m)</TableCell>
-            <TableCell>Còn lại&nbsp;(m)</TableCell>
-            <TableCell>Đơn giá&nbsp;(vnđ/m)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row, idx) => (
-            <TableRow
-              key={idx}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {idx + 1}
-              </TableCell>
-              <TableCell component="th" scope="row">
-                {row.typeID}
-              </TableCell>
-              <TableCell>{row.colorCode}</TableCell>
-              <TableCell>{row.shipped}</TableCell>
-              <TableCell>{row.remaining}</TableCell>
-              <TableCell>{row.unitPrice}</TableCell>
+      <TableContainer component={Paper} className={classes.productScroll}>
+        <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>STT</TableCell>
+              <TableCell>Loại vải</TableCell>
+              <TableCell>Mã màu</TableCell>
+              <TableCell>Đã giao&nbsp;(m)</TableCell>
+              <TableCell>Còn lại&nbsp;(m)</TableCell>
+              <TableCell>Đơn giá&nbsp;(vnđ/m)</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-      </Container>
+          </TableHead>
+          <TableBody>
+            {rows.map((row, idx) => (
+              <TableRow
+                key={idx}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {idx + 1}
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  {row.typeID}
+                </TableCell>
+                <TableCell>{row.colorCode}</TableCell>
+                <TableCell>{row.shipped}</TableCell>
+                <TableCell>{row.remaining}</TableCell>
+                <TableCell>{row.unitPrice}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
       <hr />
       <Grid container>
         <Grid item xs={6}>

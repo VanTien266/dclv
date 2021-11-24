@@ -1,18 +1,8 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 //import { ThemeProvider } from '@mui/material/styles';
-import {
-  createMuiTheme,
-} from "@material-ui/core/styles";
-
 import FormPasswordReset from "./Components/FormPasswordReset";
 import "./ChangPasswordstyles.css";
-
-const theme = createMuiTheme({
-  palette: {
-    type: "dark",
-  },
-});
 
 function ChangePassword() {
   return (

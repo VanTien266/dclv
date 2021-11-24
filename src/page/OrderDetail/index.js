@@ -4,14 +4,9 @@ import TimelineStatus from "./components/TimelineStatus";
 import ListBill from "./components/ListBill";
 import { Button, Grid, Typography, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  KeyboardArrowRight,
-  ArrowBack,
-  ArrowUpward,
-  Cancel,
-  Publish,
-} from "@material-ui/icons";
+import { ArrowBack, ArrowUpward, Cancel, Publish } from "@material-ui/icons";
 import DefaultButton from "../../components/Button/DefaultButton";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   alignStatusRight: {
@@ -50,12 +45,18 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.buttonPrimary,
   },
   orderDetailBox: {
-    padding: "10px"
-  }
+    padding: "10px",
+  },
 }));
 
 export default function OrderDetail() {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleBack = () => {
+    history.push("/order");
+  };
+
   return (
     <Container maxWidth="xl" className={classes.orderDetailBox}>
       <Grid container spacing={2}>
@@ -89,16 +90,17 @@ export default function OrderDetail() {
             size="large"
             className={classes.btnCancel}
           >
-            <Typography
-              variant="h6"
-              className={classes.btnCancelTitle}
-            >
+            <Typography variant="h6" className={classes.btnCancelTitle}>
               Hủy
             </Typography>
           </Button>
         </Grid>
         <Grid item>
-          <DefaultButton title="Quay lại" icon={ArrowBack} />
+          <DefaultButton
+            title="Quay lại"
+            icon={ArrowBack}
+            clickEvent={handleBack}
+          />
         </Grid>
         <Grid item>
           <DefaultButton title="Cập nhật" icon={ArrowUpward} />

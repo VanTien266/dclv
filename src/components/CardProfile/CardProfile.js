@@ -7,14 +7,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: 230,
+    width: 190,
     backgroundColor: "#FAFAFB",
     borderRadius: 5,
     marginBottom: 10,
   },
   avatar: {
-    width: 120,
-    height: 120,
+    width: 80,
+    height: 80,
     marginTop: theme.spacing(1),
   },
   content: {
@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginBottom: theme.spacing(2),
-    width: 200,
-    height: 50,
+    width: 140,
+    height: 40,
     border: "2px solid #DADADA",
     fontSize: 14,
     fontWeight: "600",
