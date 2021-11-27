@@ -9,6 +9,7 @@ import OrderDetail from "./page/OrderDetail";
 import OrderEdit from "./page/OrderEdit";
 import NotificationPage from "./page/NotificationPage/NotificationPage";
 import ChangePassword from "./screens/ChangePassword/ChangePassword";
+import SupportPage from "./page/SupportPage/SupportPage";
 
 const routes = [
   {
@@ -70,6 +71,11 @@ const routes = [
         exact: true,
         component: NotificationPage,
       },
+      {
+        path: "/support",
+        exact: true,
+        component: SupportPage,
+      }
     ],
   },
 ];
