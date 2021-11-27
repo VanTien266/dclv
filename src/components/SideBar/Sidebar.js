@@ -4,7 +4,9 @@ import { makeStyles } from "@material-ui/styles";
 import SidebarItem from "./components/SidebarItem";
 import CardProfile from "../CardProfile/CardProfile";
 import { Drawer, Hidden } from "@material-ui/core";
-import sidebarConfig from "./SalemanSidebarConfig";
+import SalesmanSidebarConfig from "./SalemanSidebarConfig";
+import AdminSidebarConfig from "./AdminSidebarConfig";
+import CustomerSidebarConfig from "./CustomerSidebarConfig";
 
 const useStyles = makeStyles((theme) => ({
   sidebarBg: {
@@ -28,6 +30,17 @@ function Sidebar(props) {
   const { openMobile, onMobileClose, className } = props;
   const classes = useStyles();
   const { pathname } = useLocation();
+  const role = localStorage.getItem("role");
+  //Get sidebar list item with role
+  let sidebarConfig =
+    role === "admin"
+      ? AdminSidebarConfig
+      : role === "salesman"
+      ? SalesmanSidebarConfig
+      : role === "shipper"
+      ? []
+      : CustomerSidebarConfig;
+
   //check path is activate
   const match = (path) => (path ? !!matchPath(pathname, { path }) : false);
 

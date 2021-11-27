@@ -10,12 +10,15 @@ import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import {
+  LockOutlined,
+  PhoneAndroid,
+  AccountCircle,
+  Lock,
+} from "@material-ui/icons";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import LockIcon from "@material-ui/icons/Lock";
 
 function Copyright() {
   return (
@@ -63,12 +66,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignUp() {
   const classes = useStyles();
   const history = useHistory();
 
   const handleSubmit = () => {
-    history.push("/");
+    history.push("/signin");
   };
 
   return (
@@ -78,10 +81,10 @@ export default function SignIn() {
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <LockOutlined />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Đăng nhập
+            Đăng kí
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -93,13 +96,12 @@ export default function SignIn() {
               label="Email"
               name="email"
               autoComplete="email"
-              a
               autoFocus
               placeholder="Nhập địa chỉ Email"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <AccountCircleIcon />
+                    <AccountCircle />
                   </InputAdornment>
                 ),
               }}
@@ -118,14 +120,48 @@ export default function SignIn() {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <LockIcon />
+                    <Lock />
                   </InputAdornment>
                 ),
               }}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Nhớ tài khoản"
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="repassword"
+              label="Nhập lại mật khẩu"
+              type="password"
+              id="repassword"
+              autoComplete="current-password"
+              placeholder="Nhập lại mật khẩu"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Lock />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="phone"
+              label="Số điện thoại"
+              type="text"
+              id="phone"
+              autoComplete="phone-number"
+              placeholder="Nhập SĐT"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PhoneAndroid />
+                  </InputAdornment>
+                ),
+              }}
             />
             <Button
               type="submit"
@@ -135,12 +171,12 @@ export default function SignIn() {
               className={classes.submit}
               onClick={handleSubmit}
             >
-              Đăng nhập
+              Đăng kí
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Quên mật khẩu?
+                <Link href="/signin" variant="body2">
+                  Quay lại đăng nhập
                 </Link>
               </Grid>
               {/* <Grid item>

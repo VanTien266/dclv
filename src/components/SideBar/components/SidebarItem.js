@@ -50,6 +50,11 @@ const SidebarItem = (props) => {
     setOpen((prev) => !prev);
   };
 
+  const getPath = () => {
+    const role = localStorage.getItem("role");
+    return `/${role}${path}`;
+  };
+
   return (
     <ListItem disableGutters onClick={handleOpen}>
       <Button
@@ -57,7 +62,7 @@ const SidebarItem = (props) => {
         className={clsx(classes.container, isActivate ? classes.activate : "")}
         component={CustomRouterLink}
         exact
-        to={path}
+        to={getPath}
       >
         {<Icon className={classes.icon} />}
         <Typography variant="h5" className={classes.title}>
