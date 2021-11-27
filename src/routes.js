@@ -9,6 +9,11 @@ import OrderListPage from "./page/OrderListPage";
 import OrderDetail from "./page/OrderDetail";
 import OrderEdit from "./page/OrderEdit";
 import NotificationPage from "./page/NotificationPage/NotificationPage";
+<<<<<<< HEAD
+import ChangePassword from "./screens/ChangePassword/ChangePassword";
+import SupportPage from "./page/SupportPage/SupportPage";
+=======
+>>>>>>> 3670f3fd5cb1341efd5a4f9d6c0af11e428e65e5
 
 const routes = [
   {
@@ -150,6 +155,11 @@ const routes = [
         exact: true,
         component: NotificationPage,
       },
+      {
+        path: "/support",
+        exact: true,
+        component: SupportPage,
+      }
     ],
   },
 ];
