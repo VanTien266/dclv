@@ -82,8 +82,8 @@ function Item() {
     },
   ];
   const getTotalLength = (prevVal, nextItem) => prevVal + nextItem.length;
-  const getTotalDelivered = (prevVal, nextItem) => prevVal + nextItem.length;
-  const getTotalRest = (prevVal, nextItem) => prevVal + nextItem.length;
+  const getTotalDelivered = (prevVal, nextItem) => prevVal + nextItem.delivered;
+  const getTotalRest = (prevVal, nextItem) => prevVal + nextItem.rest;
   return (
     <TableContainer className={classes.root}>
       <Table stickyHeader className={classes.table}>
