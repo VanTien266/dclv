@@ -16,9 +16,6 @@ function BillInfo() {
             <Item />
           </Grid>
           <Grid item xs={12}>
-            <Item />
-          </Grid>
-          <Grid item xs={12}>
             <CostInfo />
           </Grid>
         </Grid>

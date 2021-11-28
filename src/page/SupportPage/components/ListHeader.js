@@ -51,25 +51,19 @@ export default function ListHeader() {
         xs={2}
         className={clsx(classes.orderId, classes.verticalCenter)}
       >
-        <p>Mã đơn hàng</p>
+        <p>Mã đơn đặt hàng</p>
       </Grid>
-      <Grid item xs={1} className={classes.verticalCenter}>
-        <p>Ngày đặt</p>
-      </Grid>
-      <Grid item xs={1} className={classes.billQuantity}>
-        <p>Số hóa đơn</p>
-      </Grid>
-      <Grid container item xs={2} className={classes.verticalCenter}>
+      <Grid item xs={2} className={classes.verticalCenter}>
         <p>Khách hàng</p>
       </Grid>
-      <Grid item xs={2} className={classes.verticalCenter}>
-        <p>Đã đặt cọc</p>
+      <Grid item xs={2} className={classes.billQuantity}>
+        <p>Số điện thoại</p>
       </Grid>
-      <Grid container item xs={2} className={classes.productList}>
-        <p>Mặt hàng đã đặt</p>
+      <Grid item xs={3} className={classes.verticalCenter}>
+        <p>Nội dung</p>
       </Grid>
-      <Grid item xs={2} className={classes.verticalCenter}>
-        <p>Trạng thái</p>
+      <Grid item xs={3} className={classes.billQuantity}>
+        <p>Phản hồi</p>
       </Grid>
     </Grid>
   );

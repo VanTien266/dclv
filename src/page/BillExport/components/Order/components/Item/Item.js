@@ -1,92 +1,195 @@
 import {
-  Card,
-  Grid,
-  CardMedia,
-  Typography,
   makeStyles,
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  Typography,
+  TableBody,
 } from "@material-ui/core";
+import NumberFormat from "react-number-format";
 import React from "react";
 const useStyles = makeStyles((theme) => ({
-  cardItem: {
-    padding: theme.spacing(1),
-    "&:hover": {
-      cursor: "pointer",
-      backgroundColor: "#fff",
-      boxShadow: theme.shadows[5],
+  root: {
+    backgroundColor: "#fff",
+    maxHeight: 300, //Max height of table
+    //Hide scroll bar
+    overflowX: "scroll",
+    "&::-webkit-scrollbar": {
+      width: 0,
     },
   },
-  itemDecs: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-  },
-  itemInfoMain: {
-    justifyContent: "space-between",
-    marginBottom: theme.spacing(1),
-  },
-  itemInfoExt: {
-    justifyContent: "space-between",
-  },
-  colorBtnBg: {
-    color: theme.palette.btnBg,
-  },
 }));
+
 function Item() {
   const classes = useStyles();
-
+  const tableTitleConfig = [
+    "STT",
+    "Tên",
+    "Chiều dài (m)",
+    "Đã giao (m)",
+    "Còn lại (m)",
+  ];
+  const items = [
+    {
+      name: "Vải kaki trắng",
+      length: 600,
+      delivered: 300,
+      rest: 300,
+    },
+    {
+      name: "Vải kaki trắng",
+      length: 600,
+      delivered: 300,
+      rest: 300,
+    },
+    {
+      name: "Vải kaki trắng",
+      length: 600,
+      delivered: 300,
+      rest: 300,
+    },
+    {
+      name: "Vải kaki trắng",
+      length: 600,
+      delivered: 300,
+      rest: 300,
+    },
+    {
+      name: "Vải jean trắng",
+      length: 1000,
+      delivered: 700,
+      rest: 300,
+    },
+    {
+      name: "Vải kaki đen",
+      length: 500,
+      delivered: 300,
+      rest: 200,
+    },
+    {
+      name: "Vải coton trắng",
+      length: 400,
+      delivered: 100,
+      rest: 300,
+    },
+    {
+      name: "Vải jean trắng",
+      length: 500,
+      delivered: 200,
+      rest: 300,
+    },
+  ];
+  const getTotalLength = (prevVal, nextItem) => prevVal + nextItem.length;
+  const getTotalDelivered = (prevVal, nextItem) => prevVal + nextItem.delivered;
+  const getTotalRest = (prevVal, nextItem) => prevVal + nextItem.rest;
   return (
-    <Card className={classes.cardItem}>
-      <Grid container spacing={1}>
-        <Grid item xs={3}>
-          <CardMedia
-            component="img"
-            className={classes.cardImage}
-            image={process.env.PUBLIC_URL + "/assets/fabricRoll.jpg"}
-            title="Fabric roll"
-          />
-        </Grid>
-        <Grid item xs={9} className={classes.itemDecs}>
-          <Grid
-            container
-            className={classes.itemInfoMain}
-            alignItems="flex-end"
-          >
-            <Grid item>
-              <Typography variant="h6">Vải KT trắng</Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="h6">100.000 vnđ/mét</Typography>
-            </Grid>
-          </Grid>
-          <Grid container className={classes.itemInfoExt}>
-            <Grid item xs={4}>
-              <Typography variant="body2" className={classes.colorBtnBg}>
-                Đã giao
+    <TableContainer className={classes.root}>
+      <Table stickyHeader className={classes.table}>
+        <TableHead className={classes.tableHead}>
+          <TableRow>
+            {tableTitleConfig.map((item, index) => (
+              <TableCell key={index}>
+                <Typography variant="subtitle1">{item}</Typography>
+              </TableCell>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {items.map((item, index) => (
+            <TableRow key={index}>
+              <TableCell>
+                <Typography variant="subtitle2">{index + 1}</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2">{item.name}</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2">
+                  <NumberFormat
+                    value={item.length}
+                    thousandsGroupStyle="thousand"
+                    displayType="text"
+                    decimalScale={0}
+                    thousandSeparator="."
+                    decimalSeparator=","
+                  />
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2">
+                  <NumberFormat
+                    value={item.delivered}
+                    thousandsGroupStyle="thousand"
+                    displayType="text"
+                    decimalScale={0}
+                    thousandSeparator="."
+                    decimalSeparator=","
+                  />
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2">
+                  <NumberFormat
+                    value={item.rest}
+                    thousandsGroupStyle="thousand"
+                    displayType="text"
+                    decimalScale={0}
+                    thousandSeparator="."
+                    decimalSeparator=","
+                  />
+                </Typography>
+              </TableCell>
+            </TableRow>
+          ))}
+          <TableRow>
+            <TableCell>
+              <Typography variant="subtitle1">Tổng</Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="subtitle1"></Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="subtitle1">
+                <NumberFormat
+                  value={items.reduce(getTotalLength, 0)}
+                  thousandsGroupStyle="thousand"
+                  displayType="text"
+                  decimalScale={0}
+                  thousandSeparator="."
+                  decimalSeparator=","
+                />
               </Typography>
-            </Grid>
-            <Grid item xs={4}>
-              <Typography variant="body2" className={classes.colorBtnBg}>
-                Còn lại
+            </TableCell>
+            <TableCell>
+              <Typography variant="subtitle1">
+                <NumberFormat
+                  value={items.reduce(getTotalDelivered, 0)}
+                  thousandsGroupStyle="thousand"
+                  displayType="text"
+                  decimalScale={0}
+                  thousandSeparator="."
+                  decimalSeparator=","
+                />
               </Typography>
-            </Grid>
-            <Grid item xs={4}>
-              <Typography variant="body1">1000 mét</Typography>
-            </Grid>
-          </Grid>
-          <Grid container className={classes.itemInfoExt}>
-            <Grid item xs={4}>
-              <Typography variant="body1">500m</Typography>
-            </Grid>
-            <Grid item xs={4}>
-              <Typography variant="body1">500m</Typography>
-            </Grid>
-            <Grid item xs={4}>
-              {/* <Typography variant="body1">Sẵn có</Typography> */}
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Card>
+            </TableCell>
+            <TableCell>
+              <Typography variant="subtitle1">
+                <NumberFormat
+                  value={items.reduce(getTotalRest, 0)}
+                  thousandsGroupStyle="thousand"
+                  displayType="text"
+                  decimalScale={0}
+                  thousandSeparator="."
+                  decimalSeparator=","
+                />
+              </Typography>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
 

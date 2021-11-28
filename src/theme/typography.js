@@ -35,7 +35,8 @@ const typograpghy = {
     lineHeight: "24px",
     letterSpacing: "0.003em",
   },
-  textCategoryS: {
+  subtitle2: {
+    //Text CategoryS
     fontSize: 11,
     fontWeight: 500,
     lineHeight: "16px",

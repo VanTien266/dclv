@@ -5,7 +5,7 @@ import { CssBaseline, LinearProgress } from "@material-ui/core";
 import Sidebar from "../../components/SideBar/Sidebar";
 import TopBar from "../../components/TopBar/TopBar";
 
-const SIDE_BAR_WIDTH = 260;
+const SIDE_BAR_WIDTH = 210;
 const TOP_BAR_HEIGHT = 64;
 
 const useStyles = makeStyles((theme) => ({

@@ -54,6 +54,8 @@ const tableTilteConfig = [
 function ProductList(props) {
   const { className, product } = props;
 
+  console.log("Product list render");
+
   const classes = useStyles();
   return (
     <div className={clsx(classes.root, className)}>
@@ -75,10 +77,10 @@ function ProductList(props) {
               <TableBody className={classes.tableBody}>
                 {product
                   .filter((item) => item.status === true)
-                  .map((item) => (
-                    <TableRow hover key={item.id}>
+                  .map((item, index) => (
+                    <TableRow hover key={index}>
                       <TableCell className={classes.textCode}>
-                        {item.id.substring(0, 4)}
+                        {item.id}
                       </TableCell>
                       <TableCell className={classes.textItem}>
                         {item.item.name}

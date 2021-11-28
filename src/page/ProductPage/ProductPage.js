@@ -23,29 +23,59 @@ const useStyles = makeStyles(() => ({
 function Product() {
   const classes = useStyles();
   const [product, setProduct] = useState([]);
+  const [data, setData] = useState([]);
+  const [filter, setFilter] = useState({
+    warehouse: "",
+    type: "",
+    lot: "",
+  });
+
   useEffect(() => {
     let mounted = true;
+
+    const handleFilter = (products) => {
+      if (filter.warehouse !== "")
+        products = products.filter(
+          (item) => item.warehouseId === filter.warehouse
+        );
+      if (filter.type !== "")
+        products = products.filter(
+          (item) => item.item.fabricType.name === filter.type
+        );
+      if (filter.lot !== "")
+        products = products.filter((item) => item.lot === filter.lot);
+
+      return products;
+    };
 
     const fetchProduct = () => {
       axios.get("/product/fabric-roll").then((resonse) => {
         if (mounted) {
-          setProduct(resonse.data.fabricRoll);
-          console.log(resonse.data.fabricRoll);
+          setProduct(handleFilter(resonse.data.fabricRoll));
+          setData(resonse.data.fabricRoll);
         }
       });
     };
-
+    console.log("update");
     fetchProduct();
-
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [filter]);
+
+  const handleFilterChange = (filter) => {
+    setFilter(filter);
+  };
+
   return (
     <div className={classes.root}>
       <Grid container>
         <Grid item sm={6} md={8}>
-          <Filter />
+          <Filter
+            handleFilterChange={handleFilterChange}
+            filter={filter}
+            data={data}
+          />
         </Grid>
         <Grid item sm={6} md={4} className={classes.notiSearch}>
           <Grid item xs={2}>
