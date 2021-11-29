@@ -56,7 +56,6 @@ function Product() {
         }
       });
     };
-    console.log("update");
     fetchProduct();
     return () => {
       mounted = false;
