@@ -10,14 +10,16 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: 190,
+    width: 200,
+    height: 220,
     backgroundColor: "#FAFAFB",
     borderRadius: 5,
     marginBottom: 10,
+    border: "2px solid #DADADA",
   },
   avatar: {
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 100,
     marginTop: theme.spacing(1),
   },
   content: {
@@ -29,41 +31,20 @@ const useStyles = makeStyles((theme) => ({
   text: {
     fontWeight: "600",
   },
-  button: {
-    marginBottom: theme.spacing(2),
-    width: 140,
-    height: 40,
-    border: "2px solid #DADADA",
-    fontSize: 14,
-    fontWeight: "600",
-    textTransform: "none",
-  },
+  
 }));
-function CardProfile() {
+
+function ProfileCardComp() {
   const classes = useStyles();
-  const history = useHistory();
   const role = localStorage.getItem("role");
-
-  const handleClick = () => {
-    if (role) {
-      history.push("/signin");
-      localStorage.removeItem("role");
-    } else history.push("/signin");
-  };
-
-  const handleOpenInfo = () => {
-    history.push("/admin/info");
-  };
 
   return (
     <Box className={classes.container}>
-      <Button onClick={handleOpenInfo} >
         <Avatar 
           className={classes.avatar}
           alt="Person"
           src={process.env.PUBLIC_URL + "/assets/avatar.png"}
         />
-      </Button>
       
       <Box className={classes.content}>
         <Typography variant="body1" gutterBottom className={classes.text}>
@@ -79,11 +60,8 @@ function CardProfile() {
             : "Khách hàng"}
         </Typography>
       </Box>
-      <Button className={classes.button} onClick={handleClick}>
-        {role ? "Đăng xuất" : "Đăng nhập"}
-      </Button>
     </Box>
   );
 }
 
-export default CardProfile;
+export default ProfileCardComp;

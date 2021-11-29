@@ -83,13 +83,18 @@ import {
 import { Animation } from '@devexpress/dx-react-chart';
 
 const data = [
-  { year: '1950', population: 2.525 },
-  { year: '1960', population: 3.018 },
-  { year: '1970', population: 3.682 },
-  { year: '1980', population: 4.440 },
-  { year: '1990', population: 5.310 },
-  { year: '2000', population: 6.127 },
-  { year: '2010', population: 6.930 },
+  { month: '1', revenue: 200 },
+  { month: '2', revenue: 300 },
+  { month: '3', revenue: 400 },
+  { month: '4', revenue: 500 },
+  { month: '5', revenue: 600 },
+  { month: '6', revenue: 550 },
+  { month: '7', revenue: 450 },
+  { month: '8', revenue: 700 },
+  { month: '9', revenue: 800 },
+  { month: '10', revenue: 720 },
+  { month: '11', revenue: 600 },
+  { month: '12', revenue: 900 },
 ];
 
 export default class RevenueChart1 extends React.PureComponent {
@@ -113,8 +118,8 @@ export default class RevenueChart1 extends React.PureComponent {
           <ValueAxis max={7} />
 
           <BarSeries
-            valueField="population"
-            argumentField="year"
+            valueField="revenue"
+            argumentField="month"
           />
           <Title text="Revenue Chart1" />
           <Animation />
