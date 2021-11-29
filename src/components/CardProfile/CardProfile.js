@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Avatar, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -38,6 +39,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 function CardProfile() {
   const classes = useStyles();
+  const history = useHistory();
+  const role = localStorage.getItem("role");
+
+  const handleClick = () => {
+    if (role) {
+      history.push("/signin");
+      localStorage.removeItem("role");
+    } else history.push("/signin");
+  };
+
   return (
     <Box className={classes.container}>
       <Avatar
@@ -49,9 +60,19 @@ function CardProfile() {
         <Typography variant="body1" gutterBottom className={classes.text}>
           Nguyễn Văn Tĩnh
         </Typography>
-        <Typography variant="body1">Nhân viên bán hàng</Typography>
+        <Typography variant="body1">
+          {role === "admin"
+            ? "Quản lí"
+            : role === "salesman"
+            ? "Nhân viên bán hàng"
+            : role === "shipper"
+            ? "Nhân viên vận chuyển"
+            : "Khách hàng"}
+        </Typography>
       </Box>
-      <Button className={classes.button}>Xem thông tin</Button>
+      <Button className={classes.button} onClick={handleClick}>
+        {role ? "Đăng xuất" : "Đăng nhập"}
+      </Button>
     </Box>
   );
 }

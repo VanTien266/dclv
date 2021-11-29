@@ -1,6 +1,7 @@
 import { Grid, makeStyles } from "@material-ui/core";
 import { ArrowBack, ArrowUpward } from "@material-ui/icons";
 import React from "react";
+import { useHistory } from "react-router";
 import DefaultButton from "../../components/Button/DefaultButton";
 import AnotherInfo from "./components/AnotherInfo/AnotherInfo";
 import BillInfo from "./components/BillInfo/BillInfo";
@@ -25,6 +26,11 @@ const useStyles = makeStyles((theme) => ({
 
 function BillDetail() {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleBack = () => {
+    history.push("/order/orderDetail");
+  };
 
   return (
     <div>
@@ -45,7 +51,11 @@ function BillDetail() {
       </Grid>
       <Grid container spacing={2} className={classes.btnGroup}>
         <Grid item>
-          <DefaultButton title="Quay lại" icon={ArrowBack} />
+          <DefaultButton
+            title="Quay lại"
+            icon={ArrowBack}
+            clickEvent={handleBack}
+          />
         </Grid>
         <Grid item>
           <DefaultButton title="Cập nhật" icon={ArrowUpward} />

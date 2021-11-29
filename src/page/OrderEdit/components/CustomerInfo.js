@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Button, Typography, Input, Container } from "@material-ui/core";
+import { Grid, Button, Typography, Input } from "@material-ui/core";
 import { LocationOn, Email, Phone, Notes, Edit } from "@material-ui/icons";
-import clsx from "clsx";
 import { useState } from "react";
 
 const userInfo = {
@@ -23,7 +22,7 @@ const useStyles = makeStyles({
     padding: "10px",
     fontFamily: "'Roboto', sans-serif",
     color: "#000040",
-    height: "100%"
+    height: "100%",
   },
   infoTable: {
     margin: "0px",
@@ -43,8 +42,8 @@ const useStyles = makeStyles({
     fontWeight: "bold",
   },
   inpWidth: {
-    width: "100%"
-  }
+    width: "100%",
+  },
 });
 
 export default function CustomerInfo() {
@@ -80,59 +79,60 @@ export default function CustomerInfo() {
         <Grid container>
           <Grid item xs={8}>
             <table className={classes.inpWidth}>
-              <tr>
-                <td>
-                  <LocationOn />
-                </td>
-                <td>
-                  {/* <Typography
-                    component="p"
-                    className={clsx(classes.infoTable, classes.name)}
-                  >
-                    Lưu Văn Tiến
-                  </Typography> */}
-                  <div>
+              <tbody>
+                <tr>
+                  <td>
+                    <LocationOn />
+                  </td>
+                  <td>
+                    <div>
+                      <Input
+                        defaultValue={name}
+                        inputProps={{ "aria-label": "description" }}
+                        className={classes.inpWidth}
+                      />
+                    </div>
+                    <div>
+                      <Input
+                        defaultValue={address}
+                        inputProps={{ "aria-label": "description" }}
+                        className={classes.inpWidth}
+                      />
+                    </div>
+                    <div>
+                      <Input
+                        defaultValue={province}
+                        inputProps={{ "aria-label": "description" }}
+                        className={classes.inpWidth}
+                      />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Email />
+                  </td>
+                  <td>
                     <Input
-                      defaultValue={name}
-                      inputProps={{ "aria-label": "description" }} className={classes.inpWidth}
+                      defaultValue={email}
+                      inputProps={{ "aria-label": "description" }}
+                      className={classes.inpWidth}
                     />
-                  </div>
-                  <div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Phone />
+                  </td>
+                  <td>
                     <Input
-                      defaultValue={address}
-                      inputProps={{ "aria-label": "description" }} className={classes.inpWidth}
+                      defaultValue={phone}
+                      inputProps={{ "aria-label": "description" }}
+                      className={classes.inpWidth}
                     />
-                  </div>
-                  <div>
-                    <Input
-                      defaultValue={province}
-                      inputProps={{ "aria-label": "description" }} className={classes.inpWidth}
-                    />
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <Email />
-                </td>
-                <td>
-                  <Input
-                    defaultValue={email}
-                    inputProps={{ "aria-label": "description" }} className={classes.inpWidth}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <Phone />
-                </td>
-                <td>
-                  <Input
-                    defaultValue={phone}
-                    inputProps={{ "aria-label": "description" }} className={classes.inpWidth}
-                  />
-                </td>
-              </tr>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </Grid>
           <Grid item xs={4}>
@@ -147,42 +147,48 @@ export default function CustomerInfo() {
         <Grid container>
           <Grid item xs={8}>
             <table className={classes.inpWidth}>
-              <tr>
-                <td>
-                  <LocationOn />
-                </td>
-                <td>
-                  <div>
+              <tbody>
+                <tr>
+                  <td>
+                    <LocationOn />
+                  </td>
+                  <td>
+                    <div>
+                      <Input
+                        defaultValue={receiverName}
+                        inputProps={{ "aria-label": "description" }}
+                        className={classes.inpWidth}
+                      />
+                    </div>
+                    <div>
+                      <Input
+                        defaultValue={receiverAddress}
+                        inputProps={{ "aria-label": "description" }}
+                        className={classes.inpWidth}
+                      />
+                    </div>
+                    <div>
+                      <Input
+                        defaultValue={receiverProvince}
+                        inputProps={{ "aria-label": "description" }}
+                        className={classes.inpWidth}
+                      />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Phone />
+                  </td>
+                  <td>
                     <Input
-                      defaultValue={receiverName}
-                      inputProps={{ "aria-label": "description" }} className={classes.inpWidth}
+                      defaultValue={receiverPhone}
+                      inputProps={{ "aria-label": "description" }}
+                      className={classes.inpWidth}
                     />
-                  </div>
-                  <div>
-                    <Input
-                      defaultValue={receiverAddress}
-                      inputProps={{ "aria-label": "description" }} className={classes.inpWidth}
-                    />
-                  </div>
-                  <div>
-                    <Input
-                      defaultValue={receiverProvince}
-                      inputProps={{ "aria-label": "description" }} className={classes.inpWidth}
-                    />
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <Phone />
-                </td>
-                <td>
-                  <Input
-                    defaultValue={receiverPhone}
-                    inputProps={{ "aria-label": "description" }} className={classes.inpWidth}
-                  />
-                </td>
-              </tr>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </Grid>
         </Grid>

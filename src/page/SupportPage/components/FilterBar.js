@@ -44,12 +44,8 @@ export default function FilterBar() {
               label="Trạng thái"
               onChange={handleChange}
             >
-              <option value={"pending"}>Chờ xử lý</option>
-              <option value={"processing"}>Đang xử lý</option>
-              <option value={"processed"}>Đã xử lý xong</option>
-              <option value={"shipping"}>Đang giao hàng</option>
-              <option value={"complete"}>Hoàn tất</option>
-              <option value={"cancel"}>Đã hủy</option>
+              <option value={"pending"}>Đang xử lý</option>
+              <option value={"complete"}>Đã xử lý</option>
             </Select>
           </FormControl>
         </Grid>

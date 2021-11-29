@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import clsx from "clsx";
 
 const useStyles = makeStyles({
@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
-  }
+  },
 });
 
 export default function BillHeader() {
@@ -46,13 +46,13 @@ export default function BillHeader() {
       >
         <p>Mã hóa đơn</p>
       </Grid>
-      <Grid item xs={2} >
+      <Grid item xs={2}>
         <p>Ngày tạo</p>
       </Grid>
-      <Grid item xs={2} >
+      <Grid item xs={2}>
         <p>Người tạo</p>
       </Grid>
-      <Grid item xs={2} >
+      <Grid item xs={2}>
         <p>Khách hàng</p>
       </Grid>
       <Grid container item xs={2} className={classes.alignVerticalCenter}>

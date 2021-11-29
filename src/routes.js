@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import { Redirect } from "react-router-dom";
-import SignIn from "./screens/SignIn";
+import SignIn from "./screens/Auth/SignIn";
+import SignUp from "./screens/Auth/SignUp";
 import DashBoard from "./page/DashBoardPage/DashBoard";
 import Product from "./page/ProductPage/ProductPage";
 import Main from "./screens/Main/Main";
@@ -8,7 +9,11 @@ import OrderListPage from "./page/OrderListPage";
 import OrderDetail from "./page/OrderDetail";
 import OrderEdit from "./page/OrderEdit";
 import NotificationPage from "./page/NotificationPage/NotificationPage";
+<<<<<<< HEAD
 import ChangePassword from "./screens/ChangePassword/ChangePassword";
+import SupportPage from "./page/SupportPage/SupportPage";
+=======
+>>>>>>> 3670f3fd5cb1341efd5a4f9d6c0af11e428e65e5
 
 const routes = [
   {
@@ -16,20 +21,100 @@ const routes = [
     exact: true,
     component: () => <Redirect to="/dashboard" />,
   },
+
   {
     path: "/signin",
     exact: true,
     component: SignIn,
   },
+  { path: "/signup", exact: true, component: SignUp },
   {
-    path: "/resetpassword",
-    exact: true,
-    component: ChangePassword,
-  },
-  {
-    route: "*",
+    path: "*",
     component: Main,
     routes: [
+      // for salesman
+      {
+        path: "/salesman/dashboard",
+        exact: true,
+        component: DashBoard,
+      },
+      {
+        path: "/salesman/product",
+        exact: true,
+        component: Product,
+      },
+      {
+        path: "/salesman/order",
+        exact: true,
+        component: OrderListPage,
+      },
+      {
+        path: "/salesman/order/orderDetail",
+        exact: true,
+        component: OrderDetail,
+      },
+      {
+        path: "/salesman/order/orderEdit",
+        exact: true,
+        component: OrderEdit,
+      },
+      {
+        path: "/salesman/order/billDetail",
+        exact: true,
+        component: lazy(() => import("./page/BillDetail")),
+      },
+      {
+        path: "/salesman/order/billExport",
+        exact: true,
+        component: lazy(() => import("./page/BillExport")),
+      },
+      {
+        path: "/salesman/notification",
+        exact: true,
+        component: NotificationPage,
+      },
+      // for admin
+      {
+        path: "/admin/dashboard",
+        exact: true,
+        component: DashBoard,
+      },
+      {
+        path: "/admin/product",
+        exact: true,
+        component: Product,
+      },
+      {
+        path: "/admin/order",
+        exact: true,
+        component: OrderListPage,
+      },
+      {
+        path: "/admin/order/orderDetail",
+        exact: true,
+        component: OrderDetail,
+      },
+      {
+        path: "/admin/order/orderEdit",
+        exact: true,
+        component: OrderEdit,
+      },
+      {
+        path: "/admin/order/billDetail",
+        exact: true,
+        component: lazy(() => import("./page/BillDetail")),
+      },
+      {
+        path: "/admin/order/billExport",
+        exact: true,
+        component: lazy(() => import("./page/BillExport")),
+      },
+      {
+        path: "/admin/notification",
+        exact: true,
+        component: NotificationPage,
+      },
+      // for customer
       {
         path: "/dashboard",
         exact: true,
@@ -46,22 +131,22 @@ const routes = [
         component: OrderListPage,
       },
       {
-        path: "/order/orderdetail",
+        path: "/order/orderDetail",
         exact: true,
         component: OrderDetail,
       },
       {
-        path: "/order/orderedit",
+        path: "/order/orderEdit",
         exact: true,
         component: OrderEdit,
       },
       {
-        path: "/order/bill-detail",
+        path: "/order/billDetail",
         exact: true,
         component: lazy(() => import("./page/BillDetail")),
       },
       {
-        path: "/order/bill-export",
+        path: "/order/billExport",
         exact: true,
         component: lazy(() => import("./page/BillExport")),
       },
@@ -70,6 +155,11 @@ const routes = [
         exact: true,
         component: NotificationPage,
       },
+      {
+        path: "/support",
+        exact: true,
+        component: SupportPage,
+      }
     ],
   },
 ];

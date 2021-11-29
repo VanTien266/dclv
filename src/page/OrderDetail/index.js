@@ -4,14 +4,9 @@ import TimelineStatus from "./components/TimelineStatus";
 import ListBill from "./components/ListBill";
 import { Button, Grid, Typography, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  KeyboardArrowRight,
-  ArrowBack,
-  ArrowUpward,
-  Cancel,
-  Publish,
-} from "@material-ui/icons";
+import { ArrowBack, ArrowUpward, Cancel, Publish } from "@material-ui/icons";
 import DefaultButton from "../../components/Button/DefaultButton";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   alignStatusRight: {
@@ -56,6 +51,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function OrderDetail() {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleBack = () => {
+    history.push("/order");
+  };
+
+  const handleExportBill = () => {
+    history.push("/order/billExport");
+  };
+
   return (
     <Container maxWidth="xl" className={classes.orderDetailBox}>
       <Grid container spacing={2}>
@@ -65,7 +70,11 @@ export default function OrderDetail() {
           </Typography>
         </Grid>
         <Grid item xs={3} className={classes.alignStatusRight}>
-          <DefaultButton title="Xuất hóa đơn" icon={Publish} />
+          <DefaultButton
+            title="Xuất hóa đơn"
+            icon={Publish}
+            clickEvent={handleExportBill}
+          />
         </Grid>
       </Grid>
       <Grid container spacing={2} className={classes.root}>
@@ -95,7 +104,11 @@ export default function OrderDetail() {
           </Button>
         </Grid>
         <Grid item>
-          <DefaultButton title="Quay lại" icon={ArrowBack} />
+          <DefaultButton
+            title="Quay lại"
+            icon={ArrowBack}
+            clickEvent={handleBack}
+          />
         </Grid>
         <Grid item>
           <DefaultButton title="Cập nhật" icon={ArrowUpward} />
