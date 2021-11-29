@@ -161,7 +161,7 @@ const routes = [
         path: "/support",
         exact: true,
         component: SupportPage,
-      }
+      },
     ],
   },
   

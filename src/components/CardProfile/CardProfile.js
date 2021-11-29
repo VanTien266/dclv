@@ -67,7 +67,7 @@ function CardProfile() {
       
       <Box className={classes.content}>
         <Typography variant="body1" gutterBottom className={classes.text}>
-          Nguyễn Văn Tĩnh
+          {role ? "Nguyễn Văn Tĩnh" : " "}
         </Typography>
         <Typography variant="body1">
           {role === "admin"

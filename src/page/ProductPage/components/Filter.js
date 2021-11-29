@@ -30,8 +30,6 @@ function Filter(props) {
     Array.from(new Set(data.map((item) => item.item.fabricType.name)));
   const getLotList = () => Array.from(new Set(data.map((item) => item.lot)));
 
-  // getTypeList().forEach((value) => console.log(value));
-  console.log("Filter render");
   const handleWareHouseChange = (e) => {
     handleFilterChange({ ...filter, warehouse: e.target.value });
   };
