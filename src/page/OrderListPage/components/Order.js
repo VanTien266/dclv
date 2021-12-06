@@ -114,6 +114,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Order({ order }) {
   const classes = useStyles();
   const history = useHistory();
+  const role = localStorage.getItem("role");
 
   const [open, setOpen] = useState(false);
 
@@ -138,7 +139,7 @@ export default function Order({ order }) {
   };
 
   const handleClick = () => {
-    history.push("/order/orderDetail");
+    history.push(`/${role}/order/orderDetail`);
   };
 
   return (

@@ -8,7 +8,6 @@ import {
 } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import CostInfo from "./components/CostInfo";
-import Item from "./components/Item";
 import AnotherInfo from "./components/AnotherInfo";
 import EnterItemId from "./components/EnterItemId/EnterItemId";
 import ItemTable from "./components/ItemTable";
@@ -25,34 +24,45 @@ const useStyles = makeStyles((theme) => ({
 }));
 function Bill() {
   const classes = useStyles();
-  const [productId, setProductId] = useState("");
-  const [product, setProduct] = useState({});
+  const [productIdAdd, setProductIdAdd] = useState("");
+  const [productIdDel, setProductIdDel] = useState("");
   const [listProductAdded, setListProductAdded] = useState([]);
 
   useEffect(() => {
+    let mouted = true;
+
     const handleGetProductById = (data) => {
-      return data.filter((item) => item.id === productId);
+      return data.filter((item) => item.id === productIdAdd);
     };
 
     const fetchProduct = () => {
       axios.get("product/fabric-roll").then((response) => {
-        setProduct(handleGetProductById(response.data.fabricRoll));
+        const product = handleGetProductById(response.data.fabricRoll)[0];
+        if (mouted && product)
+          if (
+            listProductAdded.filter((item) => item.id === product.id).length < 1
+          )
+            setListProductAdded([...listProductAdded, product]);
       });
     };
     fetchProduct();
-  }, [productId]);
 
-  const handleProductIdChange = (productId) => {
-    setProductId(productId);
-  };
+    return () => (mouted = false);
+  }, [productIdAdd]);
 
-  const handleAddToListProduct = (product) => {
-    setListProductAdded([...listProductAdded, product]);
-    setProduct({});
-  };
+  // useEffect(() => {
+  //   let mouted = true;
 
-  const handleRemoveFromListProduct = (id) => {
-    setListProductAdded(listProductAdded.filter((item) => item.id !== id));
+  //   if (mouted)
+  //     setListProductAdded([
+  //       ...listProductAdded.filter((item) => item.id !== productIdDel),
+  //     ]);
+
+  //   return () => (mouted = false);
+  // }, [productIdDel]);
+
+  const handleProductIdChange = (productIdAdd) => {
+    setProductIdAdd(productIdAdd);
   };
 
   return (
@@ -62,22 +72,15 @@ function Bill() {
           Hóa đơn bán hàng
         </Typography>
         <EnterItemId
-          productId={productId}
+          productIdAdd={productIdAdd}
           handleProductIdChange={handleProductIdChange}
         />
         <Grid container spacing={1} className={classes.item}>
           <Grid item xs={12}>
-            <Typography variant="h6">Sản phẩm tìm thấy</Typography>
-            <Item
-              product={product[0]}
-              handleAddToListProduct={handleAddToListProduct}
-            />
-          </Grid>
-          <Grid item xs={12}>
             <Typography variant="h6">Sản phẩm đã chọn</Typography>
             <ItemTable
               listProductAdded={listProductAdded}
-              handleRemoveFromListProduct={handleRemoveFromListProduct}
+              setProductIdDel={setProductIdDel}
             />
           </Grid>
         </Grid>

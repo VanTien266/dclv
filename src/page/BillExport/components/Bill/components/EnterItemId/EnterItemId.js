@@ -2,7 +2,7 @@ import React from "react";
 import { TextField } from "@material-ui/core";
 
 function EnterItemId(props) {
-  const { productId, handleProductIdChange } = props;
+  const { productIdAdd, handleProductIdChange } = props;
 
   const handleChange = (e) => {
     handleProductIdChange(e.target.value);
@@ -14,8 +14,8 @@ function EnterItemId(props) {
       id="input-with-icon-textfield"
       placeholder="Mã sản phẩm"
       fullWidth
-      name="productId"
-      value={productId || ""}
+      name="productIdAdd"
+      value={productIdAdd || ""}
       onChange={handleChange}
     />
   );
