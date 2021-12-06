@@ -170,7 +170,7 @@ export default function SupportItem({ item }) {
             Click để xem và phản hồi
           </Button>
         ) : (
-          <Typography>Cảm ơn bạn đã liên hệ</Typography>
+          <Typography>Cảm ơn bạn đã liên hệ, bên mình sẽ kiểm tra và phản hồi bạn trong thời gian sớm nhất</Typography>
         )}
       </Grid>
       <Modal
@@ -201,7 +201,7 @@ export default function SupportItem({ item }) {
                   id="order-id"
                   variant="outlined"
                   disabled
-                  defaultValue="MDH12345"
+                  defaultValue="MDH1234"
                   className={classes.inpBoxWidth}
                 ></TextField>
                 <InputLabel htmlFor="reply-content">

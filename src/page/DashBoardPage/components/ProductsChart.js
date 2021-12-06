@@ -117,7 +117,7 @@ export default class ProductsChart extends React.PureComponent {
             argumentField="item"
           />
           <Title
-            text="Products Chart"
+            text="Doanh thu theo nhóm sản phẩm"
           />
           <Animation />
         </Chart>

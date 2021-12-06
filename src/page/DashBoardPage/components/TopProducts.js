@@ -63,7 +63,7 @@ export default function TopProducts() {
 
   return (
     <Card>
-      <CardHeader title="Top Products" />
+      <CardHeader title="Sản phẩm bán chạy" />
       {/* <ChartWrapperStyle dir="ltr">
         <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} height={280} />
       </ChartWrapperStyle> */}
