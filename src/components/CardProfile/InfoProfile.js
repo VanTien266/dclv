@@ -43,10 +43,10 @@ function InfoProfile() {
           <Typography variant="h5" className={classes.titleInformation} >Thông tin cá nhân</Typography>
         </Grid>
         <Grid xs={12} className={classes.information} >
-          <Typography className={classes.titleInfo}>Tên tài khoản</Typography>
+          <Typography className={classes.titleInfo}>Họ tên</Typography>
           <TextField className={classes.textFieldInfo}
             id="outlined-read-only-input"
-            defaultValue="nguyenvantinh06"
+            defaultValue="Nguyễn Văn Tĩnh"
             InputProps={{
               readOnly: true,
             }}

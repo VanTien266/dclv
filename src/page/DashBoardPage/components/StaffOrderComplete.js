@@ -57,7 +57,7 @@ export default function StaffOrderComplete() {
       </IconWrapperStyle>
       <Typography variant="h4">1100</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-        Order Complete
+        Đơn đã giao
       </Typography>
     </RootStyle>
   );

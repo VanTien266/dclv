@@ -171,7 +171,7 @@ export default class RevenueChart2 extends React.PureComponent {
             labelComponent={LegendLabel}
           />
           <Title
-            text="Chart Warehouse"
+            text="Doanh thu theo kho"
           />
         </Chart>
       </Paper>

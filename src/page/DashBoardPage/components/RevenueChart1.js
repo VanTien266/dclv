@@ -121,7 +121,7 @@ export default class RevenueChart1 extends React.PureComponent {
             valueField="revenue"
             argumentField="month"
           />
-          <Title text="Revenue Chart1" />
+          <Title text="Doanh số theo tháng" />
           <Animation />
         </Chart>
       </Paper>

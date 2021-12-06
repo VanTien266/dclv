@@ -58,7 +58,7 @@ export default function RevenueProducts() {
       </IconWrapperStyle>
       <Typography variant="h4">123</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-        New Feedback
+        Phản hồi
       </Typography>
     </RootStyle>
   );

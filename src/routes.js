@@ -11,6 +11,7 @@ import OrderEdit from "./page/OrderEdit";
 import NotificationPage from "./page/NotificationPage/NotificationPage";
 import SupportPage from "./page/SupportPage/SupportPage";
 import InfoPage from "./page/InfoPage/InfoPage";
+import StaffPage from "./page/StaffPage/StaffPage";
 
 const routes = [
   {
@@ -110,6 +111,11 @@ const routes = [
         path: "/admin/notification",
         exact: true,
         component: NotificationPage,
+      },
+      {
+        path: "/admin/staff",
+        exact: true,
+        component: StaffPage,
       },
       {
         path: "/admin/info",
