@@ -122,16 +122,16 @@ const routes = [
         exact: true,
         component: InfoPage,
       },
+      {
+        path: "/admin/help",
+        exact: true,
+        component: SupportPage,
+      },
       // for customer
       {
         path: "/dashboard",
         exact: true,
         component: DashBoard,
-      },
-      {
-        path: "/product",
-        exact: true,
-        component: Product,
       },
       {
         path: "/order",
@@ -152,11 +152,6 @@ const routes = [
         path: "/order/billDetail",
         exact: true,
         component: lazy(() => import("./page/BillDetail")),
-      },
-      {
-        path: "/order/billExport",
-        exact: true,
-        component: lazy(() => import("./page/BillExport")),
       },
       {
         path: "/notification",
