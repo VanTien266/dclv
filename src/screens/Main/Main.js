@@ -5,7 +5,7 @@ import { CssBaseline, LinearProgress } from "@material-ui/core";
 import Sidebar from "../../components/SideBar/Sidebar";
 import TopBar from "../../components/TopBar/TopBar";
 
-const SIDE_BAR_WIDTH = 210;
+const SIDE_BAR_WIDTH = 200;
 const TOP_BAR_HEIGHT = 64;
 
 const useStyles = makeStyles((theme) => ({
@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: TOP_BAR_HEIGHT,
     overflowY: "auto",
     flex: "1 1 auto",
+    height: "100vh"
   },
 }));
 const Main = (props) => {
