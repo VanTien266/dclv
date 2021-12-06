@@ -52,13 +52,14 @@ const useStyles = makeStyles((theme) => ({
 export default function OrderDetail() {
   const classes = useStyles();
   const history = useHistory();
+  const role = localStorage.getItem("role");
 
   const handleBack = () => {
-    history.push("/order");
+    history.push(`/${role}/order`);
   };
 
   const handleExportBill = () => {
-    history.push("/order/billExport");
+    history.push(`${role}/order/billExport`);
   };
 
   return (

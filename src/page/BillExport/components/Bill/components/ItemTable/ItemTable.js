@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ItemTable(props) {
-  const { listProductAdded, handleRemoveFromListProduct } = props;
+  const { listProductAdded, setProductIdDel } = props;
   const classes = useStyles();
   const tableTitleConfig = [
     "STT",
@@ -42,11 +42,9 @@ function ItemTable(props) {
     "",
   ];
 
-  const handleRemoveProduct = (id) => {
-    // handleRemoveFromListProduct(id);
-  };
+  console.log("list product", listProductAdded);
 
-  const getTotalLength = (prevVal, nextItem) => prevVal + nextItem.length;
+  const getTotalLength = (prevVal, nextItem) => prevVal + nextItem?.length;
   return (
     <TableContainer className={classes.root}>
       <Table stickyHeader className={classes.table}>
@@ -60,42 +58,48 @@ function ItemTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {listProductAdded.map((item, index) => (
-            <TableRow key={index}>
-              <TableCell>
-                <Typography variant="subtitle2">{index + 1}</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2">{item.id}</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2" className={classes.capitalize}>
-                  {item.item.name}
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2">
-                  <NumberFormat
-                    value={item.length}
-                    thousandsGroupStyle="thousand"
-                    displayType="text"
-                    decimalScale={0}
-                    thousandSeparator="."
-                    decimalSeparator=","
-                  />
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2">{item.warehouseId}</Typography>
-              </TableCell>{" "}
-              <TableCell>
-                <Typography variant="subtitle2">{item.lot}</Typography>
-              </TableCell>
-              <TableCell>
-                <Button onClick={handleRemoveProduct(item.id)}>Xóa</Button>
-              </TableCell>
-            </TableRow>
-          ))}
+          {listProductAdded &&
+            listProductAdded.map((item, index) => (
+              <TableRow key={index}>
+                <TableCell>
+                  <Typography variant="subtitle2">{index + 1}</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2">{item?.id}</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography
+                    variant="subtitle2"
+                    className={classes.capitalize}
+                  >
+                    {item?.item?.name}
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2">
+                    <NumberFormat
+                      value={item?.length}
+                      thousandsGroupStyle="thousand"
+                      displayType="text"
+                      decimalScale={0}
+                      thousandSeparator="."
+                      decimalSeparator=","
+                    />
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2">
+                    {item?.warehouseId}
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2">{item?.lot}</Typography>
+                </TableCell>
+                <TableCell>
+                  <Button onClick={setProductIdDel(item?.id)}>Xóa</Button>
+                </TableCell>
+              </TableRow>
+            ))}
           <TableRow>
             <TableCell>
               <Typography variant="subtitle1">Tổng</Typography>

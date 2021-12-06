@@ -163,7 +163,7 @@ export default function Bill() {
   };
 
   const handleClick = () => {
-    history.push("/order/billDetail");
+    history.push(`/${localStorage.getItem("role")}/order/billDetail`);
   };
   return (
     <Grid container className={classes.root} onClick={handleClick}>
