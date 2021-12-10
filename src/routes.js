@@ -12,6 +12,7 @@ import NotificationPage from "./page/NotificationPage/NotificationPage";
 import SupportPage from "./page/SupportPage/SupportPage";
 import InfoPage from "./page/InfoPage/InfoPage";
 import StaffPage from "./page/StaffPage/StaffPage";
+import InfoStaff from "./page/InfoPage/InfoStaff";
 
 const routes = [
   {
@@ -116,6 +117,11 @@ const routes = [
         path: "/admin/staff",
         exact: true,
         component: StaffPage,
+      },
+      {
+        path: "/admin/staffinfo",
+        exact: true,
+        component: InfoStaff,
       },
       {
         path: "/admin/info",

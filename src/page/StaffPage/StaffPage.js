@@ -8,9 +8,9 @@ import staffApi from "../../api/staffApi";
 
 const useStyles = makeStyles((theme) => ({
   
-  staffList: {
-    marginTop: "16px",
-  }
+  // staffList: {
+  //   marginTop: "10px",
+  // }
 }));
 
 function StaffPage() {

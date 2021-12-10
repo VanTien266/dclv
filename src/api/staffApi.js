@@ -5,6 +5,10 @@ const staffApi = {
     const url = "/admin/liststaff";
     return axiosClient.get(url, { params });
   },
+  getInfoById: (params) => {
+    const url = "/admin/liststaff/:id";
+    return axiosClient.get(url, { params });
+  }
 
 }
 // const staffApi = new StaffApi();

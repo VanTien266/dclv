@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
-  Grid
+  Grid,
+  Button,
 } from "@material-ui/core";
 import clsx from "clsx";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#000040",
     backgroundColor: "#F6F6F8",
     borderRadius: "5px",
-    marginTop: "20px",
-    marginBottom: "20px",
+    marginTop: "10px",
+    marginBottom: "10px",
     paddingLeft: "5px",
     display: "flex",
     alignItems: "center",
@@ -67,22 +69,33 @@ const useStyles = makeStyles((theme) => ({
       width: 0,
     },
   },
+  buttonList: {
+    minWidth: "24px",
+    padding: "0px",
+    height: "50%",
+    color: "blue",
+  },
 }));
 
 export default function StaffList(props) {
   const { className, staff } = props;
   const classes = useStyles();
+  const history = useHistory();
 
+  const handleClickInfo = () => {
+    history.push("/admin/staffinfo");
+  };
   return (
     <>
     {staff.map((item) => (
-    
-    <Grid container className={classes.root}>
+      
+    <Grid container className={classes.root} onClick={handleClickInfo}>
+      {/* <Button className={classes.buttonList} onClick={handleClick}> */}
       <Grid
         item
         xs={1}
         className={clsx(classes.orderId, classes.verticalCenter)}
-      >
+      > 
         <p>{item.id}</p>
       </Grid>
       <Grid item xs={3} className={classes.verticalCenter}>
@@ -105,8 +118,8 @@ export default function StaffList(props) {
       <Grid item xs={1} className={classes.verticalCenterEmail}>
         <p className={classes.verticalAlign}>{item.gender}</p>
       </Grid>
-      
     </Grid>
+    
     ))}
     </>
   );
