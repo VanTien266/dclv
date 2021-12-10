@@ -84,7 +84,9 @@ function ProductList(props) {
                         {item.item.name}
                       </TableCell>
                       <TableCell className={classes.textItem}>
-                        {moment(item.dateAdded).format("DD/MM/YYYY")}
+                        {moment(item.dayAdded)
+                          .subtract(1, "days")
+                          .format("DD/MM/YYYY")}
                       </TableCell>
                       <TableCell className={classes.textItem}>
                         {item.length}
