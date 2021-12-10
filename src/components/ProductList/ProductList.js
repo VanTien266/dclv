@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const tableTilteConfig = [
-  "ID",
+  "STT",
   "Tên",
   "Ngày nhập",
   "Chiều dài",
@@ -53,8 +53,6 @@ const tableTilteConfig = [
 ];
 function ProductList(props) {
   const { className, product } = props;
-
-  console.log("Product list render");
 
   const classes = useStyles();
   return (
@@ -80,13 +78,15 @@ function ProductList(props) {
                   .map((item, index) => (
                     <TableRow hover key={index}>
                       <TableCell className={classes.textCode}>
-                        {item.id}
+                        {index + 1}
                       </TableCell>
                       <TableCell className={classes.textItem}>
                         {item.item.name}
                       </TableCell>
                       <TableCell className={classes.textItem}>
-                        {moment(item.dateAdded).format("DD/MM/YYYY")}
+                        {moment(item.dayAdded)
+                          .subtract(1, "days")
+                          .format("DD/MM/YYYY")}
                       </TableCell>
                       <TableCell className={classes.textItem}>
                         {item.length}

@@ -9,30 +9,16 @@ const data = [
         orderID: "MDH1234",
         customerName: "Lưu Văn Tiến",
         customerPhoneNum: "0987654321",
-        feedback: "Nhân viên có thái độ không tốt đề nghị xem xét lại",
+        feedback: "Đơn hàng có một số cây vải bị lỗi màu",
         status: "processing"
     },
     {
-        orderID: "MDH1234",
+        orderID: "MDH1235",
         customerName: "Lưu Văn Tiến",
         customerPhoneNum: "0987654321",
-        feedback: "Nhân viên có thái độ không tốt đề nghị xem xét lại",
+        feedback: "Đơn hàng có một số cây vải giao sai số lượng đặt mua",
         status: "complete"
     },
-    {
-        orderID: "MDH1234",
-        customerName: "Lưu Văn Tiến",
-        customerPhoneNum: "0987654321",
-        feedback: "Nhân viên có thái độ không tốt đề nghị xem xét lại",
-        status: "processing"
-    },
-    {
-        orderID: "MDH1234",
-        customerName: "Lưu Văn Tiến",
-        customerPhoneNum: "0987654321",
-        feedback: "Nhân viên có thái độ không tốt đề nghị xem xét lại",
-        status: "complete"
-    }
 ];
 
 export default function SupportPage() {

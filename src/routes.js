@@ -9,11 +9,9 @@ import OrderListPage from "./page/OrderListPage";
 import OrderDetail from "./page/OrderDetail";
 import OrderEdit from "./page/OrderEdit";
 import NotificationPage from "./page/NotificationPage/NotificationPage";
-<<<<<<< HEAD
-import ChangePassword from "./screens/ChangePassword/ChangePassword";
 import SupportPage from "./page/SupportPage/SupportPage";
-=======
->>>>>>> 3670f3fd5cb1341efd5a4f9d6c0af11e428e65e5
+import InfoPage from "./page/InfoPage/InfoPage";
+import StaffPage from "./page/StaffPage/StaffPage";
 
 const routes = [
   {
@@ -49,7 +47,7 @@ const routes = [
         component: OrderListPage,
       },
       {
-        path: "/salesman/order/orderDetail",
+        path: "/salesman/order/orderDetail/:id",
         exact: true,
         component: OrderDetail,
       },
@@ -114,16 +112,26 @@ const routes = [
         exact: true,
         component: NotificationPage,
       },
+      {
+        path: "/admin/staff",
+        exact: true,
+        component: StaffPage,
+      },
+      {
+        path: "/admin/info",
+        exact: true,
+        component: InfoPage,
+      },
+      {
+        path: "/admin/help",
+        exact: true,
+        component: SupportPage,
+      },
       // for customer
       {
         path: "/dashboard",
         exact: true,
         component: DashBoard,
-      },
-      {
-        path: "/product",
-        exact: true,
-        component: Product,
       },
       {
         path: "/order",
@@ -146,11 +154,6 @@ const routes = [
         component: lazy(() => import("./page/BillDetail")),
       },
       {
-        path: "/order/billExport",
-        exact: true,
-        component: lazy(() => import("./page/BillExport")),
-      },
-      {
         path: "/notification",
         exact: true,
         component: NotificationPage,
@@ -159,7 +162,7 @@ const routes = [
         path: "/support",
         exact: true,
         component: SupportPage,
-      }
+      },
     ],
   },
 ];

@@ -6,6 +6,7 @@ import Filter from "./components/Filter";
 import { Grid } from "@material-ui/core";
 import SearchField from "../../components/SearchField";
 import NotificationButton from "../../components/Button/NotificationButton";
+import productApi from "../../api/productApi";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -48,15 +49,14 @@ function Product() {
       return products;
     };
 
-    const fetchProduct = () => {
-      axios.get("/product/fabric-roll").then((resonse) => {
-        if (mounted) {
-          setProduct(handleFilter(resonse.data.fabricRoll));
-          setData(resonse.data.fabricRoll);
-        }
-      });
+    const fetchProduct = async () => {
+      const params = {};
+      const response = await productApi.getAll(params);
+      if (mounted) {
+        setProduct(handleFilter(response));
+        setData(response);
+      }
     };
-    console.log("update");
     fetchProduct();
     return () => {
       mounted = false;

@@ -11,6 +11,7 @@ import {
   CardContent,
 } from "@material-ui/core";
 import clsx from "clsx";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,11 +74,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Bill({ order }) {
+export default function Bill(props) {
+  const { bill } = props;
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
-  const handleOpen = () => {
+  const handleOpen = (e) => {
+    e.stopPropagation();
     setOpen(true);
   };
 
@@ -87,7 +90,8 @@ export default function Bill({ order }) {
 
   const [expanded, setExpanded] = useState(false);
 
-  const handleExpandClick = () => {
+  const handleExpandClick = (e) => {
+    e.stopPropagation();
     setExpanded(!expanded);
   };
 
@@ -98,23 +102,31 @@ export default function Bill({ order }) {
         xs={2}
         className={clsx(classes.billId, classes.verticalCenter)}
       >
-        {/* <p>{order.orderID}</p> */}MHD13579
+        HD{bill.billID}
       </Grid>
       <Grid item xs={2} className={classes.verticalCenter}>
-        {/* <p>{order.dayOrder}</p> */}13/10/2020
+        {moment(bill.exportBillTime).subtract(1, "days").format("DD/MM/YYYY")}
       </Grid>
       <Grid item xs={2}>
-        {/* <p>{order.numberOfBill}</p> */}Lưu Văn Tiến
+        {/* {bill.salesmanID} */}
+        Tiến
       </Grid>
-
       <Grid item xs={2} className={classes.verticalCenter}>
-        {/* <p className={classes.verticalAlign}>{order.userName}</p> */}Trần Trọng Nghĩa
+        {bill.clientID ? bill.clientID : "Trống"}
       </Grid>
       <Grid item xs={2} className={classes.alignVerticalCenter}>
         <Button onClick={handleOpen}>Chi tiết</Button>
       </Grid>
       <Grid container item xs={2}>
-        <p className={classes.billStatus}>Hoàn tất</p>
+        <p className={classes.billStatus}>
+          {bill.billStatus === "exported"
+            ? "Đã xuất"
+            : bill.billStatus === "shipping"
+            ? "Đang vận chuyển"
+            : bill.billStatus === "completed"
+            ? "Hoàn tất"
+            : "Thất bại"}
+        </p>
       </Grid>
       {/* <Modal
         aria-labelledby="transition-modal-title"

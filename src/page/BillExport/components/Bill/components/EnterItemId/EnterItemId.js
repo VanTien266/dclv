@@ -1,15 +1,22 @@
 import React from "react";
-import { InputAdornment, TextField } from "@material-ui/core";
-function EnterItemId() {
+import { TextField } from "@material-ui/core";
+
+function EnterItemId(props) {
+  const { productIdAdd, handleProductIdChange } = props;
+
+  const handleChange = (e) => {
+    handleProductIdChange(e.target.value);
+  };
+
   return (
     <TextField
       color="primary"
       id="input-with-icon-textfield"
       placeholder="Mã sản phẩm"
-      InputProps={{
-        startAdornment: <InputAdornment position="start"></InputAdornment>,
-      }}
       fullWidth
+      name="productIdAdd"
+      value={productIdAdd || ""}
+      onChange={handleChange}
     />
   );
 }
