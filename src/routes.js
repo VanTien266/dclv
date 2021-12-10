@@ -47,7 +47,7 @@ const routes = [
         component: OrderListPage,
       },
       {
-        path: "/salesman/order/orderDetail",
+        path: "/salesman/order/orderDetail/:id",
         exact: true,
         component: OrderDetail,
       },
@@ -165,7 +165,6 @@ const routes = [
       },
     ],
   },
-  
 ];
 
 export default routes;

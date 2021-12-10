@@ -140,12 +140,16 @@ export default function Order(props) {
     setExpanded(!expanded);
   };
 
-  const handleClick = () => {
-    history.push(`/${role}/order/orderDetail`);
+  const handleClick = (id) => {
+    history.push(`/${role}/order/orderDetail/${id}`);
   };
 
   return (
-    <Grid container className={classes.root} onClick={handleClick}>
+    <Grid
+      container
+      className={classes.root}
+      onClick={() => handleClick(order._id)}
+    >
       <Grid
         item
         xs={2}

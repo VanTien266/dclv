@@ -107,7 +107,7 @@ export default function Bill(props) {
       <Grid item xs={2} className={classes.verticalCenter}>
         {moment(bill.exportBillTime).subtract(1, "days").format("DD/MM/YYYY")}
       </Grid>
-      <Grid isalesmanIDtem xs={2}>
+      <Grid item xs={2}>
         {/* {bill.salesmanID} */}
         Tiến
       </Grid>
