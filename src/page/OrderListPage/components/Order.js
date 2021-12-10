@@ -22,6 +22,7 @@ import BillHeader from "./BillHeader";
 import clsx from "clsx";
 import Bill from "./Bill";
 import { useHistory } from "react-router-dom";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -111,7 +112,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Order({ order }) {
+export default function Order(props) {
+  const { order } = props;
   const classes = useStyles();
   const history = useHistory();
   const role = localStorage.getItem("role");
@@ -149,14 +151,16 @@ export default function Order({ order }) {
         xs={2}
         className={clsx(classes.orderId, classes.verticalCenter)}
       >
-        <p>{order.orderID}</p>
+        <p>MDH{order.orderId}</p>
       </Grid>
       <Grid item xs={1} className={classes.verticalCenter}>
-        <p>{order.dayOrder}</p>
+        <p>
+          {moment(order.orderTime).subtract(1, "days").format("DD/MM/YYYY")}
+        </p>
       </Grid>
 
       <Grid item xs={1} className={classes.billQuantity}>
-        <p>{order.numberOfBill}</p>
+        <p>{order.detailBill.length}</p>
       </Grid>
 
       <Grid item xs={2} className={classes.verticalCenter}>
@@ -170,7 +174,7 @@ export default function Order({ order }) {
       </Grid>
       <Grid container item xs={2}>
         <Grid item xs={8} className={classes.dropIcon}>
-          <p className={classes.orderStatus}>{order.status}</p>
+          <p className={classes.orderStatus}>{order.orderStatus}</p>
         </Grid>
         <Grid item xs={2} className={classes.dropIcon}>
           <Button
@@ -227,7 +231,7 @@ export default function Order({ order }) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {order.products.map((row, idx) => (
+                  {order?.products.map((row, idx) => (
                     <TableRow
                       key={idx}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -244,19 +248,19 @@ export default function Order({ order }) {
                         scope="row"
                         className={classes.tableContentBlack}
                       >
-                        {row.typeID}
+                        {row?.colorCode?.name}
                       </TableCell>
                       <TableCell className={classes.tableContentBlack}>
-                        {row.colorCode}
+                        {row?.colorCode?.colorCode}
                       </TableCell>
                       <TableCell className={classes.tableContentBlack}>
-                        {row.total}
+                        {row?.length}
                       </TableCell>
                       <TableCell className={classes.tableContentBlack}>
-                        {row.shipped}
+                        {row.shippedLength}
                       </TableCell>
                       <TableCell className={classes.tableContentBlack}>
-                        {row.remain}
+                        {row.length - row.shippedLength}
                       </TableCell>
                     </TableRow>
                   ))}
@@ -271,8 +275,9 @@ export default function Order({ order }) {
         <Grid item xs={9}>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <BillHeader />
-            <Bill />
-            <Bill />
+            {order?.detailBill.map((item, index) => (
+              <Bill bill={item} key={index} />
+            ))}
           </Collapse>
         </Grid>
         <Grid item xs={1}></Grid>
