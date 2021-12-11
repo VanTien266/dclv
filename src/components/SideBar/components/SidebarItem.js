@@ -53,7 +53,8 @@ const SidebarItem = (props) => {
   };
 
   const getPath = () => {
-    return `/${role}${path}`;
+    if (role !== null) return `/${role}${path}`;
+    else return `${path}`;
   };
 
   return (

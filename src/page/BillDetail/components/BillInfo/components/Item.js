@@ -32,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Item() {
+function Item(props) {
+  const { listFabricRoll } = props;
   const classes = useStyles();
   const tableTilteConfig = [
     "STT",
@@ -43,48 +44,15 @@ function Item() {
     "Đơn giá (vnđ/m)",
     "Giá (vnđ)",
   ];
-  const items = [
-    {
-      id: "SP1112",
-      name: "Vải kaki trắng",
-      length: 600,
-      lot: "L7",
-      price: 200000,
-    },
-    {
-      id: "SP1113",
-      name: "Vải len đen",
-      length: 700,
-      lot: "L8",
-      price: 150000,
-    },
-    {
-      id: "SP1114",
-      name: "Vải jean đen",
-      length: 400,
-      lot: "L1",
-      price: 300000,
-    },
-    {
-      id: "SP1115",
-      name: "Vải coton đỏ",
-      length: 650,
-      lot: "L2",
-      price: 50000,
-    },
-    {
-      id: "SP1116",
-      name: "Vải kaki đen",
-      length: 100,
-      lot: "L2",
-      price: 70000,
-    },
-  ];
+
   const getTotalLength = (prevVal, nextItem) => {
     return prevVal + nextItem.length;
   };
   const getTotalPrice = (prevVal, nextItem) =>
-    prevVal + nextItem.price * nextItem.length;
+    prevVal +
+    nextItem.item.marketPrice[nextItem.item.marketPrice.length - 1].price *
+      nextItem.length;
+
   return (
     <TableContainer className={classes.root}>
       <Table stickyHeader className={classes.tableContainer}>
@@ -98,16 +66,16 @@ function Item() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {items.map((item, index) => (
+          {listFabricRoll.map((item, index) => (
             <TableRow key={index}>
               <TableCell>
                 <Typography variant="subtitle2">{index + 1}</Typography>
               </TableCell>
               <TableCell>
-                <Typography variant="subtitle2">{item.id}</Typography>
+                <Typography variant="subtitle2">{item.colorCode}</Typography>
               </TableCell>
               <TableCell>
-                <Typography variant="subtitle2">{item.name}</Typography>
+                <Typography variant="subtitle2">{item.item.name}</Typography>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2">
@@ -127,7 +95,10 @@ function Item() {
               <TableCell>
                 <Typography variant="subtitle2">
                   <NumberFormat
-                    value={item.price}
+                    value={
+                      item.item.marketPrice[item.item.marketPrice.length - 1]
+                        .price
+                    }
                     thousandsGroupStyle="thousand"
                     displayType="text"
                     decimalScale={0}
@@ -139,7 +110,11 @@ function Item() {
               <TableCell>
                 <Typography variant="subtitle2">
                   <NumberFormat
-                    value={item.length * item.price}
+                    value={
+                      item.length *
+                      item.item.marketPrice[item.item.marketPrice.length - 1]
+                        .price
+                    }
                     thousandsGroupStyle="thousand"
                     displayType="text"
                     decimalScale={0}
@@ -163,7 +138,7 @@ function Item() {
             <TableCell>
               <Typography variant="subtitle1">
                 <NumberFormat
-                  value={items.reduce(getTotalLength, 0)}
+                  value={listFabricRoll.reduce(getTotalLength, 0)}
                   thousandsGroupStyle="thousand"
                   displayType="text"
                   decimalScale={0}
@@ -181,7 +156,7 @@ function Item() {
             <TableCell>
               <Typography variant="subtitle1">
                 <NumberFormat
-                  value={items.reduce(getTotalPrice, 0)}
+                  value={listFabricRoll.reduce(getTotalPrice, 0)}
                   thousandsGroupStyle="thousand"
                   displayType="text"
                   decimalScale={0}

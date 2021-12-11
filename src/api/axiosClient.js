@@ -1,13 +1,12 @@
 import axios from "axios";
-import queryString from "query-string";
+import qs from "qs";
 
 const axiosClient = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
   headers: {
-    "Access-Control-Allow-Origin": "*",
     "content-type": "application/json",
   },
-  paramsSerializer: (params) => queryString.stringify(params),
+  paramsSerializer: (params) => qs.stringify(params),
 });
 axiosClient.interceptors.request.use(async (config) => {
   // Handle token here ...
