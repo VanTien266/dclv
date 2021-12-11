@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import ProductList from "../../components/ProductList/ProductList";
 import { makeStyles } from "@material-ui/styles";
 import Filter from "./components/Filter";

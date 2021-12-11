@@ -20,6 +20,8 @@ const orderApi = {
     const url = "/deposit";
     return axiosClient.get(url);
   },
-  
+  getOne: () => {
+
+  },
 }
 export default orderApi;

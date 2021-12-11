@@ -1,7 +1,8 @@
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { Grid, makeStyles } from "@material-ui/core";
 import { ArrowBack, ArrowUpward } from "@material-ui/icons";
-import React from "react";
-import { useHistory } from "react-router";
+import billApi from "../../api/billApi";
 import DefaultButton from "../../components/Button/DefaultButton";
 import AnotherInfo from "./components/AnotherInfo/AnotherInfo";
 import BillInfo from "./components/BillInfo/BillInfo";
@@ -27,26 +28,46 @@ const useStyles = makeStyles((theme) => ({
 function BillDetail() {
   const classes = useStyles();
   const history = useHistory();
+  const role = localStorage.getItem("role");
+  const { id } = useParams();
+  const [bill, setBill] = useState({});
+
+  useEffect(() => {
+    let mounted = true;
+    const fetchBill = async () => {
+      const params = { _id: id };
+      const response = await billApi.getOne(params);
+      if (mounted) {
+        console.log(response);
+        setBill(response);
+      }
+    };
+    fetchBill();
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const handleBack = () => {
-    history.push("/order/orderDetail");
+    if (role !== null) history.push(`/${role}/order/orderDetail`);
+    else history.push(`/order/orderDetail`);
   };
 
   return (
     <div>
-      <Path />
+      <Path billID={bill.billID} />
       <Grid container spacing={2} className={classes.root}>
         <Grid item xs={12} md={7}>
-          <BillInfo />
+          <BillInfo fabricRoll={bill.fabricRoll} />
         </Grid>
         <Grid item xs={12} md={5}>
-          <Status />
+          <Status status={bill.billStatus} />
         </Grid>
         <Grid item xs={12} md={7}>
-          <AnotherInfo />
+          <AnotherInfo bill={bill} />
         </Grid>
         <Grid item xs={12} md={5}>
-          <CustomerInfo />
+          <CustomerInfo bill={bill} />
         </Grid>
       </Grid>
       <Grid container spacing={2} className={classes.btnGroup}>
