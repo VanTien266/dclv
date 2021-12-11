@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Typography, Grid, Container, Button } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box';
@@ -8,18 +8,32 @@ import SearchField from "../../components/SearchField";
 import NotificationButton from "../../components/Button/NotificationButton";
 import { Notifications } from "@material-ui/icons";
 
-import StaffTotalSale from './components/StaffTotalSale'
-import StaffOrderComplete from './components/StaffOrderComplete'
-import StaffRevenue from './components/StaffRevenue'
-import RevenueProducts from './components/RevenueProducts'
-import ProductsChart from './components/ProductsChart'
-import TopProducts from './components/TopProducts'
-import RevenueChart1 from './components/RevenueChart1'
-import RevenueChart2 from './components/RevenueChart2'
-
+import StaffTotalSale from './components/StaffTotalSale';
+import StaffOrderComplete from './components/StaffOrderComplete';
+import StaffRevenue from './components/StaffRevenue';
+import RevenueProducts from './components/RevenueProducts';
+import ProductsChart from './components/ProductsChart';
+import TopProducts from './components/TopProducts';
+import RevenueChart1 from './components/RevenueChart1';
+import RevenueChart2 from './components/RevenueChart2';
+import orderApi from "../../api/staffApi";
 
 function DashBoard() {
   const classes = useStyles();
+  const [order, setOrder] = useState([]);
+  useEffect(() => {
+    const fetCountOrder = async () => {
+        try {
+          const response = await orderApi.countAllOrder();
+          console.log(response);
+          setOrder(response);
+        }catch (error) {
+          console.log("Failed to fetch order count", error);
+        }
+    }
+    fetCountOrder();
+  }, []);
+
   return (
     <Box className={classes.root}>
       <Container maxWidth="xl">

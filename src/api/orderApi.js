@@ -1,10 +1,25 @@
 import axiosClient from "./axiosClient";
 
-class OrderApi {
-  getAll = () => {
+const orderApi = {
+  getAll: () => {
     const url = "/order";
     return axiosClient.get(url);
-  };
+  },
+
+  countAllOrder: () => {
+    const url = "/countallorder";
+    return axiosClient.get(url);
+  },
+
+  countOrderComplete: () => {
+    const url = "/countallordercomplete";
+    return axiosClient.get(url);
+  },
+
+  totalDeposit: () => {
+    const url = "/deposit";
+    return axiosClient.get(url);
+  },
+  
 }
-const orderApi = new OrderApi();
 export default orderApi;

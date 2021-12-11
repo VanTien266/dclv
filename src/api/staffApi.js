@@ -6,7 +6,7 @@ const staffApi = {
     return axiosClient.get(url, { params });
   },
   getInfoById: (params) => {
-    const url = "/admin/liststaff/:id";
+    const url = "/admin/liststaff/info/:id";
     return axiosClient.get(url, { params });
   }
 

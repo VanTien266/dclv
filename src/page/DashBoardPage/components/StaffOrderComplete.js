@@ -1,28 +1,10 @@
-// import React, {useState} from 'react'
-// import { makeStyles } from '@material-ui/core/styles'
-// import { Box, Grid, Container, Typography } from '@material-ui/core';
-// import clsx from "clsx";
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-    
-//   },
-// }));
-// function StaffTotalSale() {
-//     const classes = useStyles();
-//     return (
-//        <Typography>StaffTotalSale</Typography>
-//     )
-// }
-
-// export default StaffTotalSale
-
-
+import React, {useState, useEffect} from 'react'
 import { Icon } from '@iconify/react';
 import { alpha, styled } from '@material-ui/core/styles';
 import { Card, Typography } from '@material-ui/core';
 // utils
 //import { fShortenNumber } from '../../../utils/formatNumber';
+import orderApi from "../../../api/orderApi";
 
 const RootStyle = styled(Card)(({ theme }) => ({
   boxShadow: 'none',
@@ -50,13 +32,26 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 }));
 
 export default function StaffOrderComplete() {
+  const [orderComplete, setOrderComplete] = useState([]);
+  useEffect(() => {
+    const fetCountOrderComplete = async () => {
+        try {
+          const response = await orderApi.countOrderComplete();
+          console.log(response);
+          setOrderComplete(response);
+        }catch (error) {
+          console.log("Failed to fetch order complete count", error);
+        }
+    }
+    fetCountOrderComplete();
+  }, []);
   return (
     <RootStyle>
       <IconWrapperStyle>
         <Icon icon="carbon:task-complete" color="rgb(12, 83, 183)" width="35" height="35" />
       </IconWrapperStyle>
-      <Typography variant="h4">1100</Typography>
-      <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
+      <Typography variant="h4">{orderComplete}</Typography>
+      <Typography variant="h6" sx={{ opacity: 0.72 }}>
         Đơn đã giao
       </Typography>
     </RootStyle>

@@ -82,14 +82,14 @@ export default function StaffList(props) {
   const classes = useStyles();
   const history = useHistory();
 
-  const handleClickInfo = () => {
-    history.push("/admin/staffinfo");
+  const handleClick = (id) => {
+    history.push(`/admin/staff/staffinfo/${id}`);
   };
   return (
     <>
     {staff.map((item) => (
       
-    <Grid container className={classes.root} onClick={handleClickInfo}>
+    <Grid container className={classes.root} onClick={() => handleClick(item._id)}>
       {/* <Button className={classes.buttonList} onClick={handleClick}> */}
       <Grid
         item

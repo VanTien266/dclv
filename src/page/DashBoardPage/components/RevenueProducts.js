@@ -57,7 +57,7 @@ export default function RevenueProducts() {
         <Icon icon="ic:outline-mark-email-unread" color="rgb(183, 33, 54)" width="35" height="35" />
       </IconWrapperStyle>
       <Typography variant="h4">123</Typography>
-      <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
+      <Typography variant="h6" sx={{ opacity: 0.72 }}>
         Phản hồi
       </Typography>
     </RootStyle>

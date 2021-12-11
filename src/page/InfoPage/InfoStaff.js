@@ -5,6 +5,7 @@ import { Box, Avatar, Typography, Button } from "@material-ui/core";
 
 import ProfileCardComp from "../../components/CardProfile/ProfileCardComp";
 import InfoStaffTable from "./components/InfoStaffTable";
+import staffApi from "../../api/staffApi";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -29,6 +30,19 @@ const useStyles = makeStyles(() => ({
 function InfoStaff() {
     const classes = useStyles();
 
+    const [staffInfo, setStaffInfo] = useState([]);
+    useEffect(() => {
+        const fetchStaffInfo = async () => {
+            try {
+              const response = await staffApi.getInfoById();
+              console.log(response);
+              setStaffInfo(response);
+            }catch (error) {
+              console.log("Failed to fetch staff info", error);
+            }
+        }
+        fetchStaffInfo();
+      }, []);
     return (
         <Box className={classes.root}>
             <Grid container className={classes.contain} space={3} >
@@ -43,7 +57,10 @@ function InfoStaff() {
                 </Grid>
 
                 <Grid item contain sm={6} md={6} xs={12} className={classes.infoTable}>
-                    <InfoStaffTable />
+                {staffInfo.map((item, idx) => {
+                    return <InfoStaffTable key={idx} infostaff={item} />
+                    })}
+                    {/* // <InfoStaffTable /> */}
                 </Grid>
 
                 <Grid item contain sm={2} md={2}>

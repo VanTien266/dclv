@@ -119,7 +119,7 @@ const routes = [
         component: StaffPage,
       },
       {
-        path: "/admin/staffinfo",
+        path: "/admin/staff/staffinfo",
         exact: true,
         component: InfoStaff,
       },

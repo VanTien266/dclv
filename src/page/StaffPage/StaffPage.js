@@ -36,7 +36,7 @@ function StaffPage() {
     const fetchStaff = async () => {
         try {
           const response = await staffApi.getAll();
-          console.log(response);
+          // console.log(response);
           setStaff(response);
         }catch (error) {
           console.log("Failed to fetch staff list", error);

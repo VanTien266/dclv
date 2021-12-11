@@ -25,21 +25,22 @@ const useStyles = makeStyles(() => ({
     margin: "10px 0 10px 0",
   }
 }));
-function InfoStaffTable() {
+function InfoStaffTable(props) {
     const classes = useStyles();
-    const [staffInfo, setStaffInfo] = useState([]);
-    useEffect(() => {
-        const fetchStaffInfo = async () => {
-            try {
-              const response = await staffApi.getInfoById();
-              console.log(response);
-              setStaffInfo(response);
-            }catch (error) {
-              console.log("Failed to fetch staff list", error);
-            }
-        }
-        fetchStaffInfo();
-      }, []);
+    const {infostaff} = props;
+    // const [staffInfo, setStaffInfo] = useState([]);
+    // useEffect(() => {
+    //     const fetchStaffInfo = async () => {
+    //         try {
+    //           const response = await staffApi.getInfoById();
+    //           console.log(response);
+    //           setStaffInfo(response);
+    //         }catch (error) {
+    //           console.log("Failed to fetch staff list", error);
+    //         }
+    //     }
+    //     fetchStaffInfo();
+    //   }, []);
 //   const handleClickChangePhone = () => {
 //     console.log('Modal Change Phone');
 //   }
@@ -58,7 +59,7 @@ function InfoStaffTable() {
           <Typography className={classes.titleInfo}>Họ tên</Typography>
           <TextField className={classes.textFieldInfo}
             id="outlined-read-only-input"
-            defaultValue="Nguyễn Văn Tĩnh"
+            defaultValue={infostaff.name}
             InputProps={{
               readOnly: true,
             }}
@@ -69,7 +70,7 @@ function InfoStaffTable() {
           <Typography className={classes.titleInfo}>Số điện thoại</Typography>
           <TextField className={classes.textFieldInfo}
             id="outlined-read-only-input"
-            defaultValue="0387949125"
+            defaultValue={infostaff.phone}
             InputProps={{
               readOnly: true,
             //   endAdornment: 
@@ -91,7 +92,7 @@ function InfoStaffTable() {
           <Typography className={classes.titleInfo}>Email</Typography>
           <TextField className={classes.textFieldInfo}
             id="outlined-read-only-input"
-            defaultValue="nguyenvantinh06@gmail.com"
+            defaultValue={infostaff.email}
             InputProps={{
               readOnly: true,
             }}
@@ -102,7 +103,7 @@ function InfoStaffTable() {
           <Typography className={classes.titleInfo}>Giới tính</Typography>
           <TextField className={classes.textFieldInfo}
             id="outlined-read-only-input"
-            defaultValue="Nam"
+            defaultValue={infostaff.gender}
             InputProps={{
               readOnly: true,
             }}
@@ -113,7 +114,7 @@ function InfoStaffTable() {
           <Typography className={classes.titleInfo}>Ngày sinh</Typography>
           <TextField className={classes.textFieldInfo}
             id="outlined-read-only-input"
-            defaultValue="23/03/2000"
+            defaultValue={infostaff.birthday}
             InputProps={{
               readOnly: true,
             }}
@@ -124,7 +125,7 @@ function InfoStaffTable() {
           <Typography className={classes.titleInfo}>Địa chỉ</Typography>
           <TextField className={classes.textFieldInfo}
             id="outlined-read-only-input"
-            defaultValue="Khu phố Phú Thứ, Thị trấn Phú Thứ, Tây Hòa, Phú Yên"
+            defaultValue={infostaff.address}
             InputProps={{
               readOnly: true,
             //   endAdornment: 
@@ -146,7 +147,7 @@ function InfoStaffTable() {
           <Typography className={classes.titleInfo}>Role</Typography>
           <TextField className={classes.textFieldInfo}
             id="outlined-read-only-input"
-            defaultValue="Quản lí"
+            defaultValue={infostaff.role}
             variant="outlined"
             fullWidth
             InputProps={{
