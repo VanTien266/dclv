@@ -13,7 +13,9 @@ import {
   LocalPhone,
 } from "@material-ui/icons";
 
-function CustomerInfo() {
+function CustomerInfo(props) {
+  const { bill } = props;
+
   return (
     <Card>
       <CardHeader title="Thông tin khách hàng" />
@@ -21,7 +23,7 @@ function CustomerInfo() {
         <Grid container>
           <Grid item xs={2}></Grid>
           <Grid item xs={7}>
-            <Typography variant="h6">Lưu Văn Tiến</Typography>
+            <Typography variant="h6">{bill?.clientID?.name}</Typography>
           </Grid>
           <Grid item xs={3}>
             <Grid container spacing={1}>
@@ -39,9 +41,8 @@ function CustomerInfo() {
             <Place />
           </Grid>
           <Grid item xs={7}>
-            <Typography variant="subtitle1">KTX khu B</Typography>
             <Typography variant="subtitle1">
-              Đông Hòa-Dĩ An-Bình Dương
+              {bill?.clientID?.address}
             </Typography>
           </Grid>
           <Grid item xs={3}></Grid>
@@ -51,9 +52,7 @@ function CustomerInfo() {
             <LocalPostOffice />
           </Grid>
           <Grid item xs={7}>
-            <Typography variant="subtitle1">
-              tien.luu.van@hcmut.edu.vn
-            </Typography>
+            <Typography variant="subtitle1">{bill?.clientID?.email}</Typography>
           </Grid>
           <Grid item xs={3}></Grid>
         </Grid>
@@ -62,7 +61,7 @@ function CustomerInfo() {
             <LocalPhone />
           </Grid>
           <Grid item xs={7}>
-            <Typography variant="subtitle1">0826755114</Typography>
+            <Typography variant="subtitle1">{bill?.clientID?.phone}</Typography>
           </Grid>
           <Grid item xs={3}></Grid>
         </Grid>
@@ -70,7 +69,9 @@ function CustomerInfo() {
         <Grid container>
           <Grid item xs={2}></Grid>
           <Grid item xs={7}>
-            <Typography variant="subtitle1">Lưu Văn Tiến</Typography>
+            <Typography variant="subtitle1">
+              {bill?.orderID?.receiverName}
+            </Typography>
           </Grid>
           <Grid item xs={3}></Grid>
         </Grid>
@@ -79,9 +80,8 @@ function CustomerInfo() {
             <Place />
           </Grid>
           <Grid item xs={7}>
-            <Typography variant="subtitle1">KTX khu A</Typography>
             <Typography variant="subtitle1">
-              KP6-Tp Thủ Đức-Tp Hồ Chí Minh
+              {bill?.orderID?.receiverAddress}
             </Typography>
           </Grid>
           <Grid item xs={3}></Grid>
@@ -91,7 +91,9 @@ function CustomerInfo() {
             <LocalPhone />
           </Grid>
           <Grid item xs={7}>
-            <Typography variant="subtitle1">01296755114</Typography>
+            <Typography variant="subtitle1">
+              {bill?.orderID?.receiverPhone}
+            </Typography>
           </Grid>
           <Grid item xs={3}></Grid>
         </Grid>

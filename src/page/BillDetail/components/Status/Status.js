@@ -4,7 +4,9 @@ import { Card, CardContent, CardHeader } from "@material-ui/core";
 import StatusItem from "./components/StatusItem";
 import { Timeline } from "@material-ui/lab";
 
-function Status() {
+function Status(props) {
+  const { status } = props;
+
   const statusList = [
     { tag: "exported", title: "Đã xử lí xong" },
     { tag: "delivery", title: "Đang vận chuyển" },
@@ -55,13 +57,15 @@ function Status() {
       <CardHeader title="Trạng thái" />
       <CardContent>
         <Timeline>
-          {orderStaus.map((item, index) => (
-            <StatusItem
-              key={index}
-              item={item}
-              isLast={index === orderStaus.length - 1}
-            />
-          ))}
+          {status
+            ? status.map((item, index) => (
+                <StatusItem
+                  key={index}
+                  item={item}
+                  isLast={index === status.length - 1}
+                />
+              ))
+            : ""}
         </Timeline>
       </CardContent>
     </Card>

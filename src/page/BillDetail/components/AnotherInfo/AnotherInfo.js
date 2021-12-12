@@ -9,6 +9,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { AccountCircle, BorderColor, CalendarToday } from "@material-ui/icons";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   item: {
@@ -27,9 +28,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-function AnotherInfo() {
+function AnotherInfo(props) {
+  const { bill } = props;
+  console.log("Bill", bill);
   const classes = useStyles();
-
   return (
     <Card>
       <CardHeader title="Thông tin khác" />
@@ -42,8 +44,12 @@ function AnotherInfo() {
               </Grid>
               <Grid item xs={10}>
                 <Typography variant="body1">Nhân viên phụ trách</Typography>
-                <Typography variant="subtitle1">Lưu Văn Tiến</Typography>
-                <Typography variant="subtitle1">0826755114</Typography>
+                <Typography variant="subtitle1">
+                  {bill?.salesmanID?.name}
+                </Typography>
+                <Typography variant="subtitle1">
+                  {bill?.salesmanID?.phone}
+                </Typography>
               </Grid>
             </Grid>
             <Grid container spacing={2} className={classes.item}>
@@ -52,7 +58,11 @@ function AnotherInfo() {
               </Grid>
               <Grid item xs={10}>
                 <Typography variant="body1">Ngày xuất</Typography>
-                <Typography variant="subtitle1">14/10/2020</Typography>
+                <Typography variant="subtitle1">
+                  {moment(bill.exportBillTime)
+                    .subtract(1, "days")
+                    .format("DD/MM/YYYY")}
+                </Typography>
               </Grid>
             </Grid>
             <Grid container spacing={2} className={classes.item}>
@@ -61,8 +71,12 @@ function AnotherInfo() {
               </Grid>
               <Grid item xs={10}>
                 <Typography variant="body1">Nhân viên giao hàng</Typography>
-                <Typography variant="subtitle1">Trần Trọng Nghĩa</Typography>
-                <Typography variant="subtitle1">01296755114</Typography>
+                <Typography variant="subtitle1">
+                  {bill?.shipperID?.name}
+                </Typography>
+                <Typography variant="subtitle1">
+                  {bill?.shipperID?.phone}
+                </Typography>
               </Grid>
             </Grid>
           </Grid>
