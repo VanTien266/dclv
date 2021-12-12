@@ -11,6 +11,7 @@ function BillInfo(props) {
   const { fabricRoll } = props;
   const [listFabricRoll, setListFabricRoll] = useState([]);
 
+  console.log("Bill Info");
   useEffect(() => {
     let mounted = true;
 
