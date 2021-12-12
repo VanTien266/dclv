@@ -34,6 +34,7 @@ function BillDetail() {
 
   useEffect(() => {
     let mounted = true;
+    console.log("run");
     const fetchBill = async () => {
       const params = { _id: id };
       const response = await billApi.getOne(params);
@@ -61,7 +62,7 @@ function BillDetail() {
           <BillInfo fabricRoll={bill.fabricRoll} />
         </Grid>
         <Grid item xs={12} md={5}>
-          <Status status={bill.billStatus} />
+          <Status status={bill.status} />
         </Grid>
         <Grid item xs={12} md={7}>
           <AnotherInfo bill={bill} />

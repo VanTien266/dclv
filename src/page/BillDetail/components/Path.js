@@ -14,14 +14,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Path() {
+function Path(props) {
+  const { billID } = props;
   const classes = useStyles();
 
   return (
     <Grid className={classes.root}>
       <Grid item>
         <Typography variant="h5" color="primary" className={classes.title}>
-          Hóa đơn bán hàng #MHD1234
+          Hóa đơn bán hàng #MHD{billID}
         </Typography>
       </Grid>
       <Grid item>
