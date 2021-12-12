@@ -11,7 +11,7 @@ import { Notifications } from "@material-ui/icons";
 import StaffTotalSale from './components/StaffTotalSale';
 import StaffOrderComplete from './components/StaffOrderComplete';
 import StaffRevenue from './components/StaffRevenue';
-import RevenueProducts from './components/RevenueProducts';
+import FabricRollBillCompleted from './components/FabricRollBillCompleted';
 import ProductsChart from './components/ProductsChart';
 import TopProducts from './components/TopProducts';
 import RevenueChart1 from './components/RevenueChart1';
@@ -64,7 +64,7 @@ function DashBoard() {
             <StaffRevenue />
           </Grid>
           <Grid item xs={12} sm={6} md={3} className={classes.RevenueProducts}>
-            <RevenueProducts />
+            <FabricRollBillCompleted />
           </Grid>
           <Grid item xs={12} md={6} lg={8} className={classes.Chart1}>
             <RevenueChart1 />

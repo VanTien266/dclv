@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react';
 import { alpha, styled } from '@material-ui/core/styles';
 import { Card, Typography } from '@material-ui/core';
 // utils
-//import { fShortenNumber } from '../../../utils/formatNumber';
+import {fNumber} from "../../../utils/formatNumber";
 import orderApi from "../../../api/orderApi";
 
 const RootStyle = styled(Card)(({ theme }) => ({
@@ -50,7 +50,7 @@ export default function StaffOrderComplete() {
       <IconWrapperStyle>
         <Icon icon="carbon:task-complete" color="rgb(12, 83, 183)" width="35" height="35" />
       </IconWrapperStyle>
-      <Typography variant="h4">{orderComplete}</Typography>
+      <Typography variant="h4">{fNumber(orderComplete)}</Typography>
       <Typography variant="h6" sx={{ opacity: 0.72 }}>
         Đơn đã giao
       </Typography>

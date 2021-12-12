@@ -1,28 +1,10 @@
-// import React, {useState} from 'react'
-// import { makeStyles } from '@material-ui/core/styles'
-// import { Box, Grid, Container, Typography } from '@material-ui/core';
-// import clsx from "clsx";
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-    
-//   },
-// }));
-// function StaffTotalSale() {
-//     const classes = useStyles();
-//     return (
-//        <Typography>StaffTotalSale</Typography>
-//     )
-// }
-
-// export default StaffTotalSale
-
-
+import React, {useState, useEffect} from 'react'
 import { Icon } from '@iconify/react';
 import { alpha, styled } from '@material-ui/core/styles';
 import { Card, Typography } from '@material-ui/core';
 // utils
-//import { fShortenNumber } from '../../../utils/formatNumber';
+import {fNumber} from "../../../utils/formatNumber";
+import billApi from "../../../api/billApi";
 
 const RootStyle = styled(Card)(({ theme }) => ({
   boxShadow: 'none',
@@ -50,15 +32,28 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
   backgroundImage: 'linear-gradient(135deg, rgba(183, 33, 54, 0) 0%, rgba(183, 33, 54, 0.24) 100%)'
 }));
 
-export default function RevenueProducts() {
+export default function FabricRollBillCompleted() {
+  const [fabricrollTotal, setFabricRollTotal] = useState([]);
+  useEffect(() => {
+    const fetchFabricRollTotal = async () => {
+        try {
+          const response = await billApi.getFabricRollBillCompleted();
+          console.log(response);
+          setFabricRollTotal(response);
+        }catch (error) {
+          console.log("Failed to fetch fabric roll bill completed count", error);
+        }
+    }
+    fetchFabricRollTotal();
+  }, []);
   return (
     <RootStyle>
       <IconWrapperStyle> 
-        <Icon icon="ic:outline-mark-email-unread" color="rgb(183, 33, 54)" width="35" height="35" />
+        <Icon icon="ic:outline-local-shipping" color="rgb(183, 33, 54)" width="35" height="35" />
       </IconWrapperStyle>
-      <Typography variant="h4">123</Typography>
+      <Typography variant="h4">{fNumber(fabricrollTotal)}</Typography>
       <Typography variant="h6" sx={{ opacity: 0.72 }}>
-        Phản hồi
+        Số cây vải đã bán
       </Typography>
     </RootStyle>
   );

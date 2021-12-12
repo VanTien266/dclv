@@ -11,11 +11,16 @@ import { replace } from 'lodash';
 //   return numeral(number / 100).format('0.0%');
 // }
 
-export function fNumber(number) {
+export function fNumberCurrency(number) {
   return number.toLocaleString('vi-VN',{
     style:'currency',
     currency: 'VND'
   });
+}
+
+export function fNumber(number) {
+  return number.toLocaleString('vi-VN');
+
 }
 
 // export function fShortenNumber(number) {

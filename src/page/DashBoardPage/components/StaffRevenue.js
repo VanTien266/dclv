@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react';
 import { alpha, styled } from '@material-ui/core/styles';
 import { Card, Typography } from '@material-ui/core';
 // utils
-import {fNumber} from "../../../utils/formatNumber";
+import {fNumberCurrency} from "../../../utils/formatNumber";
 import orderApi from "../../../api/orderApi";
 
 const RootStyle = styled(Card)(({ theme }) => ({
@@ -51,7 +51,7 @@ export default function StaffRevenue() {
       <IconWrapperStyle> 
         <Icon icon="dashicons:money-alt" color="rgb(183, 129, 3)" width="40" height="40" />
       </IconWrapperStyle>
-      <Typography variant="h4">{fNumber(totalDeposit)}</Typography>
+      <Typography variant="h4">{fNumberCurrency(totalDeposit)}</Typography>
       <Typography variant="h6" sx={{ opacity: 0.72 }}>
         Doanh thu
       </Typography>

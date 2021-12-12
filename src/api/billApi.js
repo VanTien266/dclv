@@ -10,6 +10,10 @@ class BillApi {
     const url = "/bill/detail";
     return axiosClient.get(url, { params });
   };
+  getFabricRollBillCompleted = (params) => {
+    const url = "/bill/fabricrollcompleted";
+    return axiosClient.get(url, { params });
+  }
 }
 const billApi = new BillApi();
 export default billApi;

@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 import { alpha, styled } from "@material-ui/core/styles";
 import { Card, Typography } from "@material-ui/core";
 // utils
-//import { fShortenNumber } from '../../../utils/formatNumber';
+import {fNumber} from "../../../utils/formatNumber";
 import orderApi from "../../../api/orderApi";
 
 const RootStyle = styled(Card)(({ theme }) => ({
@@ -55,7 +55,7 @@ export default function StaffTotalSale() {
           height="35"
         />
       </IconWrapperStyle>
-      <Typography variant="h4">{orderTotal}</Typography>
+      <Typography variant="h4">{fNumber(orderTotal)}</Typography>
       <Typography variant="h6" sx={{ opacity: 0.72 }}>
         Tổng đơn hàng
       </Typography>
