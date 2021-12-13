@@ -48,8 +48,20 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     margin: "0px",
   },
-  orderStatus: {
+  statusPending: {
+    color: "#D19431",
+    fontWeight: "bold",
+  },
+  statusProcessing: {
+    color: "#F0622F",
+    fontWeight: "bold",
+  },
+  statusComplete: {
     color: "#5A9E4B",
+    fontWeight: "bold",
+  },
+  statusCancel: {
+    color: "#FF0000",
     fontWeight: "bold",
   },
   billQuantity: {
@@ -168,7 +180,7 @@ export default function Order(props) {
       </Grid>
 
       <Grid item xs={2} className={classes.verticalCenter}>
-        <p className={classes.verticalAlign}>{order.userName}</p>
+        <p className={classes.verticalAlign}>{order.clientID.name}</p>
       </Grid>
       <Grid item xs={2} className={classes.verticalCenter}>
         <p className={classes.verticalAlign}>{order.deposit}</p>
@@ -178,7 +190,35 @@ export default function Order(props) {
       </Grid>
       <Grid container item xs={2}>
         <Grid item xs={8} className={classes.dropIcon}>
-          <p className={classes.orderStatus}>{order.orderStatus}</p>
+          <p
+            className={
+              (order.orderStatus[order.orderStatus.length - 1].name ===
+                "pending" &&
+                classes.statusPending) ||
+              (order.orderStatus[order.orderStatus.length - 1].name ===
+                "processing" &&
+                classes.statusProcessing) ||
+              (order.orderStatus[order.orderStatus.length - 1].name ===
+                "completed" &&
+                classes.statusComplete) ||
+              (order.orderStatus[order.orderStatus.length - 1].name ===
+                "cancle" &&
+                classes.statusCancel)
+            }
+          >
+            {(order.orderStatus[order.orderStatus.length - 1].name ===
+              "pending" &&
+              "Chờ xử lý") ||
+              (order.orderStatus[order.orderStatus.length - 1].name ===
+                "processing" &&
+                "Đang xử lý") ||
+              (order.orderStatus[order.orderStatus.length - 1].name ===
+                "completed" &&
+                "Hoàn tất") ||
+              (order.orderStatus[order.orderStatus.length - 1].name ===
+                "cancle" &&
+                "Đã hủy")}
+          </p>
         </Grid>
         <Grid item xs={2} className={classes.dropIcon}>
           <Button
