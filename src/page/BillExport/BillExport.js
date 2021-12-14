@@ -1,6 +1,8 @@
 import { Grid, makeStyles, Typography } from "@material-ui/core";
 import { ArrowBack, Publish } from "@material-ui/icons";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import orderApi from "../../api/orderApi";
 import DefaultButton from "../../components/Button/DefaultButton";
 import Bill from "./components/Bill/Bill";
 import Order from "./components/Order/Order";
@@ -18,6 +20,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 function BillExport() {
   const classes = useStyles();
+  const [order, setOrder] = useState({});
+  const { id } = useParams();
+
+  useEffect(() => {
+    let mounted = true;
+
+    const fetchOrder = async (id) => {
+      const params = { _id: id };
+      const response = await orderApi.getOne(params);
+      if (mounted) setOrder(response);
+    };
+
+    fetchOrder(id);
+
+    return () => (mounted = false);
+  }, []);
 
   return (
     <div>
@@ -26,7 +44,7 @@ function BillExport() {
       </Typography>
       <Grid container spacing={2} className={classes.root}>
         <Grid item xs={12} sm={12} md={6}>
-          <Order />
+          <Order order={order} />
         </Grid>
         <Grid item xs={12} sm={12} md={6}>
           <Bill />
