@@ -10,9 +10,6 @@ import OrderDetail from "./page/OrderDetail";
 import OrderEdit from "./page/OrderEdit";
 import NotificationPage from "./page/NotificationPage/NotificationPage";
 import SupportPage from "./page/SupportPage/SupportPage";
-import InfoPage from "./page/InfoPage/InfoPage";
-import StaffPage from "./page/StaffPage/StaffPage";
-import InfoStaff from "./page/InfoPage/InfoStaff";
 
 const routes = [
   {
@@ -58,7 +55,7 @@ const routes = [
         component: OrderEdit,
       },
       {
-        path: "/salesman/order/billDetail/:id",
+        path: "/salesman/order/billDetail",
         exact: true,
         component: lazy(() => import("./page/BillDetail")),
       },
@@ -113,31 +110,16 @@ const routes = [
         exact: true,
         component: NotificationPage,
       },
-      {
-        path: "/admin/staff",
-        exact: true,
-        component: StaffPage,
-      },
-      {
-        path: "/admin/staff/staffinfo",
-        exact: true,
-        component: InfoStaff,
-      },
-      {
-        path: "/admin/info",
-        exact: true,
-        component: InfoPage,
-      },
-      {
-        path: "/admin/help",
-        exact: true,
-        component: SupportPage,
-      },
       // for customer
       {
         path: "/dashboard",
         exact: true,
         component: DashBoard,
+      },
+      {
+        path: "/product",
+        exact: true,
+        component: Product,
       },
       {
         path: "/order",
@@ -160,6 +142,11 @@ const routes = [
         component: lazy(() => import("./page/BillDetail")),
       },
       {
+        path: "/order/billExport",
+        exact: true,
+        component: lazy(() => import("./page/BillExport")),
+      },
+      {
         path: "/notification",
         exact: true,
         component: NotificationPage,
@@ -168,7 +155,7 @@ const routes = [
         path: "/support",
         exact: true,
         component: SupportPage,
-      },
+      }
     ],
   },
 ];

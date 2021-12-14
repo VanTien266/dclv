@@ -20,9 +20,9 @@ const orderApi = {
     const url = "/deposit";
     return axiosClient.get(url);
   },
-  getOne: (params) => {
-    const url = "/order/detail";
-    return axiosClient.get(url, { params });
+  getOne: (orderId) => {
+    const url = `/order/${orderId}`;
+    return axiosClient.get(url);
   },
 };
 export default orderApi;

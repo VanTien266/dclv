@@ -10,6 +10,10 @@ class ProductApi {
     // const body = QueryString.stringify(data);
     return axiosClient.post(url, data);
   };
+  getChartWarehouseTrue = (params) => {
+    const url = "/chartwarehouse";
+    return axiosClient.get(url, { params });
+  };
 }
 const productApi = new ProductApi();
 export default productApi;

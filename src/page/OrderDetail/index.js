@@ -3,10 +3,12 @@ import OrderInfo from "./components/OrderInfo";
 import TimelineStatus from "./components/TimelineStatus";
 import ListBill from "./components/ListBill";
 import { Button, Grid, Typography, Container } from "@material-ui/core";
+import { useState, useEffect } from "react";
+import orderApi from "../../api/orderApi";
 import { makeStyles } from "@material-ui/core/styles";
 import { ArrowBack, ArrowUpward, Cancel, Publish } from "@material-ui/icons";
 import DefaultButton from "../../components/Button/DefaultButton";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   alignStatusRight: {
@@ -52,7 +54,26 @@ const useStyles = makeStyles((theme) => ({
 export default function OrderDetail() {
   const classes = useStyles();
   const history = useHistory();
+  const { id } = useParams();
   const role = localStorage.getItem("role");
+  const [detail, setDetail] = useState({ orderStatus: [] });
+
+  useEffect(() => {
+    let mounted = true;
+    const fetchOrderDetail = async () => {
+      const response = await orderApi.getOne(id);
+      if (mounted) {
+        setDetail(response);
+      }
+    };
+    fetchOrderDetail();
+
+    return () => {
+      mounted = false;
+    };
+  }, [id]);
+
+  console.log(detail.clientID);
 
   const handleBack = () => {
     history.push(`/${role}/order`);
@@ -67,7 +88,7 @@ export default function OrderDetail() {
       <Grid container spacing={2}>
         <Grid item xs={9}>
           <Typography variant="h4" className={classes.titlePage}>
-            Chi tiết đơn đặt hàng MDH12345
+            {"Chi tiết đơn đặt hàng MDH" + detail.orderId}
           </Typography>
         </Grid>
         <Grid item xs={3} className={classes.alignStatusRight}>
@@ -83,13 +104,18 @@ export default function OrderDetail() {
           <OrderInfo />
         </Grid>
         <Grid item xs={12} md={5}>
-          <TimelineStatus />
+          <TimelineStatus statusList={detail.orderStatus} />
         </Grid>
         <Grid item xs={12} md={7}>
           <ListBill />
         </Grid>
         <Grid item xs={12} md={5}>
-          <CustomerInfo />
+          <CustomerInfo
+            customer={detail.clientID}
+            receiverName={detail.receiverName}
+            receiverPhone={detail.receiverPhone}
+            receiverAddress={detail.receiverAddress}
+          />
         </Grid>
       </Grid>
       <Grid container spacing={2} className={classes.btnGroup}>
