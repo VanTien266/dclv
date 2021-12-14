@@ -152,7 +152,7 @@ export default function Bill(props) {
     <Grid container className={classes.root} onClick={handleClick}>
       <Grid item xs={2}>
         <Typography variant="subtitle1" className={classes.billId}>
-          MHD{bill?.id}
+          HĐ{bill?.billID}
         </Typography>
       </Grid>
       <Grid item xs={3}>
@@ -178,7 +178,7 @@ export default function Bill(props) {
         >
           {(status === "exported" && "Đã xuất") ||
             (status === "shipping" && "Đang vận chuyển") ||
-            (status === "completed" && "Gia hàng thành công") ||
+            (status === "completed" && "Giao hàng thành công") ||
             (status === "failed" && "Giao hàng thất bại")}
         </Typography>
       </Grid>
