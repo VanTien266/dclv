@@ -24,5 +24,5 @@ const orderApi = {
     const url = `/order/${orderId}`;
     return axiosClient.get(url);
   },
-}
+};
 export default orderApi;

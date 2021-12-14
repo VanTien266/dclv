@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-function CustomerInfo() {
+function CustomerInfo(props) {
+  const { clientID, receiver } = props;
   const classes = useStyles();
 
   return (
@@ -37,7 +38,7 @@ function CustomerInfo() {
           <Grid container>
             <Grid item xs={2}></Grid>
             <Grid item xs={10}>
-              <Typography variant="h6">Lưu Văn Tiến</Typography>
+              <Typography variant="h6">{clientID?.name}</Typography>
             </Grid>
           </Grid>
           <Grid container>
@@ -45,8 +46,7 @@ function CustomerInfo() {
               <Place />
             </Grid>
             <Grid item xs={10}>
-              <Typography variant="body1">KTX khu B</Typography>
-              <Typography variant="body1">Đông Hòa-Dĩ An-Bình Dương</Typography>
+              <Typography variant="body1">{clientID?.address}</Typography>
             </Grid>
           </Grid>
           <Grid container>
@@ -54,7 +54,7 @@ function CustomerInfo() {
               <LocalPostOffice />
             </Grid>
             <Grid item xs={10}>
-              <Typography variant="body1">tien.luu.van@hcmut.edu.vn</Typography>
+              <Typography variant="body1">{clientID?.email}</Typography>
             </Grid>
           </Grid>
           <Grid container>
@@ -62,7 +62,7 @@ function CustomerInfo() {
               <LocalPhone />
             </Grid>
             <Grid item xs={10}>
-              <Typography variant="body1">0826755114</Typography>
+              <Typography variant="body1">{clientID?.phone}</Typography>
             </Grid>
           </Grid>
         </Grid>
@@ -71,7 +71,7 @@ function CustomerInfo() {
           <Grid container>
             <Grid item xs={2}></Grid>
             <Grid item xs={10}>
-              <Typography variant="h6">Lưu Văn Tiến</Typography>
+              <Typography variant="h6">{receiver.receiverName}</Typography>
             </Grid>
           </Grid>
           <Grid container>
@@ -79,9 +79,8 @@ function CustomerInfo() {
               <Place />
             </Grid>
             <Grid item xs={10}>
-              <Typography variant="body1">KTX Khu A</Typography>
               <Typography variant="body1">
-                Kp 6-Tp Thủ Đức-Tp Hồ Chí Minh
+                {receiver.receiverAddress}
               </Typography>
             </Grid>
           </Grid>
@@ -90,7 +89,7 @@ function CustomerInfo() {
               <LocalPhone />
             </Grid>
             <Grid item xs={10}>
-              <Typography variant="body1">01296755114</Typography>
+              <Typography variant="body1">{receiver.receiverPhone}</Typography>
             </Grid>
           </Grid>
         </Grid>

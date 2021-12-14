@@ -1,5 +1,3 @@
-import axios from "axios";
-import QueryString from "qs";
 import axiosClient from "./axiosClient";
 
 class ProductApi {
