@@ -63,7 +63,7 @@ const useStyles = makeStyles({
     },
   },
 });
-export default function OrderInfo() {
+export default function OrderInfo(props) {
   const classes = useStyles();
   return (
     <div className={classes.orderInfoBox}>
@@ -83,7 +83,7 @@ export default function OrderInfo() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, idx) => (
+            {props.products.map((item, idx) => (
               <TableRow
                 key={idx}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -92,12 +92,12 @@ export default function OrderInfo() {
                   {idx + 1}
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  {row.typeID}
+                  {item.colorCode.typeId.name}
                 </TableCell>
-                <TableCell>{row.colorCode}</TableCell>
-                <TableCell>{row.shipped}</TableCell>
-                <TableCell>{row.remaining}</TableCell>
-                <TableCell>{row.unitPrice}</TableCell>
+                <TableCell>{item.colorCode.colorCode}</TableCell>
+                <TableCell>{item.shippedLength}</TableCell>
+                <TableCell>{parseInt(item.length) - parseInt(item.shippedLength)}</TableCell>
+                <TableCell>{item.colorCode.marketPriceId[0].price}</TableCell>
               </TableRow>
             ))}
           </TableBody>

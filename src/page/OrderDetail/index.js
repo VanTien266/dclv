@@ -56,7 +56,7 @@ export default function OrderDetail() {
   const history = useHistory();
   const { id } = useParams();
   const role = localStorage.getItem("role");
-  const [detail, setDetail] = useState({ orderStatus: [] });
+  const [detail, setDetail] = useState({ orderStatus: [], products: [], detailBill: [] });
 
   useEffect(() => {
     let mounted = true;
@@ -101,13 +101,13 @@ export default function OrderDetail() {
       </Grid>
       <Grid container spacing={2} className={classes.root}>
         <Grid item xs={12} md={7}>
-          <OrderInfo />
+          <OrderInfo products={detail.products}/>
         </Grid>
         <Grid item xs={12} md={5}>
           <TimelineStatus statusList={detail.orderStatus} />
         </Grid>
         <Grid item xs={12} md={7}>
-          <ListBill />
+          <ListBill bills={detail.detailBill}/>
         </Grid>
         <Grid item xs={12} md={5}>
           <CustomerInfo

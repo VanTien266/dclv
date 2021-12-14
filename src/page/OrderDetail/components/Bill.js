@@ -15,65 +15,9 @@ import {
   TableRow,
   Paper,
 } from "@material-ui/core";
+import moment from "moment";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-
-const fabric = [
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -114,10 +58,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     margin: "0px",
   },
-  billStatus: {
-    color: "#275DE9",
-    fontWeight: "bold",
-  },
   verticalCenter: {
     display: "flex",
     alignItems: "center",
@@ -148,8 +88,24 @@ const useStyles = makeStyles((theme) => ({
       width: 0,
     },
   },
+  exportedTypo: {
+    color: "#ff9800",
+    fontWeight: "bold",
+  },
+  deliveryTypo: {
+    color: "#2196f3",
+    fontWeight: "bold",
+  },
+  successTypo: {
+    color: "#4caf50",
+    fontWeight: "bold",
+  },
+  failTypo: {
+    color: "#f44336",
+    fontWeight: "bold",
+  },
 }));
-export default function Bill() {
+export default function Bill(props) {
   const history = useHistory();
   const classes = useStyles();
   const [open, setOpen] = useState(false);
@@ -169,21 +125,58 @@ export default function Bill() {
     <Grid container className={classes.root} onClick={handleClick}>
       <Grid item xs={2}>
         <Typography variant="subtitle1" className={classes.billId}>
-          MHD13579
+          {"HĐ" + (props.billInfo !== undefined ? props.billInfo.billID : "")}
         </Typography>
       </Grid>
       <Grid item xs={3}>
-        <Typography variant="subtitle1">Lưu Văn Tiến</Typography>
+        <Typography variant="subtitle1">
+          {props.billInfo !== undefined ? props.billInfo.salesmanID.name : ""}
+        </Typography>
       </Grid>
       <Grid item xs={2}>
-        <Typography variant="subtitle1">20/06/2000</Typography>
+        <Typography variant="subtitle1">
+          {props.billInfo !== undefined
+            ? moment(props.billInfo.exportBillTime)
+                .subtract(1, "days")
+                .format("DD/MM/YYYY")
+            : ""}
+        </Typography>
       </Grid>
       <Grid item xs={2} className={classes.productList}>
         <Button onClick={handleOpen}>Chi tiết</Button>
       </Grid>
       <Grid item xs={3}>
-        <Typography variant="subtitle1" className={classes.billStatus}>
-          Đang vận chuyển
+        <Typography
+          variant="subtitle1"
+          className={
+            (props.billInfo.status[props.billInfo.status.length - 1].name ===
+              "exported" &&
+              classes.exportedTypo) ||
+            (props.billInfo.status[props.billInfo.status.length - 1].name ===
+              "shipping" &&
+              classes.deliveryTypo) ||
+            (props.billInfo.status[props.billInfo.status.length - 1].name ===
+              "completed" &&
+              classes.successTypo) ||
+            (props.billInfo.status[props.billInfo.status.length - 1].name ===
+              "cancle" &&
+              classes.failTypo)
+          }
+        >
+          {
+            (props.billInfo.status[props.billInfo.status.length - 1].name ===
+              "exported" &&
+              "Đã xuất") ||
+            (props.billInfo.status[props.billInfo.status.length - 1].name ===
+              "shipping" &&
+              "Đang giao hàng") ||
+            (props.billInfo.status[props.billInfo.status.length - 1].name ===
+              "completed" &&
+              "Giao hàng thành công") ||
+            (props.billInfo.status[props.billInfo.status.length - 1].name ===
+              "cancle" &&
+              "Giao hàng thất bại")
+          }
         </Typography>
       </Grid>
       <Modal
@@ -262,3 +255,60 @@ export default function Bill() {
     </Grid>
   );
 }
+
+const fabric = [
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+];

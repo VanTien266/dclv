@@ -41,7 +41,7 @@ const useStyles = makeStyles({
     alignItems: "center",
   }
 });
-export default function ListBill() {
+export default function ListBill(props) {
   const classes = useStyles();
   return (
     <Container maxWidth="xl" className={classes.billBox}>
@@ -66,9 +66,7 @@ export default function ListBill() {
         </Grid>
       </Grid>
       <Container maxWidth="xl" className={classes.containerNoPadding}>
-        <Bill />
-        <Bill />
-        <Bill />
+        {props.bills.map((item, idx) => <Bill billInfo={item}/>)}
       </Container>
     </Container>
   );
