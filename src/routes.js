@@ -55,7 +55,7 @@ const routes = [
         component: OrderEdit,
       },
       {
-        path: "/salesman/order/billDetail",
+        path: "/salesman/order/billDetail/:id",
         exact: true,
         component: lazy(() => import("./page/BillDetail")),
       },

@@ -101,7 +101,7 @@ export default function OrderDetail() {
       </Grid>
       <Grid container spacing={2} className={classes.root}>
         <Grid item xs={12} md={7}>
-          <OrderInfo products={detail.products}/>
+          <OrderInfo products={detail.products} deposit={detail.deposit}/>
         </Grid>
         <Grid item xs={12} md={5}>
           <TimelineStatus statusList={detail.orderStatus} />

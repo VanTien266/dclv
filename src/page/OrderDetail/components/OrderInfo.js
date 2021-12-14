@@ -11,21 +11,9 @@ import {
   Paper,
 } from "@material-ui/core";
 
-function createData(typeID, colorCode, shipped, remaining, unitPrice) {
-  return { typeID, colorCode, shipped, remaining, unitPrice };
+function getNumberWithCommas(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
-
-const rows = [
-  createData("Kaki", 236, 500, 500, "100.000"),
-  createData("Jean", 236, 500, 500, "100.000"),
-  createData("Kate", 236, 500, 500, "100.000"),
-  createData("Lụa", 236, 500, 500, "100.000"),
-  createData("Bamboo", 236, 500, 500, "100.000"),
-  createData("Cotton", 236, 500, 500, "100.000"),
-  createData("Kaki", 236, 500, 500, "100.000"),
-  createData("Jean", 236, 500, 500, "100.000"),
-  createData("Kate", 236, 500, 500, "100.000"),
-];
 
 const useStyles = makeStyles({
   orderInfoBox: {
@@ -65,6 +53,11 @@ const useStyles = makeStyles({
 });
 export default function OrderInfo(props) {
   const classes = useStyles();
+  let totalPrice = props.products.reduce(
+    (totalPrice, item) =>
+      totalPrice + item.length * item.colorCode.marketPriceId[0].price,
+    0
+  );
   return (
     <div className={classes.orderInfoBox}>
       <Typography variant="h5" className={classes.title}>
@@ -96,8 +89,10 @@ export default function OrderInfo(props) {
                 </TableCell>
                 <TableCell>{item.colorCode.colorCode}</TableCell>
                 <TableCell>{item.shippedLength}</TableCell>
-                <TableCell>{parseInt(item.length) - parseInt(item.shippedLength)}</TableCell>
-                <TableCell>{item.colorCode.marketPriceId[0].price}</TableCell>
+                <TableCell>{item.length - item.shippedLength}</TableCell>
+                <TableCell>
+                  {getNumberWithCommas(item.colorCode.marketPriceId[0].price)}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -118,16 +113,32 @@ export default function OrderInfo(props) {
         </Grid>
         <Grid item xs={6} className={classes.alignMoneyRight}>
           <Typography component="p" className={classes.estimateMoney}>
-            100.000.000 vnđ
+            {totalPrice ? getNumberWithCommas(totalPrice) : ""} vnđ
           </Typography>
           <Typography component="p" className={classes.estimateMoney}>
-            50.000.000 vnđ
+            {props.deposit ? getNumberWithCommas(props.deposit) : ""} vnđ
           </Typography>
           <Typography component="p" className={classes.totalMoney}>
-            50.000.000 vnđ
+            {totalPrice && props.deposit ? getNumberWithCommas(totalPrice - props.deposit) : ""} vnđ
           </Typography>
         </Grid>
       </Grid>
     </div>
   );
 }
+
+// function createData(typeID, colorCode, shipped, remaining, unitPrice) {
+//   return { typeID, colorCode, shipped, remaining, unitPrice };
+// }
+
+// const rows = [
+//   createData("Kaki", 236, 500, 500, "100.000"),
+//   createData("Jean", 236, 500, 500, "100.000"),
+//   createData("Kate", 236, 500, 500, "100.000"),
+//   createData("Lụa", 236, 500, 500, "100.000"),
+//   createData("Bamboo", 236, 500, 500, "100.000"),
+//   createData("Cotton", 236, 500, 500, "100.000"),
+//   createData("Kaki", 236, 500, 500, "100.000"),
+//   createData("Jean", 236, 500, 500, "100.000"),
+//   createData("Kate", 236, 500, 500, "100.000"),
+// ];

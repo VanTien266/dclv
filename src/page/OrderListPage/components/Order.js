@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Grid,
@@ -22,7 +22,12 @@ import BillHeader from "./BillHeader";
 import clsx from "clsx";
 import Bill from "./Bill";
 import { useHistory } from "react-router-dom";
+import orderApi from "../../../api/orderApi";
 import moment from "moment";
+
+function getNumberWithCommas(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -131,6 +136,22 @@ export default function Order(props) {
   const role = localStorage.getItem("role");
 
   const [open, setOpen] = useState(false);
+  const [product, setProduct] = useState({ products: [] });
+
+  useEffect(() => {
+    let mounted = true;
+    const fetchOrder = async () => {
+      const response = await orderApi.getProducts(order._id);
+      if (mounted) {
+        setProduct(response);
+      }
+    };
+    fetchOrder();
+
+    return () => {
+      mounted = false;
+    };
+  }, [order._id]);
 
   const handleOpen = (e) => {
     //Seperate onClick in child and parents component
@@ -143,6 +164,8 @@ export default function Order(props) {
     e.stopPropagation();
     setOpen(false);
   };
+
+  console.log(product);
 
   const [expanded, setExpanded] = useState(false);
 
@@ -167,7 +190,7 @@ export default function Order(props) {
         xs={2}
         className={clsx(classes.orderId, classes.verticalCenter)}
       >
-        <p>MDH{order.orderId}</p>
+        <p>MDH{String(order.orderId).padStart(5, "0")}</p>
       </Grid>
       <Grid item xs={1} className={classes.verticalCenter}>
         <p>
@@ -175,15 +198,17 @@ export default function Order(props) {
         </p>
       </Grid>
 
-      <Grid item xs={1} className={classes.billQuantity}>
+      <Grid item xs={2} className={classes.billQuantity}>
         <p>{order.detailBill.length}</p>
       </Grid>
 
       <Grid item xs={2} className={classes.verticalCenter}>
         <p className={classes.verticalAlign}>{order.clientID.name}</p>
       </Grid>
-      <Grid item xs={2} className={classes.verticalCenter}>
-        <p className={classes.verticalAlign}>{order.deposit}</p>
+      <Grid item xs={1} className={classes.verticalCenter}>
+        <p className={classes.verticalAlign}>
+          {getNumberWithCommas(order.deposit)}
+        </p>
       </Grid>
       <Grid item xs={2} className={classes.productList}>
         <Button onClick={handleOpen}>Chi tiết</Button>
@@ -253,7 +278,7 @@ export default function Order(props) {
               Mặt hàng đã đặt
             </Typography>
             <TableContainer component={Paper} className={classes.productScroll}>
-              <Table sx={{ minWidth: "40vh" }} aria-label="simple table">
+              <Table stickyHeader sx={{ minWidth: "40vh" }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell className={classes.headerTable}>STT</TableCell>
@@ -275,7 +300,7 @@ export default function Order(props) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {order?.products.map((row, idx) => (
+                  {product?.products.map((row, idx) => (
                     <TableRow
                       key={idx}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

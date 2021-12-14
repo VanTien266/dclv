@@ -16,7 +16,8 @@ import {
   Paper,
 } from "@material-ui/core";
 import moment from "moment";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import productApi from "../../../api/productApi";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -109,18 +110,39 @@ export default function Bill(props) {
   const history = useHistory();
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [listFabricRoll, setListFabricRoll] = useState([]);
+  
+  useEffect(() => {
+    let mounted = true;
 
-  const handleOpen = () => {
+    const fetchFabricRoll = async (listId) => {
+      const response = await productApi.getListById(listId);
+      if (mounted) setListFabricRoll(response);
+      // console.log(response);
+    };
+
+    fetchFabricRoll({ ids: props.billInfo.fabricRoll });
+    return () => {
+      mounted = false;
+    };
+  }, [props.billInfo.fabricRoll]);
+
+  console.log(listFabricRoll);
+
+  const handleOpen = (e) => {
+    e.stopPropagation();
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = (e) => {
+    e.stopPropagation();
     setOpen(false);
   };
 
   const handleClick = () => {
-    history.push(`/${localStorage.getItem("role")}/order/billDetail`);
+    history.push(`/${localStorage.getItem("role")}/order/billDetail/${props.billInfo._id}`);
   };
+
   return (
     <Grid container className={classes.root} onClick={handleClick}>
       <Grid item xs={2}>
@@ -159,7 +181,7 @@ export default function Bill(props) {
               "completed" &&
               classes.successTypo) ||
             (props.billInfo.status[props.billInfo.status.length - 1].name ===
-              "cancle" &&
+              "failed" &&
               classes.failTypo)
           }
         >
@@ -174,7 +196,7 @@ export default function Bill(props) {
               "completed" &&
               "Giao hàng thành công") ||
             (props.billInfo.status[props.billInfo.status.length - 1].name ===
-              "cancle" &&
+              "failed" &&
               "Giao hàng thất bại")
           }
         </Typography>
@@ -197,18 +219,18 @@ export default function Bill(props) {
               Số cây vải đã xuất hóa đơn
             </Typography>
             <TableContainer component={Paper} className={classes.productScroll}>
-              <Table sx={{ minWidth: "40vh" }} aria-label="simple table">
+              <Table stickyHeader sx={{ minWidth: "40vh" }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell className={classes.headerTable}>STT</TableCell>
                     <TableCell className={classes.headerTable}>
-                      Mã cây vải
-                    </TableCell>
-                    <TableCell className={classes.headerTable}>
-                      Loại vải
-                    </TableCell>
-                    <TableCell className={classes.headerTable}>
                       Mã màu
+                    </TableCell>
+                    <TableCell className={classes.headerTable}>
+                      Tên
+                    </TableCell>
+                    <TableCell className={classes.headerTable}>
+                      Lô
                     </TableCell>
                     <TableCell className={classes.headerTable}>
                       Chiều dài&nbsp;(m)
@@ -216,7 +238,7 @@ export default function Bill(props) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {fabric.map((row, idx) => (
+                  {listFabricRoll.map((row, idx) => (
                     <TableRow
                       key={idx}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -233,13 +255,13 @@ export default function Bill(props) {
                         scope="row"
                         className={classes.tableContentBlack}
                       >
-                        {row.fabricRollId}
-                      </TableCell>
-                      <TableCell className={classes.tableContentBlack}>
-                        {row.typeId}
-                      </TableCell>
-                      <TableCell className={classes.tableContentBlack}>
                         {row.colorCode}
+                      </TableCell>
+                      <TableCell className={classes.tableContentBlack}>
+                        {row.item.name}
+                      </TableCell>
+                      <TableCell className={classes.tableContentBlack}>
+                        {row.lot}
                       </TableCell>
                       <TableCell className={classes.tableContentBlack}>
                         {row.length}
