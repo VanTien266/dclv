@@ -1,20 +1,20 @@
 import React from "react";
-import moment from "moment";
 import { Card, CardContent, CardHeader } from "@material-ui/core";
 import StatusItem from "./components/StatusItem";
 import { Timeline } from "@material-ui/lab";
 
 function Status(props) {
   const { status } = props;
-  const numberOfFailed = status
-    ? status.filter((item) => item.name === "failed").length
-    : 0;
+  const numberOfFailed =
+    status?.length > 0
+      ? status.filter((item) => item.name === "failed").length
+      : 0;
   return (
     <Card>
       <CardHeader title="Trạng thái" />
       <CardContent>
         <Timeline>
-          {status
+          {status?.length > 0
             ? status.map((item, index) => (
                 <StatusItem
                   key={index}

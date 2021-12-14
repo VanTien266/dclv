@@ -27,8 +27,7 @@ function BillExport() {
     let mounted = true;
 
     const fetchOrder = async (id) => {
-      const params = { _id: id };
-      const response = await orderApi.getOne(params);
+      const response = await orderApi.getOne(id);
       if (mounted) setOrder(response);
     };
 

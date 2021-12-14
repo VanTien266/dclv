@@ -15,65 +15,10 @@ import {
   TableRow,
   Paper,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-
-const fabric = [
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-  {
-    fabricRollId: "KT1234",
-    typeId: "2365",
-    colorCode: "100m",
-    length: "1000m",
-  },
-];
+import moment from "moment";
+import productApi from "../../../api/productApi";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -148,42 +93,93 @@ const useStyles = makeStyles((theme) => ({
       width: 0,
     },
   },
+  exportedTypo: {
+    color: "#ff9800",
+  },
+  deliveryTypo: {
+    color: "#2196f3",
+  },
+  successTypo: {
+    color: "#4caf50",
+  },
+  failTypo: {
+    color: "#f44336",
+  },
 }));
-export default function Bill() {
+export default function Bill(props) {
+  const { bill } = props;
   const history = useHistory();
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [fabricRolls, setFabricRolls] = useState([]);
+  const status = bill?.status[bill?.status?.length - 1].name;
 
-  const handleOpen = () => {
+  useEffect(() => {
+    let mounted = true;
+
+    const fetchFabricRoll = async (listId) => {
+      // console.log(listId);
+      const response = await productApi.getListById(listId);
+      if (mounted) setFabricRolls(response);
+      console.log(response);
+    };
+
+    fetchFabricRoll({ ids: bill.fabricRoll });
+
+    return () => {
+      mounted = false;
+    };
+  }, [bill]);
+
+  const handleOpen = (e) => {
+    //Seperate onClick in child and parents component
+    e.stopPropagation();
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = (e) => {
+    //Seperate onClick in child and parents component
+    e.stopPropagation();
     setOpen(false);
   };
 
   const handleClick = () => {
-    history.push(`/${localStorage.getItem("role")}/order/billDetail`);
+    history.push(
+      `/${localStorage.getItem("role")}/order/billDetail/${bill?._id}`
+    );
   };
   return (
     <Grid container className={classes.root} onClick={handleClick}>
       <Grid item xs={2}>
         <Typography variant="subtitle1" className={classes.billId}>
-          MHD13579
+          MHD{bill?.id}
         </Typography>
       </Grid>
       <Grid item xs={3}>
-        <Typography variant="subtitle1">Lưu Văn Tiến</Typography>
+        <Typography variant="subtitle1">{bill.salesmanID.name}</Typography>
       </Grid>
       <Grid item xs={2}>
-        <Typography variant="subtitle1">20/06/2000</Typography>
+        <Typography variant="subtitle1">
+          {moment(bill?.exportBillTime).format("DD/MM/YYYY")}
+        </Typography>
       </Grid>
       <Grid item xs={2} className={classes.productList}>
         <Button onClick={handleOpen}>Chi tiết</Button>
       </Grid>
       <Grid item xs={3}>
-        <Typography variant="subtitle1" className={classes.billStatus}>
-          Đang vận chuyển
+        <Typography
+          variant="subtitle1"
+          className={
+            (status === "exported" && classes.exportedTypo) ||
+            (status === "shipping" && classes.deliveryTypo) ||
+            (status === "completed" && classes.successTypo) ||
+            (status === "failed" && classes.failTypo)
+          }
+        >
+          {(status === "exported" && "Đã xuất") ||
+            (status === "shipping" && "Đang vận chuyển") ||
+            (status === "completed" && "Gia hàng thành công") ||
+            (status === "failed" && "Giao hàng thất bại")}
         </Typography>
       </Grid>
       <Modal
@@ -223,7 +219,7 @@ export default function Bill() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {fabric.map((row, idx) => (
+                  {fabricRolls.map((row, idx) => (
                     <TableRow
                       key={idx}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -240,10 +236,10 @@ export default function Bill() {
                         scope="row"
                         className={classes.tableContentBlack}
                       >
-                        {row.fabricRollId}
+                        {row.item.name}
                       </TableCell>
                       <TableCell className={classes.tableContentBlack}>
-                        {row.typeId}
+                        {row.item.fabricType.name}
                       </TableCell>
                       <TableCell className={classes.tableContentBlack}>
                         {row.colorCode}
