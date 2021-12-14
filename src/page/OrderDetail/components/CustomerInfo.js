@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Button, Typography } from "@material-ui/core";
-import { LocationOn, Email, Phone, Notes, Edit } from "@material-ui/icons";
+import { LocationOn, Email, Phone, Edit, BorderColor } from "@material-ui/icons";
 import clsx from "clsx";
 import { useHistory } from "react-router";
 
@@ -32,7 +32,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CustomerInfo() {
+export default function CustomerInfo(props) {
   const classes = useStyles();
   const history = useHistory();
 
@@ -67,12 +67,14 @@ export default function CustomerInfo() {
                     component="p"
                     className={clsx(classes.infoTable, classes.name)}
                   >
-                    Lưu Văn Tiến
+                    {props.customer !== undefined ? props.customer.name : ""}
                   </Typography>
-                  <Typography variant="subtitle1">KTX Khu B</Typography>
                   <Typography variant="subtitle1">
-                    Đông Hòa - Dĩ An - Bình Dương
+                    {props.customer !== undefined ? props.customer.address : ""}
                   </Typography>
+                  {/* <Typography variant="subtitle1">
+                    Đông Hòa - Dĩ An - Bình Dương
+                  </Typography> */}
                 </td>
               </tr>
               <tr>
@@ -81,7 +83,7 @@ export default function CustomerInfo() {
                 </td>
                 <td>
                   <Typography variant="subtitle1">
-                    tien.luu.van@hcmut.edu.vn
+                    {props.customer !== undefined ? props.customer.email : ""}
                   </Typography>
                 </td>
               </tr>
@@ -90,7 +92,9 @@ export default function CustomerInfo() {
                   <Phone />
                 </td>
                 <td>
-                  <Typography variant="subtitle1">0826755114</Typography>
+                  <Typography variant="subtitle1">
+                    {props.customer !== undefined ? props.customer.phone : ""}
+                  </Typography>
                 </td>
               </tr>
             </tbody>
@@ -98,7 +102,7 @@ export default function CustomerInfo() {
         </Grid>
         <Grid item xs={3}>
           <div className={classes.noteBox}>
-            <Notes fontSize="large" /> Ghi chú
+            <BorderColor fontSize="large"/> Ghi chú
           </div>
         </Grid>
       </Grid>
@@ -118,12 +122,16 @@ export default function CustomerInfo() {
                     variant="subtitle1"
                     className={clsx(classes.infoTable, classes.name)}
                   >
-                    Lưu Văn Tiến
+                    {props.receiverName !== undefined ? props.receiverName : ""}
                   </Typography>
-                  <Typography variant="subtitle1">KTX khu A</Typography>
                   <Typography variant="subtitle1">
-                    KP 6 - Tp Thủ Đức - Tp Hồ Chí Minh
+                    {props.receiverAddress !== undefined
+                      ? props.receiverAddress
+                      : ""}
                   </Typography>
+                  {/* <Typography variant="subtitle1">
+                    KP 6 - Tp Thủ Đức - Tp Hồ Chí Minh
+                  </Typography> */}
                 </td>
               </tr>
               <tr>
@@ -131,7 +139,11 @@ export default function CustomerInfo() {
                   <Phone />
                 </td>
                 <td>
-                  <Typography variant="subtitle1">01296755114</Typography>
+                  <Typography variant="subtitle1">
+                    {props.receiverPhone !== undefined
+                      ? props.receiverPhone
+                      : ""}
+                  </Typography>
                 </td>
               </tr>
             </tbody>

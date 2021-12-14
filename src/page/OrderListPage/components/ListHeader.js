@@ -68,8 +68,10 @@ export default function ListHeader() {
       <Grid container item xs={2} className={classes.productList}>
         <p>Mặt hàng đã đặt</p>
       </Grid>
-      <Grid item xs={2} className={classes.verticalCenter}>
-        <p>Trạng thái</p>
+      <Grid container item xs={2} className={classes.verticalCenter}>
+        <Grid item xs={8}>
+          <p className={classes.alignTextCenter}>Trạng thái</p>
+        </Grid>
       </Grid>
     </Grid>
   );
