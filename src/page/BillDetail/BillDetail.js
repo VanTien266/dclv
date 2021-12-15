@@ -34,7 +34,7 @@ function BillDetail() {
   useEffect(() => {
     let mounted = true;
     const fetchBill = async () => {
-      const response = await billApi.getOne({_id:id});
+      const response = await billApi.getOne(id);
       if (mounted) {
         setBill(response);
       }

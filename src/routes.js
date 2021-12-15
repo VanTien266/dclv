@@ -9,6 +9,7 @@ import OrderListPage from "./page/OrderListPage";
 import OrderDetail from "./page/OrderDetail";
 import OrderEdit from "./page/OrderEdit";
 import NotificationPage from "./page/NotificationPage/NotificationPage";
+import StaffPage from "./page/StaffPage/StaffPage";
 import SupportPage from "./page/SupportPage/SupportPage";
 
 const routes = [
@@ -94,6 +95,11 @@ const routes = [
         path: "/admin/order/orderEdit",
         exact: true,
         component: OrderEdit,
+      },
+      {
+        path: "/admin/staff",
+        exact: true,
+        component: StaffPage,
       },
       {
         path: "/admin/order/billDetail",

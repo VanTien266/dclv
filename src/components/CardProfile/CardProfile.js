@@ -52,7 +52,7 @@ function CardProfile() {
   };
 
   const handleOpenInfo = () => {
-    history.push("/admin/info");
+    history.push(`/${role}/info`);
   };
 
   return (
