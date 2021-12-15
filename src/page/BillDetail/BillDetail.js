@@ -34,7 +34,7 @@ function BillDetail() {
   useEffect(() => {
     let mounted = true;
     const fetchBill = async () => {
-      const response = await billApi.getOne(id);
+      const response = await billApi.getOne({_id:id});
       if (mounted) {
         setBill(response);
       }
@@ -43,8 +43,8 @@ function BillDetail() {
     return () => {
       mounted = false;
     };
-  }, []);
-
+  }, [id]);
+  console.log(bill);
   const handleBack = () => {
     if (role !== null) history.push(`/${role}/order/orderDetail`);
     else history.push(`/order/orderDetail`);

@@ -49,6 +49,9 @@ const useStyles = makeStyles({
   cancel: {
     color: "#FF0000",
   },
+  past: {
+    color: "#B4B4C1",
+  },
   pendingDot: {
     backgroundColor: "#D19431",
   },
@@ -60,6 +63,9 @@ const useStyles = makeStyles({
   },
   cancelDot: {
     backgroundColor: "#FF0000",
+  },
+  pastDot: {
+    backgroundColor: "#B4B4C1",
   },
   timelineMargin: {
     margin: "0px",
@@ -76,6 +82,7 @@ const TimelineItem = withStyles({
 
 export default function TimelineStatus(props) {
   const classes = useStyles();
+  const lastStatusIdx = props.statusList.length - 1;
   return (
     <Container className={classes.timelineStyle}>
       <Typography variant="h5" className={classes.title}>
@@ -86,28 +93,25 @@ export default function TimelineStatus(props) {
           ? props.statusList.map((item, idx) => {
               return idx !== 0 && idx % 2 === 0 && item.name === "pending" ? (
                 <TimelineItem key={idx}>
-                  <TimelineSeparator>
-                    <TimelineDot className={classes.pendingDot} />
-                    {idx === props.statusList.length - 1 ? (
-                      " "
-                    ) : (
+                  {idx === lastStatusIdx ? (
+                    <TimelineSeparator>
+                      <TimelineDot className={classes.pendingDot} />
+                    </TimelineSeparator>
+                  ) : (
+                    <TimelineSeparator>
+                      <TimelineDot className={classes.pastDot} />
                       <TimelineConnector />
-                    )}
-                  </TimelineSeparator>
+                    </TimelineSeparator>
+                  )}
                   <TimelineContent>
                     <Grid container>
                       <Grid item xs={9}>
                         <Typography
                           variant="subtitle1"
                           className={
-                            (item.name === "pending" &&
-                              clsx(classes.pending, classes.status)) ||
-                            (item.name === "processing" &&
-                              clsx(classes.processing, classes.status)) ||
-                            (item.name === "completed" &&
-                              clsx(classes.completed, classes.status)) ||
-                            (item.name === "cancle" &&
-                              clsx(classes.cancel, classes.status))
+                            (idx !== lastStatusIdx &&
+                              clsx(classes.past, classes.status)) ||
+                            clsx(classes.pending, classes.status)
                           }
                         >
                           Chờ xử lý
@@ -115,14 +119,9 @@ export default function TimelineStatus(props) {
                         <Typography
                           variant="subtitle1"
                           className={
-                            (item.name === "pending" &&
-                              clsx(classes.pending, classes.statusDetail)) ||
-                            (item.name === "processing" &&
-                              clsx(classes.processing, classes.statusDetail)) ||
-                            (item.name === "completed" &&
-                              clsx(classes.completed, classes.statusDetail)) ||
-                            (item.name === "cancle" &&
-                              clsx(classes.cancel, classes.statusDetail))
+                            (idx !== lastStatusIdx &&
+                              clsx(classes.past, classes.statusDetail)) ||
+                            clsx(classes.pending, classes.statusDetail)
                           }
                         >
                           Đơn hàng đã được hoàn tất một phần
@@ -130,14 +129,9 @@ export default function TimelineStatus(props) {
                         <Typography
                           variant="subtitle1"
                           className={
-                            (item.name === "pending" &&
-                              clsx(classes.pending, classes.statusDetail)) ||
-                            (item.name === "processing" &&
-                              clsx(classes.processing, classes.statusDetail)) ||
-                            (item.name === "completed" &&
-                              clsx(classes.completed, classes.statusDetail)) ||
-                            (item.name === "cancle" &&
-                              clsx(classes.cancel, classes.statusDetail))
+                            (idx !== lastStatusIdx &&
+                              clsx(classes.past, classes.statusDetail)) ||
+                            clsx(classes.pending, classes.statusDetail)
                           }
                         >
                           Đang đợi xử lí phần còn lại
@@ -147,14 +141,9 @@ export default function TimelineStatus(props) {
                         <Typography
                           variant="subtitle1"
                           className={
-                            (item.name === "pending" &&
-                              clsx(classes.pending, classes.status)) ||
-                            (item.name === "processing" &&
-                              clsx(classes.processing, classes.status)) ||
-                            (item.name === "completed" &&
-                              clsx(classes.completed, classes.status)) ||
-                            (item.name === "cancle" &&
-                              clsx(classes.cancel, classes.status))
+                            (idx !== lastStatusIdx &&
+                              clsx(classes.past, classes.status)) ||
+                            clsx(classes.pending, classes.status)
                           }
                         >
                           {moment(item.date)
@@ -170,10 +159,19 @@ export default function TimelineStatus(props) {
                   <TimelineSeparator>
                     <TimelineDot
                       className={
-                        (item.name === "pending" && classes.pendingDot) ||
-                        (item.name === "processing" && classes.processingDot) ||
-                        (item.name === "completed" && classes.completedDot) ||
-                        (item.name === "cancle" && classes.cancelDot)
+                        (idx !== lastStatusIdx && classes.pastDot) ||
+                        (item.name === "pending" &&
+                          idx === lastStatusIdx &&
+                          classes.pendingDot) ||
+                        (item.name === "processing" &&
+                          idx === lastStatusIdx &&
+                          classes.processingDot) ||
+                        (item.name === "completed" &&
+                          idx === lastStatusIdx &&
+                          classes.completedDot) ||
+                        (item.name === "cancle" &&
+                          idx === lastStatusIdx &&
+                          classes.cancelDot)
                       }
                     />
                     {idx === props.statusList.length - 1 ? (
@@ -188,13 +186,19 @@ export default function TimelineStatus(props) {
                         <Typography
                           variant="subtitle1"
                           className={
+                            (idx !== lastStatusIdx &&
+                              clsx(classes.past, classes.status)) ||
                             (item.name === "pending" &&
+                              idx === lastStatusIdx &&
                               clsx(classes.pending, classes.status)) ||
                             (item.name === "processing" &&
+                              idx === lastStatusIdx &&
                               clsx(classes.processing, classes.status)) ||
                             (item.name === "completed" &&
+                              idx === lastStatusIdx &&
                               clsx(classes.completed, classes.status)) ||
                             (item.name === "cancle" &&
+                              idx === lastStatusIdx &&
                               clsx(classes.cancel, classes.status))
                           }
                         >
@@ -206,13 +210,19 @@ export default function TimelineStatus(props) {
                         <Typography
                           variant="subtitle1"
                           className={
+                            (idx !== lastStatusIdx &&
+                              clsx(classes.past, classes.statusDetail)) ||
                             (item.name === "pending" &&
+                              idx === lastStatusIdx &&
                               clsx(classes.pending, classes.statusDetail)) ||
                             (item.name === "processing" &&
+                              idx === lastStatusIdx &&
                               clsx(classes.processing, classes.statusDetail)) ||
                             (item.name === "completed" &&
+                              idx === lastStatusIdx &&
                               clsx(classes.completed, classes.statusDetail)) ||
                             (item.name === "cancle" &&
+                              idx === lastStatusIdx &&
                               clsx(classes.cancel, classes.statusDetail))
                           }
                         >
@@ -229,13 +239,19 @@ export default function TimelineStatus(props) {
                         <Typography
                           variant="subtitle1"
                           className={
+                            (idx !== lastStatusIdx &&
+                              clsx(classes.past, classes.status)) ||
                             (item.name === "pending" &&
+                              idx === lastStatusIdx &&
                               clsx(classes.pending, classes.status)) ||
                             (item.name === "processing" &&
+                              idx === lastStatusIdx &&
                               clsx(classes.processing, classes.status)) ||
                             (item.name === "completed" &&
+                              idx === lastStatusIdx &&
                               clsx(classes.completed, classes.status)) ||
                             (item.name === "cancle" &&
+                              idx === lastStatusIdx &&
                               clsx(classes.cancel, classes.status))
                           }
                         >

@@ -59,10 +59,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     margin: "0px",
   },
-  billStatus: {
-    color: "#275DE9",
-    fontWeight: "bold",
-  },
   verticalCenter: {
     display: "flex",
     alignItems: "center",
@@ -148,6 +144,7 @@ export default function Bill(props) {
       `/${localStorage.getItem("role")}/order/billDetail/${bill?._id}`
     );
   };
+
   return (
     <Grid container className={classes.root} onClick={handleClick}>
       <Grid item xs={2}>
@@ -200,18 +197,18 @@ export default function Bill(props) {
               Số cây vải đã xuất hóa đơn
             </Typography>
             <TableContainer component={Paper} className={classes.productScroll}>
-              <Table sx={{ minWidth: "40vh" }} aria-label="simple table">
+              <Table stickyHeader sx={{ minWidth: "40vh" }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell className={classes.headerTable}>STT</TableCell>
                     <TableCell className={classes.headerTable}>
-                      Mã cây vải
-                    </TableCell>
-                    <TableCell className={classes.headerTable}>
-                      Loại vải
-                    </TableCell>
-                    <TableCell className={classes.headerTable}>
                       Mã màu
+                    </TableCell>
+                    <TableCell className={classes.headerTable}>
+                      Tên
+                    </TableCell>
+                    <TableCell className={classes.headerTable}>
+                      Lô
                     </TableCell>
                     <TableCell className={classes.headerTable}>
                       Chiều dài&nbsp;(m)
@@ -242,7 +239,7 @@ export default function Bill(props) {
                         {row.item.fabricType.name}
                       </TableCell>
                       <TableCell className={classes.tableContentBlack}>
-                        {row.colorCode}
+                        {row.lot}
                       </TableCell>
                       <TableCell className={classes.tableContentBlack}>
                         {row.length}
@@ -258,3 +255,60 @@ export default function Bill(props) {
     </Grid>
   );
 }
+
+const fabric = [
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+  {
+    fabricRollId: "KT1234",
+    typeId: "2365",
+    colorCode: "100m",
+    length: "1000m",
+  },
+];

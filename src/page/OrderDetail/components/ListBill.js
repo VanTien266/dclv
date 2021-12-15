@@ -46,22 +46,7 @@ const useStyles = makeStyles({
 export default function ListBill(props) {
   const { detailBill } = props;
   const classes = useStyles();
-  const [listBill, setListBill] = useState([]);
 
-  useEffect(() => {
-    let mounted = true;
-    const fetchListBill = async (data) => {
-      const response = await billApi.getListByIds(data);
-      if (mounted) {
-        setListBill(response);
-      }
-    };
-    fetchListBill({ ids: detailBill });
-
-    return () => {
-      mounted = false;
-    };
-  }, [detailBill]);
   return (
     <Container maxWidth="xl" className={classes.billBox}>
       <Typography variant="h5" className={classes.title}>
@@ -85,9 +70,7 @@ export default function ListBill(props) {
         </Grid>
       </Grid>
       <Container maxWidth="xl" className={classes.containerNoPadding}>
-        {listBill.length > 0
-          ? listBill.map((item, index) => <Bill key={index} bill={item} />)
-          : null}
+        {detailBill.map((item, index) => <Bill key={index} bill={item} />)}
       </Container>
     </Container>
   );
