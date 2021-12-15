@@ -92,7 +92,7 @@ function AnotherInfo(props) {
                   multiline
                   rows={7}
                   // size="medium"
-                  defaultValue="Đây là ghi chú"
+                  defaultValue={bill?.note}
                   variant="outlined"
                   className={classes.note}
                 />

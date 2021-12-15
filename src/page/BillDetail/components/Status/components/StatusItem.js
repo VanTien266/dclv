@@ -43,8 +43,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function StatusItem(props) {
-  const { item, isLast } = props;
-  console.log(props);
+  const { item, isLast, numberOfFailed } = props;
   const classes = useStyles();
 
   return (
@@ -109,9 +108,19 @@ function StatusItem(props) {
             (item.name === "completed" && "Đơn hàng được giao thành công") ||
             (item.name === "failed" && "Đơn hàng giao thất bại")}
         </Typography>
-        {/* {reason === "" ? null : (
-          <Typography variant="subtitle1">Lí do: {reason}</Typography>
-        )} */}
+        {item.reason ? (
+          <Typography
+            variant="subtitle1"
+            className={isLast ? classes.failTypo : classes.pastTypo}
+          >
+            Lí do: {item.reason}
+          </Typography>
+        ) : null}
+        {isLast && numberOfFailed === 3 ? (
+          <Typography variant="subtitle1" className={classes.failTypo}>
+            Tiến hành hủy đơn hàng
+          </Typography>
+        ) : null}
       </TimelineContent>
     </TimelineItem>
   );

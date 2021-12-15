@@ -60,7 +60,7 @@ const routes = [
         component: lazy(() => import("./page/BillDetail")),
       },
       {
-        path: "/salesman/order/billExport",
+        path: "/salesman/order/billExport/:id",
         exact: true,
         component: lazy(() => import("./page/BillExport")),
       },
@@ -155,7 +155,7 @@ const routes = [
         path: "/support",
         exact: true,
         component: SupportPage,
-      }
+      },
     ],
   },
 ];

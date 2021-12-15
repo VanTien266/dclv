@@ -15,10 +15,10 @@ import {
   TableRow,
   Paper,
 } from "@material-ui/core";
-import moment from "moment";
 import React, { useState, useEffect } from "react";
-import productApi from "../../../api/productApi";
 import { useHistory } from "react-router-dom";
+import moment from "moment";
+import productApi from "../../../api/productApi";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -91,77 +91,73 @@ const useStyles = makeStyles((theme) => ({
   },
   exportedTypo: {
     color: "#ff9800",
-    fontWeight: "bold",
   },
   deliveryTypo: {
     color: "#2196f3",
-    fontWeight: "bold",
   },
   successTypo: {
     color: "#4caf50",
-    fontWeight: "bold",
   },
   failTypo: {
     color: "#f44336",
-    fontWeight: "bold",
   },
 }));
 export default function Bill(props) {
+  const { bill } = props;
   const history = useHistory();
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [listFabricRoll, setListFabricRoll] = useState([]);
-  
+  const [fabricRolls, setFabricRolls] = useState([]);
+  const status = bill?.status[bill?.status?.length - 1].name;
+
   useEffect(() => {
     let mounted = true;
 
     const fetchFabricRoll = async (listId) => {
+      // console.log(listId);
       const response = await productApi.getListById(listId);
-      if (mounted) setListFabricRoll(response);
-      // console.log(response);
+      if (mounted) setFabricRolls(response);
+      console.log(response);
     };
 
-    fetchFabricRoll({ ids: props.billInfo.fabricRoll });
+    fetchFabricRoll({ ids: bill.fabricRoll });
+
     return () => {
       mounted = false;
     };
-  }, [props.billInfo.fabricRoll]);
-
-  console.log(listFabricRoll);
+  }, [bill]);
 
   const handleOpen = (e) => {
+    //Seperate onClick in child and parents component
     e.stopPropagation();
     setOpen(true);
   };
 
   const handleClose = (e) => {
+    //Seperate onClick in child and parents component
     e.stopPropagation();
     setOpen(false);
   };
 
   const handleClick = () => {
-    history.push(`/${localStorage.getItem("role")}/order/billDetail/${props.billInfo._id}`);
+    history.push(
+      `/${localStorage.getItem("role")}/order/billDetail/${bill?._id}`
+    );
   };
 
   return (
     <Grid container className={classes.root} onClick={handleClick}>
       <Grid item xs={2}>
         <Typography variant="subtitle1" className={classes.billId}>
-          {"HĐ" + (props.billInfo !== undefined ? props.billInfo.billID : "")}
+          HĐ{bill?.billID}
         </Typography>
       </Grid>
       <Grid item xs={3}>
-        <Typography variant="subtitle1">
-          {props.billInfo !== undefined ? props.billInfo.salesmanID.name : ""}
-        </Typography>
+        <Typography variant="subtitle1">{bill.salesmanID.name}</Typography>
       </Grid>
       <Grid item xs={2}>
         <Typography variant="subtitle1">
-          {props.billInfo !== undefined
-            ? moment(props.billInfo.exportBillTime)
-                .subtract(1, "days")
-                .format("DD/MM/YYYY")
-            : ""}
+          {moment(bill?.exportBillTime).format("DD/MM/YYYY")}
         </Typography>
       </Grid>
       <Grid item xs={2} className={classes.productList}>
@@ -171,34 +167,16 @@ export default function Bill(props) {
         <Typography
           variant="subtitle1"
           className={
-            (props.billInfo.status[props.billInfo.status.length - 1].name ===
-              "exported" &&
-              classes.exportedTypo) ||
-            (props.billInfo.status[props.billInfo.status.length - 1].name ===
-              "shipping" &&
-              classes.deliveryTypo) ||
-            (props.billInfo.status[props.billInfo.status.length - 1].name ===
-              "completed" &&
-              classes.successTypo) ||
-            (props.billInfo.status[props.billInfo.status.length - 1].name ===
-              "failed" &&
-              classes.failTypo)
+            (status === "exported" && classes.exportedTypo) ||
+            (status === "shipping" && classes.deliveryTypo) ||
+            (status === "completed" && classes.successTypo) ||
+            (status === "failed" && classes.failTypo)
           }
         >
-          {
-            (props.billInfo.status[props.billInfo.status.length - 1].name ===
-              "exported" &&
-              "Đã xuất") ||
-            (props.billInfo.status[props.billInfo.status.length - 1].name ===
-              "shipping" &&
-              "Đang giao hàng") ||
-            (props.billInfo.status[props.billInfo.status.length - 1].name ===
-              "completed" &&
-              "Giao hàng thành công") ||
-            (props.billInfo.status[props.billInfo.status.length - 1].name ===
-              "failed" &&
-              "Giao hàng thất bại")
-          }
+          {(status === "exported" && "Đã xuất") ||
+            (status === "shipping" && "Đang vận chuyển") ||
+            (status === "completed" && "Giao hàng thành công") ||
+            (status === "failed" && "Giao hàng thất bại")}
         </Typography>
       </Grid>
       <Modal
@@ -238,7 +216,7 @@ export default function Bill(props) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {listFabricRoll.map((row, idx) => (
+                  {fabricRolls.map((row, idx) => (
                     <TableRow
                       key={idx}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -255,10 +233,10 @@ export default function Bill(props) {
                         scope="row"
                         className={classes.tableContentBlack}
                       >
-                        {row.colorCode}
+                        {row.item.name}
                       </TableCell>
                       <TableCell className={classes.tableContentBlack}>
-                        {row.item.name}
+                        {row.item.fabricType.name}
                       </TableCell>
                       <TableCell className={classes.tableContentBlack}>
                         {row.lot}

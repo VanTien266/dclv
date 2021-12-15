@@ -53,7 +53,7 @@ export default function FabricRollBillCompleted() {
       </IconWrapperStyle>
       <Typography variant="h4">{fNumber(fabricrollTotal)}</Typography>
       <Typography variant="h6" sx={{ opacity: 0.72 }}>
-        Số cây vải đã bán
+        Số cây vải giao thành công
       </Typography>
     </RootStyle>
   );

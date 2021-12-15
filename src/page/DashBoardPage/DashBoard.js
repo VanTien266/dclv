@@ -12,9 +12,9 @@ import StaffTotalSale from './components/StaffTotalSale';
 import StaffOrderComplete from './components/StaffOrderComplete';
 import StaffRevenue from './components/StaffRevenue';
 import FabricRollBillCompleted from './components/FabricRollBillCompleted';
-import ProductsChart from './components/ProductsChart';
+import ChartFabricTypeSell from './components/ChartFabricTypeSell';
 import TopProducts from './components/TopProducts';
-import RevenueChart1 from './components/RevenueChart1';
+import ChartFabricWarehouse from './components/ChartFabricWarehouse';
 import RevenueChart2 from './components/RevenueChart2';
 import orderApi from "../../api/staffApi";
 
@@ -67,11 +67,11 @@ function DashBoard() {
             <FabricRollBillCompleted />
           </Grid>
           <Grid item xs={12} md={6} lg={8} className={classes.Chart1}>
-            <RevenueChart1 />
+            <ChartFabricWarehouse />
           </Grid>
 
           <Grid item xs={12} md={6} lg={4} className={classes.ProductsChart}>
-            <ProductsChart />
+            <ChartFabricTypeSell />
           </Grid>
 
           <Grid item xs={12} md={6} lg={8} className={classes.Chart1}>

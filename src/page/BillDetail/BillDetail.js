@@ -31,15 +31,11 @@ function BillDetail() {
   const role = localStorage.getItem("role");
   const { id } = useParams();
   const [bill, setBill] = useState({});
-
   useEffect(() => {
     let mounted = true;
-    console.log("run");
     const fetchBill = async () => {
-      const params = { _id: id };
-      const response = await billApi.getOne(params);
+      const response = await billApi.getOne({_id:id});
       if (mounted) {
-        console.log(response);
         setBill(response);
       }
     };
@@ -47,8 +43,8 @@ function BillDetail() {
     return () => {
       mounted = false;
     };
-  }, []);
-
+  }, [id]);
+  console.log(bill);
   const handleBack = () => {
     if (role !== null) history.push(`/${role}/order/orderDetail`);
     else history.push(`/order/orderDetail`);

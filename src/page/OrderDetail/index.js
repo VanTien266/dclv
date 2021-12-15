@@ -62,6 +62,7 @@ export default function OrderDetail() {
     let mounted = true;
     const fetchOrderDetail = async () => {
       const response = await orderApi.getOne(id);
+      console.log(response);
       if (mounted) {
         setDetail(response);
       }
@@ -107,7 +108,7 @@ export default function OrderDetail() {
           <TimelineStatus statusList={detail.orderStatus} />
         </Grid>
         <Grid item xs={12} md={7}>
-          <ListBill bills={detail.detailBill}/>
+          <ListBill detailBill={detail.detailBill} />
         </Grid>
         <Grid item xs={12} md={5}>
           <CustomerInfo
