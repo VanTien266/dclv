@@ -165,8 +165,6 @@ export default function Order(props) {
     setOpen(false);
   };
 
-  console.log(product);
-
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = (e) => {

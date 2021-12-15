@@ -86,7 +86,7 @@ const routes = [
         component: OrderListPage,
       },
       {
-        path: "/admin/order/orderDetail",
+        path: "/admin/order/orderDetail/:id",
         exact: true,
         component: OrderDetail,
       },

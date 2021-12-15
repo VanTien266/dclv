@@ -56,6 +56,7 @@ export default function OrderDetail() {
   const history = useHistory();
   const { id } = useParams();
   const role = localStorage.getItem("role");
+  console.log(id);
   const [detail, setDetail] = useState({ orderStatus: [], products: [], detailBill: [] });
 
   useEffect(() => {
@@ -74,7 +75,7 @@ export default function OrderDetail() {
     };
   }, [id]);
 
-  console.log(detail.clientID);
+  console.log(detail);
 
   const handleBack = () => {
     history.push(`/${role}/order`);

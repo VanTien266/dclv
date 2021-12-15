@@ -47,10 +47,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     margin: "0px",
   },
-  billStatus: {
-    color: "#5A9E4B",
-    fontWeight: "bold",
-  },
   verticalCenter: {
     direction: "row",
     display: "flex",
@@ -94,6 +90,22 @@ const useStyles = makeStyles((theme) => ({
     "&::-webkit-scrollbar": {
       width: 0,
     },
+  },
+  exportedTypo: {
+    color: "#ff9800",
+    fontWeight: "bold"
+  },
+  deliveryTypo: {
+    color: "#2196f3",
+    fontWeight: "bold"
+  },
+  successTypo: {
+    color: "#4caf50",
+    fontWeight: "bold"
+  },
+  failTypo: {
+    color: "#f44336",
+    fontWeight: "bold"
   },
 }));
 
@@ -154,22 +166,27 @@ export default function Bill(props) {
         {moment(bill.exportBillTime).subtract(1, "days").format("DD/MM/YYYY")}
       </Grid>
       <Grid item xs={2}>
-        {/* {bill.salesmanID} */}
-        Tiến
+        {bill.salesmanID ? bill.salesmanID.name : "Trống"}
       </Grid>
       <Grid item xs={2} className={classes.verticalCenter}>
-        {bill.clientID ? bill.clientID : "Trống"}
+        {bill.clientID ? bill.clientID.name : "Trống"}
       </Grid>
       <Grid item xs={2} className={classes.alignVerticalCenter}>
         <Button onClick={handleOpen}>Chi tiết</Button>
       </Grid>
       <Grid container item xs={2}>
-        <p className={classes.billStatus}>
-          {bill.billStatus === "exported"
+        <p className={bill.status[bill.status.length - 1].name === "exported"
+            ? classes.exportedTypo
+            : bill.status[bill.status.length - 1].name === "shipping"
+            ? classes.deliveryTypo
+            : bill.status[bill.status.length - 1].name === "completed"
+            ? classes.successTypo
+            : classes.failTypo}>
+          {bill.status[bill.status.length - 1].name === "exported"
             ? "Đã xuất"
-            : bill.billStatus === "shipping"
+            : bill.status[bill.status.length - 1].name === "shipping"
             ? "Đang vận chuyển"
-            : bill.billStatus === "completed"
+            : bill.status[bill.status.length - 1].name === "completed"
             ? "Hoàn tất"
             : "Thất bại"}
         </p>
