@@ -17,6 +17,10 @@ class BillApi {
     const url = "/bill/list";
     return axiosClient.post(url, data);
   };
+  getBillCompleted = () => {
+    const url = "/bill/completed";
+    return axiosClient.get(url);
+  };
 }
 const billApi = new BillApi();
 export default billApi;

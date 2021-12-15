@@ -9,30 +9,17 @@ import NotificationButton from "../../components/Button/NotificationButton";
 import { Notifications } from "@material-ui/icons";
 
 import StaffTotalSale from './components/StaffTotalSale';
-import StaffOrderComplete from './components/StaffOrderComplete';
+import StaffBillComplete from './components/StaffBillComplete';
 import StaffRevenue from './components/StaffRevenue';
 import FabricRollBillCompleted from './components/FabricRollBillCompleted';
 import ChartFabricTypeSell from './components/ChartFabricTypeSell';
-import TopProducts from './components/TopProducts';
+import ChartOrderHandle from './components/ChartOrderHandle';
 import ChartFabricWarehouse from './components/ChartFabricWarehouse';
 import RevenueChart2 from './components/RevenueChart2';
 import orderApi from "../../api/staffApi";
 
 function DashBoard() {
   const classes = useStyles();
-  const [order, setOrder] = useState([]);
-  useEffect(() => {
-    const fetCountOrder = async () => {
-        try {
-          const response = await orderApi.countAllOrder();
-          console.log(response);
-          setOrder(response);
-        }catch (error) {
-          console.log("Failed to fetch order count", error);
-        }
-    }
-    fetCountOrder();
-  }, []);
 
   return (
     <Box className={classes.root}>
@@ -58,7 +45,7 @@ function DashBoard() {
             <StaffTotalSale />
           </Grid>
           <Grid item xs={12} sm={6} md={3} className={classes.staffOrderComplete}>
-            <StaffOrderComplete />
+            <StaffBillComplete />
           </Grid>
           <Grid item xs={12} sm={6} md={3} className={classes.staffRevenue}>
             <StaffRevenue />
@@ -79,7 +66,7 @@ function DashBoard() {
           </Grid>
 
           <Grid item xs={12} md={6} lg={4} className={classes.TopProducts}>
-            <TopProducts />
+            <ChartOrderHandle />
           </Grid>
         </Grid>
       </Container>

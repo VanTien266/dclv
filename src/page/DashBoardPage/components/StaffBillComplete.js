@@ -4,7 +4,7 @@ import { alpha, styled } from '@material-ui/core/styles';
 import { Card, Typography } from '@material-ui/core';
 // utils
 import {fNumber} from "../../../utils/formatNumber";
-import orderApi from "../../../api/orderApi";
+import billApi from "../../../api/billApi";
 
 const RootStyle = styled(Card)(({ theme }) => ({
   boxShadow: 'none',
@@ -31,28 +31,28 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
   )} 100%)`
 }));
 
-export default function StaffOrderComplete() {
-  const [orderComplete, setOrderComplete] = useState([]);
+export default function StaffBillComplete() {
+  const [billComplete, setBillComplete] = useState([]);
   useEffect(() => {
-    const fetCountOrderComplete = async () => {
+    const fetCountBillComplete = async () => {
         try {
-          const response = await orderApi.countOrderComplete();
+          const response = await billApi.getBillCompleted();
           console.log(response);
-          setOrderComplete(response);
+          setBillComplete(response);
         }catch (error) {
-          console.log("Failed to fetch order complete count", error);
+          console.log("Failed to fetch bill complete count", error);
         }
     }
-    fetCountOrderComplete();
+    fetCountBillComplete();
   }, []);
   return (
     <RootStyle>
       <IconWrapperStyle>
         <Icon icon="carbon:task-complete" color="rgb(12, 83, 183)" width="35" height="35" />
       </IconWrapperStyle>
-      <Typography variant="h4">{fNumber(orderComplete)}</Typography>
+      <Typography variant="h4">{fNumber(billComplete)}</Typography>
       <Typography variant="h6" sx={{ opacity: 0.72 }}>
-        Đơn đã giao
+        Hóa đơn giao thành công
       </Typography>
     </RootStyle>
   );
