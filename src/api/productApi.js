@@ -5,6 +5,10 @@ class ProductApi {
     const url = "/product";
     return axiosClient.get(url, { params });
   };
+  getOne = (params) => {
+    const url = "/product/detail";
+    return axiosClient.get(url, { params });
+  };
   getListById = (data) => {
     const url = "/product/list";
     // const body = QueryString.stringify(data);
@@ -17,7 +21,7 @@ class ProductApi {
   getFabricTypeSell = (params) => {
     const url = "/getfabrictypesell";
     return axiosClient.get(url, { params });
-  }
+  };
 }
 const productApi = new ProductApi();
 export default productApi;

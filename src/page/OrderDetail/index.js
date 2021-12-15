@@ -82,7 +82,7 @@ export default function OrderDetail() {
   };
 
   const handleExportBill = () => {
-    history.push(`/${role}/order/billExport`);
+    history.push(`/${role}/order/billExport/${id}`);
   };
 
   return (

@@ -8,6 +8,7 @@ import {
   Typography,
   TableBody,
   Button,
+  Grid,
 } from "@material-ui/core";
 import NumberFormat from "react-number-format";
 import React from "react";
@@ -27,10 +28,11 @@ const useStyles = makeStyles((theme) => ({
   capitalize: {
     textTransform: "capitalize",
   },
+  rowContainer: { display: "flex", flexDirection: "column", width: "100%" },
 }));
 
 function ItemTable(props) {
-  const { listProductAdded, setProductIdDel } = props;
+  const { listProductAdded } = props;
   const classes = useStyles();
   const tableTitleConfig = [
     "STT",
@@ -42,7 +44,7 @@ function ItemTable(props) {
     "",
   ];
 
-  console.log("list product", listProductAdded);
+  console.log("ItemTable render", listProductAdded);
 
   const getTotalLength = (prevVal, nextItem) => prevVal + nextItem?.length;
   return (
@@ -65,7 +67,9 @@ function ItemTable(props) {
                   <Typography variant="subtitle2">{index + 1}</Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="subtitle2">{item?.id}</Typography>
+                  <Typography variant="subtitle2">
+                    {item?.item?.colorCode}
+                  </Typography>
                 </TableCell>
                 <TableCell>
                   <Typography
@@ -96,7 +100,7 @@ function ItemTable(props) {
                   <Typography variant="subtitle2">{item?.lot}</Typography>
                 </TableCell>
                 <TableCell>
-                  <Button onClick={setProductIdDel(item?.id)}>Xóa</Button>
+                  <Button>Xóa</Button>
                 </TableCell>
               </TableRow>
             ))}
