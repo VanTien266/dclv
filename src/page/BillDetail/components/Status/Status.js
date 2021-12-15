@@ -5,10 +5,12 @@ import { Timeline } from "@material-ui/lab";
 
 function Status(props) {
   const { status } = props;
+
   const numberOfFailed =
     status?.length > 0
       ? status.filter((item) => item.name === "failed").length
       : 0;
+
   return (
     <Card>
       <CardHeader title="Trạng thái" />
@@ -18,6 +20,7 @@ function Status(props) {
             ? status.map((item, index) => (
                 <StatusItem
                   key={index}
+                  index={index}
                   item={item}
                   isLast={index === status.length - 1}
                   numberOfFailed={numberOfFailed}

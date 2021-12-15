@@ -43,9 +43,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function StatusItem(props) {
-  const { item, isLast, numberOfFailed } = props;
+  const { index, item, isLast, numberOfFailed } = props;
   const classes = useStyles();
-
+  console.log(index);
   return (
     <TimelineItem>
       <TimelineSeparator>
@@ -78,7 +78,11 @@ function StatusItem(props) {
               {(item.name === "exported" && "Đã xuất") ||
                 (item.name === "shipping" && "Đang vận chuyển") ||
                 (item.name === "completed" && "Gia hàng thành công") ||
-                (item.name === "failed" && "Giao hàng thất bại")}
+                (item.name === "failed" && index === 2
+                  ? "Đợi vận chuyển lần 2"
+                  : index === 4
+                  ? "Đợi vận chuyển lần 3"
+                  : "Giao hàng thất bại")}
             </Typography>
           </Grid>
           <Grid item xs={3}>
@@ -106,7 +110,11 @@ function StatusItem(props) {
             "Đơn hàng đã được xuất, chuẩn bị vận chuyển") ||
             (item.name === "shipping" && "Đơn hàng đang được vận chuyển") ||
             (item.name === "completed" && "Đơn hàng được giao thành công") ||
-            (item.name === "failed" && "Đơn hàng giao thất bại")}
+            (item.name === "failed" && index === 2
+              ? "Đơn hàng giao thất bại chuẩn bị vận chuyển lần 2"
+              : index === 4
+              ? "Đơn hàng giao thất bại, chuẩn bị vận chuyển lần 3"
+              : " Đơn hàng giao thất bại")}
         </Typography>
         {item.reason ? (
           <Typography

@@ -46,7 +46,7 @@ function BillExport() {
           <Order order={order} />
         </Grid>
         <Grid item xs={12} sm={12} md={6}>
-          <Bill />
+          <Bill order={order} />
         </Grid>
       </Grid>
       <Grid container spacing={2} justifyContent="flex-end">
