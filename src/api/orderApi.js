@@ -34,7 +34,7 @@ const orderApi = {
   },
   updateStatus: (orderId, data) => {
     const url = `/order/${orderId}/update_status`;
-    return axiosClient.post(url, data);
+    return axiosClient.put(url, data);
   }
 };
 export default orderApi;

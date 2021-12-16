@@ -67,7 +67,6 @@ export default function OrderDetail() {
     let mounted = true;
     const fetchOrderDetail = async () => {
       const response = await orderApi.getOne(id);
-      // await orderApi.updateStatus(id, {status: "processing", reason: ""});
       console.log(response);
       if (mounted) {
         setDetail(response);
@@ -87,6 +86,7 @@ export default function OrderDetail() {
   };
 
   const handleExportBill = async (orderId) => {
+    await orderApi.updateStatus(orderId, JSON.stringify({status: "processing", reason: ""}));
     history.push(`/${role}/order/billExport/${id}`);
   };
 
@@ -102,7 +102,7 @@ export default function OrderDetail() {
           <DefaultButton
             title="Xuất hóa đơn"
             icon={Publish}
-            clickEvent={handleExportBill}
+            clickEvent={async () => { await handleExportBill(id); }}
           />
         </Grid>
       </Grid>

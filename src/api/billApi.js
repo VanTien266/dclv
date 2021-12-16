@@ -28,6 +28,10 @@ class BillApi {
   getBillStatus = () => {
     const url = "/bill/status";
     return axiosClient.get(url);
+  };
+  createBill = (data) => {
+    const url = "/bill/create";
+    return axiosClient.post(url, data);
   }
  }
 const billApi = new BillApi();
