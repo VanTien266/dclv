@@ -11,7 +11,6 @@ class ProductApi {
   };
   getListById = (data) => {
     const url = "/product/list";
-    // const body = QueryString.stringify(data);
     return axiosClient.post(url, data);
   };
   getChartWarehouseTrue = (params) => {
