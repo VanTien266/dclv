@@ -1,19 +1,12 @@
 
-// import React, {useState, useEffect} from "react";
+// import React, {useState, useEffect} from 'react';
 // import Paper from '@material-ui/core/Paper';
 // import {
-//   Chart,
-//   BarSeries,
-//   Title,
-//   ArgumentAxis,
-//   ValueAxis,
-//   Tooltip,
-// } from '@devexpress/dx-react-chart-material-ui';
-// import { Animation } from '@devexpress/dx-react-chart';
-// import { EventTracker } from '@devexpress/dx-react-chart';
+//   Chart, Series, CommonSeriesSettings, Label, Format, Legend, Export,
+// } from 'devextreme-react/chart';
 // import productApi from "../../../api/productApi";
 
-// const ChartFabricWarehouse = () => {
+// function ChartFabricWarehouse() {
 //   const [chartWarehouse, setChartWarehouse] = useState([]);
 //   const [targetItem, settargetItem] = useState();
 //   const changeTargetItem = () => {
@@ -31,26 +24,37 @@
 //     }
 //   fetChartWarehouse();
 //   },[]);
-//   return (
-//     <Paper>
-//       <Chart
-//         data={chartWarehouse}
+//     return (
+//       <Paper style={{padding: 5}}>
+//       <Chart id="chart"
+//         title="Số lượng cây vải trong từng kho"
+//         dataSource={chartWarehouse}
+//         // onPointClick={this.onPointClick}
 //       >
-//       <ArgumentAxis />
-//       <ValueAxis />
-//       <BarSeries
-//         valueField="countFabric"
-//         argumentField="_id"
-//         />
-//         <Title text="Tổng số cây vải có sẵn trong các kho" />
-//         <Animation />
-//         <EventTracker />
-//         <Tooltip targetItem={targetItem} onTargetItemChange={changeTargetItem} />
+//         <CommonSeriesSettings
+//           argumentField="_id"
+//           type="bar"
+//           hoverMode="allArgumentPoints"
+//           selectionMode="allArgumentPoints"
+//         >
+//           <Label visible={true}>
+//             <Format type="fixedPoint" precision={0} />
+//           </Label>
+//         </CommonSeriesSettings>
+//         <Series
+//           valueField="countFabric"
+//           argumentField="_id"
+//           name="Kho"
+//           type="bar"
+//           color="#42A5F5" />
+//         {/* <Legend verticalAlignment="bottom" horizontalAlignment="center"></Legend> */}
+//         <Legend visible={false} />
+//         <Export enabled={true} />
 //       </Chart>
-//     </Paper>
-//   );
+//       </Paper>
+//     );
 // }
-  
+
 // export default ChartFabricWarehouse;
 
 
@@ -63,10 +67,6 @@ import productApi from "../../../api/productApi";
 
 function ChartFabricWarehouse() {
   const [chartWarehouse, setChartWarehouse] = useState([]);
-  const [targetItem, settargetItem] = useState();
-  const changeTargetItem = () => {
-    settargetItem(targetItem);
-  }
   useEffect(() => {
     const fetChartWarehouse = async () => {
       try {
@@ -80,13 +80,13 @@ function ChartFabricWarehouse() {
   fetChartWarehouse();
   },[]);
     return (
-      <Paper>
+      <Paper style={{padding: 5}}>
       <Chart id="chart"
         title="Số lượng cây vải trong từng kho"
         dataSource={chartWarehouse}
         // onPointClick={this.onPointClick}
       >
-        <CommonSeriesSettings
+        {/* <CommonSeriesSettings
           argumentField="_id"
           type="bar"
           hoverMode="allArgumentPoints"
@@ -95,14 +95,15 @@ function ChartFabricWarehouse() {
           <Label visible={true}>
             <Format type="fixedPoint" precision={0} />
           </Label>
-        </CommonSeriesSettings>
+        </CommonSeriesSettings> */}
         <Series
           valueField="countFabric"
           argumentField="_id"
-          name="Kho"
           type="bar"
-          color="#42A5F5" />
-        {/* <Legend verticalAlignment="bottom" horizontalAlignment="center"></Legend> */}
+          color="#42A5F5" >
+          <Label visible={true} />
+        </Series>
+        <Legend visible={false} />
         <Export enabled={true} />
       </Chart>
       </Paper>
