@@ -63,6 +63,7 @@ export default function OrderDetail() {
     let mounted = true;
     const fetchOrderDetail = async () => {
       const response = await orderApi.getOne(id);
+      // await orderApi.updateStatus(id, {status: "processing", reason: ""});
       console.log(response);
       if (mounted) {
         setDetail(response);
@@ -81,7 +82,7 @@ export default function OrderDetail() {
     history.push(`/${role}/order`);
   };
 
-  const handleExportBill = () => {
+  const handleExportBill = async (orderId) => {
     history.push(`/${role}/order/billExport/${id}`);
   };
 
