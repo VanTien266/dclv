@@ -1,6 +1,12 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Button, Typography } from "@material-ui/core";
-import { LocationOn, Email, Phone, Edit, BorderColor } from "@material-ui/icons";
+import {
+  LocationOn,
+  Email,
+  Phone,
+  Edit,
+  BorderColor,
+} from "@material-ui/icons";
 import clsx from "clsx";
 import { useHistory } from "react-router";
 
@@ -35,9 +41,10 @@ const useStyles = makeStyles({
 export default function CustomerInfo(props) {
   const classes = useStyles();
   const history = useHistory();
+  const role = localStorage.getItem("role");
 
   const handleClick = () => {
-    history.push("/order/orderEdit");
+    history.push(`/${role}/order/orderEdit/${props.id}`);
   };
 
   return (
@@ -102,7 +109,7 @@ export default function CustomerInfo(props) {
         </Grid>
         <Grid item xs={3}>
           <div className={classes.noteBox}>
-            <BorderColor fontSize="large"/> Ghi chú
+            <BorderColor fontSize="large" /> Ghi chú
           </div>
         </Grid>
       </Grid>

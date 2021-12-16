@@ -1,11 +1,12 @@
 import { Grid, makeStyles, Typography } from "@material-ui/core";
 import { ArrowBack, Publish } from "@material-ui/icons";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import orderApi from "../../api/orderApi";
 import DefaultButton from "../../components/Button/DefaultButton";
 import Bill from "./components/Bill/Bill";
 import Order from "./components/Order/Order";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiPaper-root": {
@@ -22,6 +23,8 @@ function BillExport() {
   const classes = useStyles();
   const [order, setOrder] = useState({});
   const { id } = useParams();
+  const role = localStorage.getItem("role");
+  const history = useHistory();
 
   useEffect(() => {
     let mounted = true;
@@ -35,6 +38,11 @@ function BillExport() {
 
     return () => (mounted = false);
   }, []);
+
+  const handleBack = () => {
+    if (role !== null) history.push(`/${role}/order/orderDetail/${id}`);
+    else history.push(`/order/orderDetail/${id}`);
+  };
 
   return (
     <div>
@@ -51,7 +59,11 @@ function BillExport() {
       </Grid>
       <Grid container spacing={2} justifyContent="flex-end">
         <Grid item>
-          <DefaultButton title="Quay lại" icon={ArrowBack} />
+          <DefaultButton
+            title="Quay lại"
+            icon={ArrowBack}
+            clickEvent={handleBack}
+          />
         </Grid>
         <Grid item>
           <DefaultButton title="Xuất hóa đơn" icon={Publish} />
