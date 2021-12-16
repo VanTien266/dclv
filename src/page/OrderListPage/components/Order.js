@@ -188,7 +188,8 @@ export default function Order(props) {
         xs={2}
         className={clsx(classes.orderId, classes.verticalCenter)}
       >
-        <p>MDH{String(order.orderId).padStart(5, "0")}</p>
+        {/* <p>MDH{String(order.orderId).padStart(5, "0")}</p> */}
+        <p>MDH{order.orderId}</p>
       </Grid>
       <Grid item xs={1} className={classes.verticalCenter}>
         <p>

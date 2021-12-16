@@ -82,16 +82,32 @@ export default function OrderInfo(props) {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {idx + 1}
+                  <Typography variant="subtitle2">{idx + 1}</Typography>
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  {item.colorCode.typeId.name}
+                  <Typography variant="subtitle2">
+                    {item.colorCode.typeId.name}
+                  </Typography>
                 </TableCell>
-                <TableCell>{item.colorCode.colorCode}</TableCell>
-                <TableCell>{item.shippedLength}</TableCell>
-                <TableCell>{item.length - item.shippedLength}</TableCell>
                 <TableCell>
-                  {getNumberWithCommas(item.colorCode.marketPriceId[0].price)}
+                  <Typography variant="subtitle2">
+                    {item.colorCode.colorCode}
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2">
+                    {item.shippedLength}
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2">
+                    {item.length - item.shippedLength}
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2">
+                    {getNumberWithCommas(item.colorCode.marketPriceId[0].price)}
+                  </Typography>
                 </TableCell>
               </TableRow>
             ))}
@@ -119,7 +135,10 @@ export default function OrderInfo(props) {
             {props.deposit ? getNumberWithCommas(props.deposit) : ""} vnđ
           </Typography>
           <Typography component="p" className={classes.totalMoney}>
-            {totalPrice && props.deposit ? getNumberWithCommas(totalPrice - props.deposit) : ""} vnđ
+            {totalPrice && props.deposit
+              ? getNumberWithCommas(totalPrice - props.deposit)
+              : ""}{" "}
+            vnđ
           </Typography>
         </Grid>
       </Grid>

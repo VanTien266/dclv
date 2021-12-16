@@ -37,7 +37,7 @@ const typograpghy = {
   },
   subtitle2: {
     //Text CategoryS
-    fontSize: 11,
+    fontSize: 13,
     fontWeight: 500,
     lineHeight: "16px",
     // letterSpacing: "0.003em",

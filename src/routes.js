@@ -120,7 +120,7 @@ const routes = [
         component: StaffPage,
       },
       {
-        path: "/admin/order/billDetail",
+        path: "/admin/order/billDetail/:id",
         exact: true,
         component: lazy(() => import("./page/BillDetail")),
       },

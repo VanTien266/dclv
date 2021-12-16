@@ -85,7 +85,8 @@ export default function OrderDetail() {
     history.push(`/${role}/order`);
   };
 
-  const handleExportBill = () => {
+  const handleExportBill = async (orderId) => {
+    await orderApi.updateStatus(orderId, JSON.stringify({status: "processing", reason: ""}));
     history.push(`/${role}/order/billExport/${id}`);
   };
 
@@ -101,7 +102,7 @@ export default function OrderDetail() {
           <DefaultButton
             title="Xuất hóa đơn"
             icon={Publish}
-            clickEvent={handleExportBill}
+            clickEvent={async () => { await handleExportBill(id); }}
           />
         </Grid>
       </Grid>

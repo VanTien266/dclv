@@ -32,5 +32,9 @@ const orderApi = {
     const url = `/order/${orderId}/products`;
     return axiosClient.get(url);
   },
+  updateStatus: (orderId, data) => {
+    const url = `/order/${orderId}/update_status`;
+    return axiosClient.put(url, data);
+  }
 };
 export default orderApi;
