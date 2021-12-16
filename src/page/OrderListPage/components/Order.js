@@ -226,7 +226,7 @@ export default function Order(props) {
                 "completed" &&
                 classes.statusComplete) ||
               (order.orderStatus[order.orderStatus.length - 1].name ===
-                "cancle" &&
+                "cancel" &&
                 classes.statusCancel)
             }
           >
@@ -240,7 +240,7 @@ export default function Order(props) {
                 "completed" &&
                 "Hoàn tất") ||
               (order.orderStatus[order.orderStatus.length - 1].name ===
-                "cancle" &&
+                "cancel" &&
                 "Đã hủy")}
           </p>
         </Grid>
@@ -277,7 +277,11 @@ export default function Order(props) {
               Mặt hàng đã đặt
             </Typography>
             <TableContainer component={Paper} className={classes.productScroll}>
-              <Table stickyHeader sx={{ minWidth: "40vh" }} aria-label="simple table">
+              <Table
+                stickyHeader
+                sx={{ minWidth: "40vh" }}
+                aria-label="simple table"
+              >
                 <TableHead>
                   <TableRow>
                     <TableCell className={classes.headerTable}>STT</TableCell>

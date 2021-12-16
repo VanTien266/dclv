@@ -10,7 +10,7 @@ class BillApi {
     return axiosClient.get(url);
   };
   getFabricRollByBillId = (params) => {
-    const url = "/bill/fabricrollcompleted";
+    const url = "/bill/list";
     return axiosClient.get(url, { params });
   };
   getListByIds = (data) => {
@@ -21,6 +21,14 @@ class BillApi {
     const url = "/bill/completed";
     return axiosClient.get(url);
   };
-}
+  getFabricRollBillCompleted = () => {
+    const url = "/bill/fabricrollcompleted";
+    return axiosClient.get(url);
+  };
+  getBillStatus = () => {
+    const url = "/bill/status";
+    return axiosClient.get(url);
+  }
+ }
 const billApi = new BillApi();
 export default billApi;

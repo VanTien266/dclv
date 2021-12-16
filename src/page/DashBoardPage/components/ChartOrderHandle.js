@@ -26,7 +26,7 @@ function ChartOrderHandle() {
     fetchOrderStatus();
   }, []);
     return (
-      <Paper>
+      <Paper style={{padding: 5}}>
       <PieChart id="pie"
         palette="Bright"
         dataSource={orderstatus}

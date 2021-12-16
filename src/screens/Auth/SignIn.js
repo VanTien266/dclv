@@ -44,7 +44,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage: "url(https://webservices.wkf.fr/editorial/medias/images/actu-77374-report-d_imposition-des.jpg)",
+    backgroundImage:
+      "url(https://webservices.wkf.fr/editorial/medias/images/actu-77374-report-d_imposition-des.jpg)",
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"

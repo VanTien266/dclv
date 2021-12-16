@@ -169,7 +169,7 @@ export default function TimelineStatus(props) {
                         (item.name === "completed" &&
                           idx === lastStatusIdx &&
                           classes.completedDot) ||
-                        (item.name === "cancle" &&
+                        (item.name === "cancel" &&
                           idx === lastStatusIdx &&
                           classes.cancelDot)
                       }
@@ -197,7 +197,7 @@ export default function TimelineStatus(props) {
                             (item.name === "completed" &&
                               idx === lastStatusIdx &&
                               clsx(classes.completed, classes.status)) ||
-                            (item.name === "cancle" &&
+                            (item.name === "cancel" &&
                               idx === lastStatusIdx &&
                               clsx(classes.cancel, classes.status))
                           }
@@ -205,7 +205,7 @@ export default function TimelineStatus(props) {
                           {(item.name === "pending" && "Chờ xử lý") ||
                             (item.name === "processing" && "Đang xử lý") ||
                             (item.name === "completed" && "Hoàn tất") ||
-                            (item.name === "cancle" && "Đã hủy")}
+                            (item.name === "cancel" && "Đã hủy")}
                         </Typography>
                         <Typography
                           variant="subtitle1"
@@ -221,7 +221,7 @@ export default function TimelineStatus(props) {
                             (item.name === "completed" &&
                               idx === lastStatusIdx &&
                               clsx(classes.completed, classes.statusDetail)) ||
-                            (item.name === "cancle" &&
+                            (item.name === "cancel" &&
                               idx === lastStatusIdx &&
                               clsx(classes.cancel, classes.statusDetail))
                           }
@@ -232,7 +232,7 @@ export default function TimelineStatus(props) {
                               "Nhân viên đang xử lí đơn đặt hàng") ||
                             (item.name === "completed" &&
                               "Đơn đặt hàng đã được nhân viên xử lí xong") ||
-                            (item.name === "cancle" && "Đã hủy đơn đặt hàng")}
+                            (item.name === "cancel" && "Đã hủy đơn đặt hàng")}
                         </Typography>
                       </Grid>
                       <Grid item xs={3}>
@@ -250,7 +250,7 @@ export default function TimelineStatus(props) {
                             (item.name === "completed" &&
                               idx === lastStatusIdx &&
                               clsx(classes.completed, classes.status)) ||
-                            (item.name === "cancle" &&
+                            (item.name === "cancel" &&
                               idx === lastStatusIdx &&
                               clsx(classes.cancel, classes.status))
                           }

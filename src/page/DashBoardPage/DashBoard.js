@@ -15,8 +15,7 @@ import FabricRollBillCompleted from './components/FabricRollBillCompleted';
 import ChartFabricTypeSell from './components/ChartFabricTypeSell';
 import ChartOrderHandle from './components/ChartOrderHandle';
 import ChartFabricWarehouse from './components/ChartFabricWarehouse';
-import RevenueChart2 from './components/RevenueChart2';
-import orderApi from "../../api/staffApi";
+import ChartBillStatus from './components/ChartBillStatus';
 
 function DashBoard() {
   const classes = useStyles();
@@ -58,11 +57,11 @@ function DashBoard() {
           </Grid>
 
           <Grid item xs={12} md={6} lg={4} className={classes.ProductsChart}>
-            <ChartFabricTypeSell />
+            <ChartBillStatus />
           </Grid>
 
           <Grid item xs={12} md={6} lg={8} className={classes.Chart1}>
-            <RevenueChart2 />
+            <ChartFabricTypeSell />
           </Grid>
 
           <Grid item xs={12} md={6} lg={4} className={classes.TopProducts}>

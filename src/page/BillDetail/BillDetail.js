@@ -31,6 +31,7 @@ function BillDetail() {
   const role = localStorage.getItem("role");
   const { id } = useParams();
   const [bill, setBill] = useState({});
+
   useEffect(() => {
     let mounted = true;
     const fetchBill = async () => {
@@ -44,10 +45,11 @@ function BillDetail() {
       mounted = false;
     };
   }, [id]);
-  console.log(bill);
+
   const handleBack = () => {
-    if (role !== null) history.push(`/${role}/order/orderDetail`);
-    else history.push(`/order/orderDetail`);
+    if (role !== null)
+      history.push(`/${role}/order/orderDetail/${bill.orderID._id}`);
+    else history.push(`/order/orderDetail/${bill.orderID._id}`);
   };
 
   return (
