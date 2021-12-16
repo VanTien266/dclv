@@ -50,7 +50,7 @@ const routes = [
         component: OrderDetail,
       },
       {
-        path: "/salesman/order/orderEdit",
+        path: "/salesman/order/orderEdit/:id",
         exact: true,
         component: OrderEdit,
       },
