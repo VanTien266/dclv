@@ -6,6 +6,7 @@ import {
 } from "@material-ui/core";
 import clsx from "clsx";
 import { useHistory } from "react-router";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -107,7 +108,7 @@ export default function StaffList(props) {
       </Grid>
 
       <Grid item xs={1} className={classes.verticalCenter}>
-        <p className={classes.verticalAlign}>{item.age}</p>
+        <p className={classes.verticalAlign}>{moment(item.birthday).subtract(1, "days").format("DD/MM/YYYY")}</p>
       </Grid>
       <Grid item xs={1} className={classes.verticalCenter}>
         <p className={classes.verticalAlign}>{item.phone}</p>

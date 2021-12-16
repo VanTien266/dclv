@@ -43,8 +43,8 @@ function BillDetail() {
     return () => {
       mounted = false;
     };
-  }, []);
-
+  }, [id]);
+  console.log(bill);
   const handleBack = () => {
     if (role !== null) history.push(`/${role}/order/orderDetail`);
     else history.push(`/order/orderDetail`);

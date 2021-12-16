@@ -56,7 +56,8 @@ export default function OrderDetail() {
   const history = useHistory();
   const { id } = useParams();
   const role = localStorage.getItem("role");
-  const [detail, setDetail] = useState({ orderStatus: [] });
+  console.log(id);
+  const [detail, setDetail] = useState({ orderStatus: [], products: [], detailBill: [] });
 
   useEffect(() => {
     let mounted = true;
@@ -74,14 +75,14 @@ export default function OrderDetail() {
     };
   }, [id]);
 
-  console.log(detail.clientID);
+  console.log(detail);
 
   const handleBack = () => {
     history.push(`/${role}/order`);
   };
 
   const handleExportBill = () => {
-    history.push(`/${role}/order/billExport`);
+    history.push(`/${role}/order/billExport/${id}`);
   };
 
   return (
@@ -102,7 +103,7 @@ export default function OrderDetail() {
       </Grid>
       <Grid container spacing={2} className={classes.root}>
         <Grid item xs={12} md={7}>
-          <OrderInfo />
+          <OrderInfo products={detail.products} deposit={detail.deposit}/>
         </Grid>
         <Grid item xs={12} md={5}>
           <TimelineStatus statusList={detail.orderStatus} />

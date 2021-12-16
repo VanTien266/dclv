@@ -5,11 +5,11 @@ class BillApi {
     const url = "/bill";
     return axiosClient.get(url);
   };
-  getOne = (id) => {
-    const url = `/bill/detail/${id}`;
+  getOne = (params) => {
+    const url = `/bill/detail/${params}`;
     return axiosClient.get(url);
   };
-  getFabricRollBillCompleted = (params) => {
+  getFabricRollByBillId = (params) => {
     const url = "/bill/fabricrollcompleted";
     return axiosClient.get(url, { params });
   };
