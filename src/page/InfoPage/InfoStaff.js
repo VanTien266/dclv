@@ -71,4 +71,4 @@ function InfoStaff() {
     )
 }
 
-export default InfoStaff
+export default InfoStaff;

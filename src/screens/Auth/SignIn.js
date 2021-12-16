@@ -124,18 +124,22 @@ export default function SignIn() {
       case "admin":
         history.push("/admin/dashboard");
         localStorage.setItem("role", result[0].role);
+        localStorage.setItem("id", result[0]._id);
         break;
       case "salesman":
         history.push("/salesman/dashboard");
         localStorage.setItem("role", result[0].role);
+        localStorage.setItem("id", result[0]._id);
         break;
       case "shipper":
         history.push("/shipper/dashboard");
         localStorage.setItem("role", result[0].role);
+        localStorage.setItem("id", result[0]._id);
         break;
       case "customer":
         history.push("/dashboard");
         localStorage.setItem("role", result[0].role);
+        localStorage.setItem("id", result[0]._id);
         break;
       default:
         setAlert("Tài khoản hoăc mật khẩu không đúng!");

@@ -53,7 +53,7 @@ export default function StaffHeader() {
         <p>Chức vụ</p>
       </Grid>
       <Grid container item xs={1} className={classes.verticalCenter}>
-        <p>Tuổi</p>
+        <p>Ngày sinh</p>
       </Grid>
       <Grid item xs={1} className={classes.verticalCenter}>
         <p>Số điện thoại</p>

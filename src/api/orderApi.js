@@ -24,5 +24,13 @@ const orderApi = {
     const url = `/order/${orderId}`;
     return axiosClient.get(url);
   },
+  getOrderStatus: () => {
+    const url="/getorderstatus";
+    return axiosClient.get(url);
+  },
+  getProducts: (orderId) => {
+    const url = `/order/${orderId}/products`;
+    return axiosClient.get(url);
+  },
 };
 export default orderApi;
