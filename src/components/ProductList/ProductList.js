@@ -43,13 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const tableTilteConfig = [
-  "STT",
-  "Tên",
-  "Ngày nhập",
-  "Chiều dài",
-  "Lô vải",
-  "Kho",
-  "Trạng thái",
+  "Lô", "Tên mặt hàng", "Tồn kho"
 ];
 function ProductList(props) {
   const { className, product } = props;
@@ -58,8 +52,6 @@ function ProductList(props) {
   return (
     <div className={clsx(classes.root, className)}>
       <Card>
-        <CardHeader title="Có 10 sản phẩm được tìm thấy" />
-        <Divider />
         <CardContent className={classes.content}>
           <PerfectScrollbar>
             <Table>
@@ -72,7 +64,7 @@ function ProductList(props) {
                   ))}
                 </TableRow>
               </TableHead>
-              <TableBody className={classes.tableBody}>
+              {/* <TableBody className={classes.tableBody}>
                 {product
                   .filter((item) => item.status === true)
                   .map((item, index) => (
@@ -115,7 +107,7 @@ function ProductList(props) {
                       )}
                     </TableRow>
                   ))}
-              </TableBody>
+              </TableBody> */}
             </Table>
           </PerfectScrollbar>
         </CardContent>
