@@ -29,6 +29,7 @@ function Item(props) {
   const tableTitleConfig = [
     "STT",
     "Tên",
+    "Mã màu",
     "Chiều dài (m)",
     "Đã giao (m)",
     "Còn lại (m)",
@@ -61,6 +62,11 @@ function Item(props) {
                   <TableCell>
                     <Typography variant="subtitle2">
                       {item.colorCode.name}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="subtitle2">
+                      {item.colorCode.colorCode}
                     </Typography>
                   </TableCell>
                   <TableCell>

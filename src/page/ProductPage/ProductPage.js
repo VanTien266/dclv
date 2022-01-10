@@ -87,7 +87,10 @@ function Product() {
       </Grid>
 
       {product && (
-        <ProductList className={classes.productList} product={product} />
+        <ProductList
+          className={classes.productList}
+          product={product.filter((item) => item.status !== false)}
+        />
       )}
     </div>
   );

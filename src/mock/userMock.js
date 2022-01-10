@@ -33,7 +33,7 @@ mock.onPost("/user").reply(200, {
     {
       id: uuidv4(),
       email: "shipper@gmail.com",
-      password: "shiper",
+      password: "shipper",
       name: "",
       address: "",
       phone: "",

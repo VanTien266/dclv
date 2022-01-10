@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   textItem: {
     ...theme.typography.textItem,
-    textTransform: "capitalize",
+    // textTransform: "capitalize",
     color: "#000040",
   },
   statusTrue: {
@@ -58,7 +58,9 @@ function ProductList(props) {
   return (
     <div className={clsx(classes.root, className)}>
       <Card>
-        <CardHeader title="Có 10 sản phẩm được tìm thấy" />
+        <CardHeader
+          title={"Có " + product.length + " sản phẩm được tìm thấy"}
+        />
         <Divider />
         <CardContent className={classes.content}>
           <PerfectScrollbar>
@@ -73,48 +75,43 @@ function ProductList(props) {
                 </TableRow>
               </TableHead>
               <TableBody className={classes.tableBody}>
-                {product
-                  .filter((item) => item.status === true)
-                  .map((item, index) => (
-                    <TableRow hover key={index}>
-                      <TableCell className={classes.textCode}>
-                        {index + 1}
+                {product.map((item, index) => (
+                  <TableRow hover key={index}>
+                    <TableCell className={classes.textCode}>
+                      {index + 1}
+                    </TableCell>
+                    <TableCell className={classes.textItem}>
+                      {item.item.name}
+                    </TableCell>
+                    <TableCell className={classes.textItem}>
+                      {moment(item.dayAdded)
+                        // .subtract(1, "days")
+                        .format("DD/MM/YYYY")}
+                    </TableCell>
+                    <TableCell className={classes.textItem}>
+                      {item.length}
+                    </TableCell>
+                    <TableCell className={classes.textItem}>
+                      {item.lot}
+                    </TableCell>
+                    <TableCell className={classes.textItem}>
+                      {item.warehouseId}
+                    </TableCell>
+                    {item.status ? (
+                      <TableCell
+                        className={clsx(classes.statusTrue, classes.textCode)}
+                      >
+                        Đang có sẵn
                       </TableCell>
-                      <TableCell className={classes.textItem}>
-                        {item.item.name}
+                    ) : (
+                      <TableCell
+                        className={clsx(classes.statusFalse, classes.textCode)}
+                      >
+                        Đã hết
                       </TableCell>
-                      <TableCell className={classes.textItem}>
-                        {moment(item.dayAdded)
-                          .subtract(1, "days")
-                          .format("DD/MM/YYYY")}
-                      </TableCell>
-                      <TableCell className={classes.textItem}>
-                        {item.length}
-                      </TableCell>
-                      <TableCell className={classes.textItem}>
-                        {item.lot}
-                      </TableCell>
-                      <TableCell className={classes.textItem}>
-                        {item.warehouseId}
-                      </TableCell>
-                      {item.status ? (
-                        <TableCell
-                          className={clsx(classes.statusTrue, classes.textCode)}
-                        >
-                          Đang có sẵn
-                        </TableCell>
-                      ) : (
-                        <TableCell
-                          className={clsx(
-                            classes.statusFalse,
-                            classes.textCode
-                          )}
-                        >
-                          Đã hết{" "}
-                        </TableCell>
-                      )}
-                    </TableRow>
-                  ))}
+                    )}
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </PerfectScrollbar>
