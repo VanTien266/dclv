@@ -7,7 +7,7 @@ import { Drawer, Hidden, Box, Typography } from "@material-ui/core";
 import SalesmanSidebarConfig from "./SalemanSidebarConfig";
 import AdminSidebarConfig from "./AdminSidebarConfig";
 import CustomerSidebarConfig from "./CustomerSidebarConfig";
-import Link from "@material-ui/core/Link"
+import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles((theme) => ({
   sidebarBg: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     height: "100%",
   },
-  logo:{
+  logo: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -34,8 +34,8 @@ const useStyles = makeStyles((theme) => ({
   },
   titleLogo: {
     color: "white",
-    marginLeft:"10px"
-  }
+    marginLeft: "10px",
+  },
 }));
 
 function Sidebar(props) {
@@ -59,29 +59,18 @@ function Sidebar(props) {
   const sidebarContent = (
     <div className={classes.container}>
       <div className={classes.head}>
-        {/* <img
-          src={process.env.PUBLIC_URL + "/assets/logo.png"}
-          alt="logo"
-          width="210"
-        /> */}
         <Link href="/">
-        <Box className={classes.logo}>
-          
+          <Box className={classes.logo}>
             <img
               src={process.env.PUBLIC_URL + "/assets/logobkfabric.png"}
               alt="logo"
               width="50"
               height="50"
             />
-            <Typography variant="h5" className={classes.titleLogo}>BK Fabric</Typography>
-                  {/* <img
-            src={process.env.PUBLIC_URL + "/assets/logobkfabric.png"}
-            alt="logo"
-            width="50"
-            height="50"
-          />
-          <Typography variant="h5" className={classes.titleLogo}>BK Fabric</Typography> */}
-        </Box>
+            <Typography variant="h5" className={classes.titleLogo}>
+              BK Fabric
+            </Typography>
+          </Box>
         </Link>
         <nav>
           {sidebarConfig.map((list) => (

@@ -1,125 +1,12 @@
-// import React from "react";
-// import moment from "moment";
-// import clsx from "clsx";
-// import {
-//   Card,
-//   CardContent,
-//   CardHeader,
-//   Divider,
-//   Table,
-//   TableBody,
-//   TableCell,
-//   TableHead,
-//   TableRow,
-// } from "@material-ui/core";
-// import PerfectScrollbar from "react-perfect-scrollbar";
-// import { makeStyles } from "@material-ui/styles";
-
-// const useStyles = makeStyles((theme) => ({
-//     root: {
-//         fontFamily: "'Roboto', sans-serif",
-//         fontSize: "14px",
-//         color: "#000040",
-//     },
-//     tableHead: { backgroundColor: "#B4B4C1"},
-//     headStyle: { color: "#000040" },
-//     tableBody: {
-//         backgroundColor: "#F6F6F8",
-//         // root: {
-//         //       '&:nth-of-type(odd)': {
-//         //         backgroundColor: theme.palette.action.hover,
-//         //       },
-//         //     },
-//     },
-    
-//     content: {
-//         padding: 0,
-//     },
-// //   textCode: {
-// //     ...theme.typography.textCode,
-// //     color: "#000040",
-// //   },
-// //   textItem: {
-// //     ...theme.typography.textItem,
-// //     textTransform: "capitalize",
-// //     color: "#000040",
-// //   },
-// }));
-
-// const tableTilteConfig = [
-//   "ID",
-//   "Tên nhân viên",
-//   "Chức vụ",
-//   "Tuổi",
-//   "Số điện thoại",
-//   "Email",
-//   "Giới tính"
-
-// ];
-// function StaffList(props) {
-//   const { className, staff } = props;
-
-//   const classes = useStyles();
-//   return (
-//     <div className={clsx(classes.root, className)}>
-//       <Card>
-//         {/* <CardHeader title="Có 10 sản phẩm được tìm thấy" /> */}
-//         <Divider />
-//         <CardContent className={classes.content}>
-//           <PerfectScrollbar>
-//             <Table>
-//               <TableHead className={classes.tableHead}>
-//                 <TableRow>
-//                   {tableTilteConfig.map((item, index) => (
-//                     <TableCell key={index} className={classes.headStyle} align="left" >
-//                       {item}
-//                     </TableCell>
-//                   ))}
-//                 </TableRow>
-//               </TableHead>
-//               <TableBody className={classes.tableBody}>
-//                 {staff.map((item) => (
-//                     <TableRow hover key={item.id}>
-//                       <TableCell className={classes.textItem}>
-//                         {item.id}
-//                       </TableCell>
-//                       <TableCell className={classes.textItem}>
-//                         {item.namestaff}
-//                       </TableCell>
-//                       <TableCell className={classes.textItem}>
-//                         {item.role}
-//                       </TableCell>
-//                       <TableCell className={classes.textItem}>
-//                         {item.age}
-//                       </TableCell>
-//                       <TableCell className={classes.textItem}>
-//                         {item.phone}
-//                       </TableCell>
-//                       <TableCell className={classes.textItem}>
-//                         {item.email}
-//                       </TableCell>
-//                       <TableCell className={classes.textItem}>
-//                         {item.sex}
-//                       </TableCell>
-//                     </TableRow>
-//                   ))}
-//               </TableBody>
-//             </Table>
-//           </PerfectScrollbar>
-//         </CardContent>
-//       </Card>
-//     </div>
-//   );
-// }
-
-// export default StaffList;
-
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
-  Grid
+  Grid,
+  Button,
 } from "@material-ui/core";
 import clsx from "clsx";
+import { useHistory } from "react-router";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -128,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#000040",
     backgroundColor: "#F6F6F8",
     borderRadius: "5px",
-    marginTop: "20px",
-    marginBottom: "20px",
+    marginTop: "10px",
+    marginBottom: "10px",
     paddingLeft: "5px",
     display: "flex",
     alignItems: "center",
@@ -183,41 +70,58 @@ const useStyles = makeStyles((theme) => ({
       width: 0,
     },
   },
+  buttonList: {
+    minWidth: "24px",
+    padding: "0px",
+    height: "50%",
+    color: "blue",
+  },
 }));
 
-export default function StaffList({ staff }) {
+export default function StaffList(props) {
+  const { className, staff } = props;
   const classes = useStyles();
+  const history = useHistory();
 
+  const handleClick = (id) => {
+    history.push(`/admin/staff/staffinfo/${id}`);
+  };
   return (
-    <Grid container className={classes.root}>
+    <>
+    {staff.map((item) => (
+      
+    <Grid container className={classes.root} onClick={() => handleClick(item._id)}>
+      {/* <Button className={classes.buttonList} onClick={handleClick}> */}
       <Grid
         item
         xs={1}
         className={clsx(classes.orderId, classes.verticalCenter)}
-      >
-        <p>{staff.id}</p>
+      > 
+        <p>{item.id}</p>
       </Grid>
       <Grid item xs={3} className={classes.verticalCenter}>
-        <p>{staff.namestaff}</p>
+        <p>{item.name}</p>
       </Grid>
 
       <Grid item xs={2} className={classes.verticalCenter}>
-        <p>{staff.role}</p>
+        <p>{item.role}</p>
       </Grid>
 
       <Grid item xs={1} className={classes.verticalCenter}>
-        <p className={classes.verticalAlign}>{staff.age}</p>
+        <p className={classes.verticalAlign}>{moment(item.birthday).subtract(1, "days").format("DD/MM/YYYY")}</p>
       </Grid>
       <Grid item xs={1} className={classes.verticalCenter}>
-        <p className={classes.verticalAlign}>{staff.phone}</p>
+        <p className={classes.verticalAlign}>{item.phone}</p>
       </Grid>
       <Grid item xs={3} className={classes.verticalCenterEmail}>
-        <p className={classes.verticalAlign}>{staff.email}</p>
+        <p className={classes.verticalAlign}>{item.email}</p>
       </Grid>
       <Grid item xs={1} className={classes.verticalCenterEmail}>
-        <p className={classes.verticalAlign}>{staff.gender}</p>
+        <p className={classes.verticalAlign}>{item.gender}</p>
       </Grid>
-      
     </Grid>
+    
+    ))}
+    </>
   );
 }

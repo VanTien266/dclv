@@ -56,20 +56,22 @@ export default function ListHeader() {
       <Grid item xs={1} className={classes.verticalCenter}>
         <p>Ngày đặt</p>
       </Grid>
-      <Grid item xs={1} className={classes.billQuantity}>
+      <Grid item xs={2} className={classes.billQuantity}>
         <p>Số hóa đơn</p>
       </Grid>
       <Grid container item xs={2} className={classes.verticalCenter}>
         <p>Khách hàng</p>
       </Grid>
-      <Grid item xs={2} className={classes.verticalCenter}>
+      <Grid item xs={1} className={classes.verticalCenter}>
         <p>Đã đặt cọc</p>
       </Grid>
       <Grid container item xs={2} className={classes.productList}>
         <p>Mặt hàng đã đặt</p>
       </Grid>
-      <Grid item xs={2} className={classes.verticalCenter}>
-        <p>Trạng thái</p>
+      <Grid container item xs={2} className={classes.verticalCenter}>
+        <Grid item xs={8}>
+          <p className={classes.alignTextCenter}>Trạng thái</p>
+        </Grid>
       </Grid>
     </Grid>
   );

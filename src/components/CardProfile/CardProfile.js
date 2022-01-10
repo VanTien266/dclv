@@ -2,8 +2,7 @@ import React from "react";
 import { Box, Avatar, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { useHistory } from "react-router";
-import Alert from '@material-ui/lab/Alert';
-
+import Alert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -52,19 +51,20 @@ function CardProfile() {
   };
 
   const handleOpenInfo = () => {
-    history.push("/admin/info");
+    if (role !== "customer" && role !== null) history.push(`/${role}/info`);
+    else history.push(`/info`);
   };
 
   return (
     <Box className={classes.container}>
-      <Button onClick={handleOpenInfo} >
-        <Avatar 
+      <Button onClick={handleOpenInfo}>
+        <Avatar
           className={classes.avatar}
           alt="Person"
           src={process.env.PUBLIC_URL + "/assets/avatar.png"}
         />
       </Button>
-      
+
       <Box className={classes.content}>
         <Typography variant="body1" gutterBottom className={classes.text}>
           {role ? "Nguyễn Văn Tĩnh" : " "}

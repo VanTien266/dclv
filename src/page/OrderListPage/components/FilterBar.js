@@ -24,11 +24,12 @@ const useStyles = makeStyles({
   },
 });
 
-export default function FilterBar() {
-  const [statusFilter, setStatusFilter] = useState("");
+export default function FilterBar(props) {
+  // const [statusFilter, setStatusFilter] = useState("");
+  const { filter, handleFilterChange } = props;
 
   const handleChange = (event) => {
-    setStatusFilter(event.target.value);
+    handleFilterChange(event.target.value);
   };
   const classes = useStyles();
   return (
@@ -40,15 +41,14 @@ export default function FilterBar() {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={statusFilter}
+              value={filter}
               label="Trạng thái"
               onChange={handleChange}
             >
+              <option aria-label="None" value="" />
               <option value={"pending"}>Chờ xử lý</option>
               <option value={"processing"}>Đang xử lý</option>
-              <option value={"processed"}>Đã xử lý xong</option>
-              <option value={"shipping"}>Đang giao hàng</option>
-              <option value={"complete"}>Hoàn tất</option>
+              <option value={"completed"}>Hoàn tất</option>
               <option value={"cancel"}>Đã hủy</option>
             </Select>
           </FormControl>

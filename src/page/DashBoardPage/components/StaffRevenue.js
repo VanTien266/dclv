@@ -1,28 +1,11 @@
-// import React, {useState} from 'react'
-// import { makeStyles } from '@material-ui/core/styles'
-// import { Box, Grid, Container, Typography } from '@material-ui/core';
-// import clsx from "clsx";
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-    
-//   },
-// }));
-// function StaffTotalSale() {
-//     const classes = useStyles();
-//     return (
-//        <Typography>StaffTotalSale</Typography>
-//     )
-// }
-
-// export default StaffTotalSale
-
+import React, {useState, useEffect} from 'react'
 
 import { Icon } from '@iconify/react';
 import { alpha, styled } from '@material-ui/core/styles';
 import { Card, Typography } from '@material-ui/core';
 // utils
-//import { fShortenNumber } from '../../../utils/formatNumber';
+import {fNumberCurrency} from "../../../utils/formatNumber";
+import orderApi from "../../../api/orderApi";
 
 const RootStyle = styled(Card)(({ theme }) => ({
   boxShadow: 'none',
@@ -50,13 +33,26 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 }));
 
 export default function StaffRevenue() {
+  const [totalDeposit, setTotalDeposit] = useState([]);
+  useEffect(() => {
+    const fetTotalDeposit = async () => {
+      try {
+        const response = await orderApi.totalDeposit();
+        console.log(response);
+        setTotalDeposit(response);
+      }catch (error) {
+        console.log("Failed to fetch deposit", error);
+      }
+  }
+    fetTotalDeposit();
+  },[]);
   return (
     <RootStyle>
       <IconWrapperStyle> 
         <Icon icon="dashicons:money-alt" color="rgb(183, 129, 3)" width="40" height="40" />
       </IconWrapperStyle>
-      <Typography variant="h4">120.000.000</Typography>
-      <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
+      <Typography variant="h4">{fNumberCurrency(totalDeposit)}</Typography>
+      <Typography variant="h6" sx={{ opacity: 0.72 }}>
         Doanh thu
       </Typography>
     </RootStyle>

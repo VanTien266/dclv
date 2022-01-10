@@ -1,6 +1,8 @@
+import react, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Typography, Container } from "@material-ui/core";
 import Bill from "./Bill";
+import billApi from "../../../api/billApi";
 
 const useStyles = makeStyles({
   billBox: {
@@ -32,17 +34,19 @@ const useStyles = makeStyles({
     marginBottom: "10px",
   },
   containerNoPadding: {
-    padding: "0"
+    padding: "0",
   },
   productList: {
     justifyContent: "center",
     direction: "row",
     display: "flex",
     alignItems: "center",
-  }
+  },
 });
-export default function ListBill() {
+export default function ListBill(props) {
+  const { detailBill } = props;
   const classes = useStyles();
+
   return (
     <Container maxWidth="xl" className={classes.billBox}>
       <Typography variant="h5" className={classes.title}>
@@ -66,9 +70,7 @@ export default function ListBill() {
         </Grid>
       </Grid>
       <Container maxWidth="xl" className={classes.containerNoPadding}>
-        <Bill />
-        <Bill />
-        <Bill />
+        {detailBill.map((item, index) => <Bill key={index} bill={item} />)}
       </Container>
     </Container>
   );

@@ -1,27 +1,10 @@
-// import React, {useState} from 'react'
-// import { makeStyles } from '@material-ui/core/styles'
-// import { Box, Grid, Container, Typography } from '@material-ui/core';
-// import clsx from "clsx";
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-
-//   },
-// }));
-// function StaffTotalSale() {
-//     const classes = useStyles();
-//     return (
-//        <Typography>StaffTotalSale</Typography>
-//     )
-// }
-
-// export default StaffTotalSale
-
+import React, {useState, useEffect} from 'react'
 import { Icon } from "@iconify/react";
 import { alpha, styled } from "@material-ui/core/styles";
 import { Card, Typography } from "@material-ui/core";
 // utils
-//import { fShortenNumber } from '../../../utils/formatNumber';
+import {fNumber} from "../../../utils/formatNumber";
+import orderApi from "../../../api/orderApi";
 
 const RootStyle = styled(Card)(({ theme }) => ({
   boxShadow: "none",
@@ -49,6 +32,19 @@ const IconWrapperStyle = styled("div")(({ theme }) => ({
 }));
 
 export default function StaffTotalSale() {
+  const [orderTotal, setOrderTotal] = useState([]);
+  useEffect(() => {
+    const fetCountOrder = async () => {
+        try {
+          const response = await orderApi.countAllOrder();
+          console.log(response);
+          setOrderTotal(response);
+        }catch (error) {
+          console.log("Failed to fetch order count", error);
+        }
+    }
+    fetCountOrder();
+  }, []);
   return (
     <RootStyle>
       <IconWrapperStyle>
@@ -59,8 +55,8 @@ export default function StaffTotalSale() {
           height="35"
         />
       </IconWrapperStyle>
-      <Typography variant="h4">1200</Typography>
-      <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
+      <Typography variant="h4">{fNumber(orderTotal)}</Typography>
+      <Typography variant="h6" sx={{ opacity: 0.72 }}>
         Tổng đơn hàng
       </Typography>
     </RootStyle>

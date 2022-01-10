@@ -1,28 +1,10 @@
-// import React, {useState} from 'react'
-// import { makeStyles } from '@material-ui/core/styles'
-// import { Box, Grid, Container, Typography } from '@material-ui/core';
-// import clsx from "clsx";
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-    
-//   },
-// }));
-// function StaffTotalSale() {
-//     const classes = useStyles();
-//     return (
-//        <Typography>StaffTotalSale</Typography>
-//     )
-// }
-
-// export default StaffTotalSale
-
-
+import React, {useState, useEffect} from 'react'
 import { Icon } from '@iconify/react';
 import { alpha, styled } from '@material-ui/core/styles';
 import { Card, Typography } from '@material-ui/core';
 // utils
-//import { fShortenNumber } from '../../../utils/formatNumber';
+import {fNumber} from "../../../utils/formatNumber";
+import billApi from "../../../api/billApi";
 
 const RootStyle = styled(Card)(({ theme }) => ({
   boxShadow: 'none',
@@ -49,15 +31,28 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
   )} 100%)`
 }));
 
-export default function StaffOrderComplete() {
+export default function StaffBillComplete() {
+  const [billComplete, setBillComplete] = useState([]);
+  useEffect(() => {
+    const fetCountBillComplete = async () => {
+        try {
+          const response = await billApi.getBillCompleted();
+          console.log(response);
+          setBillComplete(response);
+        }catch (error) {
+          console.log("Failed to fetch bill complete count", error);
+        }
+    }
+    fetCountBillComplete();
+  }, []);
   return (
     <RootStyle>
       <IconWrapperStyle>
         <Icon icon="carbon:task-complete" color="rgb(12, 83, 183)" width="35" height="35" />
       </IconWrapperStyle>
-      <Typography variant="h4">1100</Typography>
-      <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-        Đơn đã giao
+      <Typography variant="h4">{fNumber(billComplete)}</Typography>
+      <Typography variant="h6" sx={{ opacity: 0.72 }}>
+        Hóa đơn giao thành công
       </Typography>
     </RootStyle>
   );

@@ -60,6 +60,7 @@ function CustomCheckbox(props) {
       icon={<span className={classes.icon} />}
       inputProps={{ 'aria-label': 'decorative checkbox' }}
       {...props}
+      checked
     />
   );
 }

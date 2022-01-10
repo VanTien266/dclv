@@ -9,6 +9,8 @@ import {
 } from "@material-ui/core";
 import Item from "./components/Item/Item";
 import CustomerInfo from "./components/CustomerInfo/CustomerInfo";
+import NumberFormat from "react-number-format";
+
 const useStyles = makeStyles((theme) => ({
   title: { textAlign: "center", margin: "8px 0" },
   root: {
@@ -19,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
   cost: { margin: "16px 0" },
 }));
 
-function Order() {
+function Order(props) {
+  const { order } = props;
   const classes = useStyles();
 
   return (
@@ -30,7 +33,7 @@ function Order() {
         </Typography>
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <Item />
+            <Item products={order.products} />
           </Grid>
         </Grid>
         <div className={classes.cost}>
@@ -40,12 +43,29 @@ function Order() {
               <Typography variant="h6">Đã đặt cọc</Typography>
             </Grid>
             <Grid>
-              <Typography variant="h6">150.000.000 vnđ</Typography>
+              <Typography variant="h6">
+                <NumberFormat
+                  value={order.deposit}
+                  thousandsGroupStyle="thousand"
+                  displayType="text"
+                  decimalScale={0}
+                  thousandSeparator="."
+                  decimalSeparator=","
+                  suffix=" vnđ"
+                />
+              </Typography>
             </Grid>
           </Grid>
           <Divider />
         </div>
-        <CustomerInfo />
+        <CustomerInfo
+          clientID={order.clientID}
+          receiver={{
+            receiverName: order.receiverName,
+            receiverPhone: order.receiverPhone,
+            receiverAddress: order.receiverAddress,
+          }}
+        />
       </CardContent>
     </Card>
   );

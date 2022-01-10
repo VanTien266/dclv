@@ -3,10 +3,12 @@ import OrderInfo from "./components/OrderInfo";
 import TimelineStatus from "./components/TimelineStatus";
 import ListBill from "./components/ListBill";
 import { Button, Grid, Typography, Container } from "@material-ui/core";
+import { useState, useEffect } from "react";
+import orderApi from "../../api/orderApi";
 import { makeStyles } from "@material-ui/core/styles";
 import { ArrowBack, ArrowUpward, Cancel, Publish } from "@material-ui/icons";
 import DefaultButton from "../../components/Button/DefaultButton";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   alignStatusRight: {
@@ -52,14 +54,40 @@ const useStyles = makeStyles((theme) => ({
 export default function OrderDetail() {
   const classes = useStyles();
   const history = useHistory();
+  const { id } = useParams();
   const role = localStorage.getItem("role");
+  console.log(id);
+  const [detail, setDetail] = useState({
+    orderStatus: [],
+    products: [],
+    detailBill: [],
+  });
+
+  useEffect(() => {
+    let mounted = true;
+    const fetchOrderDetail = async () => {
+      const response = await orderApi.getOne(id);
+      console.log(response);
+      if (mounted) {
+        setDetail(response);
+      }
+    };
+    fetchOrderDetail();
+
+    return () => {
+      mounted = false;
+    };
+  }, [id]);
+
+  console.log(detail);
 
   const handleBack = () => {
     history.push(`/${role}/order`);
   };
 
-  const handleExportBill = () => {
-    history.push(`/${role}/order/billExport`);
+  const handleExportBill = async (orderId) => {
+    await orderApi.updateStatus(orderId, JSON.stringify({status: "processing", reason: ""}));
+    history.push(`/${role}/order/billExport/${id}`);
   };
 
   return (
@@ -67,29 +95,35 @@ export default function OrderDetail() {
       <Grid container spacing={2}>
         <Grid item xs={9}>
           <Typography variant="h4" className={classes.titlePage}>
-            Chi tiết đơn đặt hàng MDH12345
+            {"Chi tiết đơn đặt hàng MDH" + detail.orderId}
           </Typography>
         </Grid>
         <Grid item xs={3} className={classes.alignStatusRight}>
           <DefaultButton
             title="Xuất hóa đơn"
             icon={Publish}
-            clickEvent={handleExportBill}
+            clickEvent={async () => { await handleExportBill(id); }}
           />
         </Grid>
       </Grid>
       <Grid container spacing={2} className={classes.root}>
         <Grid item xs={12} md={7}>
-          <OrderInfo />
+          <OrderInfo products={detail.products} deposit={detail.deposit} />
         </Grid>
         <Grid item xs={12} md={5}>
-          <TimelineStatus />
+          <TimelineStatus statusList={detail.orderStatus} />
         </Grid>
         <Grid item xs={12} md={7}>
-          <ListBill />
+          <ListBill detailBill={detail.detailBill} />
         </Grid>
         <Grid item xs={12} md={5}>
-          <CustomerInfo />
+          <CustomerInfo
+            customer={detail.clientID}
+            receiverName={detail.receiverName}
+            receiverPhone={detail.receiverPhone}
+            receiverAddress={detail.receiverAddress}
+            id={id}
+          />
         </Grid>
       </Grid>
       <Grid container spacing={2} className={classes.btnGroup}>

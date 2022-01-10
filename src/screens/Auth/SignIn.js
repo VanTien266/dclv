@@ -44,7 +44,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage: "url(https://webservices.wkf.fr/editorial/medias/images/actu-77374-report-d_imposition-des.jpg)",
+    backgroundImage:
+      "url(https://webservices.wkf.fr/editorial/medias/images/actu-77374-report-d_imposition-des.jpg)",
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
@@ -124,18 +125,22 @@ export default function SignIn() {
       case "admin":
         history.push("/admin/dashboard");
         localStorage.setItem("role", result[0].role);
+        localStorage.setItem("id", result[0]._id);
         break;
       case "salesman":
         history.push("/salesman/dashboard");
         localStorage.setItem("role", result[0].role);
+        localStorage.setItem("id", result[0]._id);
         break;
       case "shipper":
         history.push("/shipper/dashboard");
         localStorage.setItem("role", result[0].role);
+        localStorage.setItem("id", result[0]._id);
         break;
       case "customer":
         history.push("/dashboard");
         localStorage.setItem("role", result[0].role);
+        localStorage.setItem("id", result[0]._id);
         break;
       default:
         setAlert("Tài khoản hoăc mật khẩu không đúng!");

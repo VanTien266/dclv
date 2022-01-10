@@ -9,7 +9,7 @@ import {
   TableBody,
 } from "@material-ui/core";
 import NumberFormat from "react-number-format";
-import React from "react";
+import React, { useState, useEffect } from "react";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#fff",
@@ -22,68 +22,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Item() {
+function Item(props) {
+  const { products } = props;
   const classes = useStyles();
+
   const tableTitleConfig = [
     "STT",
     "Tên",
+    "Mã màu",
     "Chiều dài (m)",
     "Đã giao (m)",
     "Còn lại (m)",
   ];
-  const items = [
-    {
-      name: "Vải kaki trắng",
-      length: 600,
-      delivered: 300,
-      rest: 300,
-    },
-    {
-      name: "Vải kaki trắng",
-      length: 600,
-      delivered: 300,
-      rest: 300,
-    },
-    {
-      name: "Vải kaki trắng",
-      length: 600,
-      delivered: 300,
-      rest: 300,
-    },
-    {
-      name: "Vải kaki trắng",
-      length: 600,
-      delivered: 300,
-      rest: 300,
-    },
-    {
-      name: "Vải jean trắng",
-      length: 1000,
-      delivered: 700,
-      rest: 300,
-    },
-    {
-      name: "Vải kaki đen",
-      length: 500,
-      delivered: 300,
-      rest: 200,
-    },
-    {
-      name: "Vải coton trắng",
-      length: 400,
-      delivered: 100,
-      rest: 300,
-    },
-    {
-      name: "Vải jean trắng",
-      length: 500,
-      delivered: 200,
-      rest: 300,
-    },
-  ];
+
   const getTotalLength = (prevVal, nextItem) => prevVal + nextItem.length;
-  const getTotalDelivered = (prevVal, nextItem) => prevVal + nextItem.delivered;
-  const getTotalRest = (prevVal, nextItem) => prevVal + nextItem.rest;
+  const getTotalDelivered = (prevVal, nextItem) =>
+    prevVal + nextItem.shippedLength;
+  const getTotalRest = (prevVal, nextItem) =>
+    prevVal + (nextItem.length - nextItem.shippedLength);
   return (
     <TableContainer className={classes.root}>
       <Table stickyHeader className={classes.table}>
@@ -97,52 +53,61 @@ function Item() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {items.map((item, index) => (
-            <TableRow key={index}>
-              <TableCell>
-                <Typography variant="subtitle2">{index + 1}</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2">{item.name}</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2">
-                  <NumberFormat
-                    value={item.length}
-                    thousandsGroupStyle="thousand"
-                    displayType="text"
-                    decimalScale={0}
-                    thousandSeparator="."
-                    decimalSeparator=","
-                  />
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2">
-                  <NumberFormat
-                    value={item.delivered}
-                    thousandsGroupStyle="thousand"
-                    displayType="text"
-                    decimalScale={0}
-                    thousandSeparator="."
-                    decimalSeparator=","
-                  />
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2">
-                  <NumberFormat
-                    value={item.rest}
-                    thousandsGroupStyle="thousand"
-                    displayType="text"
-                    decimalScale={0}
-                    thousandSeparator="."
-                    decimalSeparator=","
-                  />
-                </Typography>
-              </TableCell>
-            </TableRow>
-          ))}
+          {products
+            ? products.map((item, index) => (
+                <TableRow key={index}>
+                  <TableCell>
+                    <Typography variant="subtitle2">{index + 1}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="subtitle2">
+                      {item.colorCode.name}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="subtitle2">
+                      {item.colorCode.colorCode}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="subtitle2">
+                      <NumberFormat
+                        value={item.length}
+                        thousandsGroupStyle="thousand"
+                        displayType="text"
+                        decimalScale={0}
+                        thousandSeparator="."
+                        decimalSeparator=","
+                      />
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="subtitle2">
+                      <NumberFormat
+                        value={item.shippedLength}
+                        thousandsGroupStyle="thousand"
+                        displayType="text"
+                        decimalScale={0}
+                        thousandSeparator="."
+                        decimalSeparator=","
+                      />
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="subtitle2">
+                      <NumberFormat
+                        value={item.length - item.shippedLength}
+                        thousandsGroupStyle="thousand"
+                        displayType="text"
+                        decimalScale={0}
+                        thousandSeparator="."
+                        decimalSeparator=","
+                      />
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+              ))
+            : null}
           <TableRow>
             <TableCell>
               <Typography variant="subtitle1">Tổng</Typography>
@@ -153,7 +118,7 @@ function Item() {
             <TableCell>
               <Typography variant="subtitle1">
                 <NumberFormat
-                  value={items.reduce(getTotalLength, 0)}
+                  value={products ? products.reduce(getTotalLength, 0) : ""}
                   thousandsGroupStyle="thousand"
                   displayType="text"
                   decimalScale={0}
@@ -165,7 +130,7 @@ function Item() {
             <TableCell>
               <Typography variant="subtitle1">
                 <NumberFormat
-                  value={items.reduce(getTotalDelivered, 0)}
+                  value={products ? products.reduce(getTotalDelivered, 0) : ""}
                   thousandsGroupStyle="thousand"
                   displayType="text"
                   decimalScale={0}
@@ -177,7 +142,7 @@ function Item() {
             <TableCell>
               <Typography variant="subtitle1">
                 <NumberFormat
-                  value={items.reduce(getTotalRest, 0)}
+                  value={products ? products.reduce(getTotalRest, 0) : ""}
                   thousandsGroupStyle="thousand"
                   displayType="text"
                   decimalScale={0}
