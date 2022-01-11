@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient";
 
 class ProductApi {
   getAll = (params) => {
-    const url = "/product";
+    const url = "/product1";
     return axiosClient.get(url, { params });
   };
   getOne = (params) => {
