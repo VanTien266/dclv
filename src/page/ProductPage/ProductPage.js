@@ -70,11 +70,11 @@ function Product() {
     <div className={classes.root}>
       <Grid container>
         <Grid item sm={6} md={8}>
-          <Filter
+          {/* <Filter
             handleFilterChange={handleFilterChange}
             filter={filter}
             data={data}
-          />
+          /> */}
         </Grid>
         <Grid item sm={6} md={4} className={classes.notiSearch}>
           <Grid item xs={2}>
