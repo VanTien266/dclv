@@ -82,17 +82,37 @@ function ChartBillStatus() {
           console.log(response);
           setBillStatus(response);
         }catch (error) {
-          console.log("Failed to fetch fabric type sell", error);
+          console.log("Failed to fetch bill status", error);
         }
     }
     fetchBillStatus();
   }, []);
+
+  const customizePoint = (pointInfo) => {
+    if(pointInfo.argument == "completed")
+      return {
+        color: "#4caf50"
+      }
+    else if(pointInfo.argument == "exported")
+      return {
+        color: "#f8ca00"
+      }
+    else if(pointInfo.argument == "shipping")
+      return {
+        color: "#2196f3"
+      }
+    else if(pointInfo.argument == "failed")
+      return {
+        color: "#f44336"
+      }
+  };
     return (
       <Paper style={{padding: 5}}>
       <PieChart id="pie"
         palette="Bright"
         dataSource={billstatus}
         title="Tình trạng hóa đơn"
+        customizePoint={customizePoint}
       >
         <Legend
           orientation="horizontal"
