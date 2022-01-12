@@ -30,7 +30,7 @@ function ChartOrderHandle() {
       return {
         color: "#4caf50"
       }
-    else if(pointInfo.argument == "process")
+    else if(pointInfo.argument == "processing")
       return {
         color: "#f8ca00"
       }
