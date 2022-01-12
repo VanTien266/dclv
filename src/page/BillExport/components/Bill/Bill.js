@@ -22,17 +22,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function Bill(props) {
-  const { order } = props;
-  const classes = useStyles();
-
-  const [listProductAdded, setListProductAdded] = useState([]);
+  const { order, addProductToBill, listProductAdded } = props;
+  const classes = useStyles();  
   const [error, setError] = useState({ status: false, message: "" });
-
-  console.log("Bill render");
-
-  const handleAddProduct = (product) => {
-    setListProductAdded([...listProductAdded, product]);
-  };
+  
   return (
     <Card>
       <CardContent>
@@ -40,7 +33,7 @@ function Bill(props) {
           Hóa đơn bán hàng
         </Typography>
         <EnterItemId
-          handleAddProduct={handleAddProduct}
+          handleAddProduct={addProductToBill}
           listProductAdded={listProductAdded}
           order={order}
           error={error}

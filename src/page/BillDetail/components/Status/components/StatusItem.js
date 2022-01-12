@@ -77,7 +77,7 @@ function StatusItem(props) {
             >
               {(item.name === "exported" && "Đã xuất") ||
                 (item.name === "shipping" && "Đang vận chuyển") ||
-                (item.name === "completed" && "Gia hàng thành công") ||
+                (item.name === "completed" && "Giao hàng thành công") ||
                 (item.name === "failed" && index === 2
                   ? "Đợi vận chuyển lần 2"
                   : index === 4

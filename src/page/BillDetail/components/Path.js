@@ -22,7 +22,7 @@ function Path(props) {
     <Grid className={classes.root}>
       <Grid item>
         <Typography variant="h5" color="primary" className={classes.title}>
-          Hóa đơn bán hàng #MHD{billID}
+          Hóa đơn bán hàng HĐ{billID}
         </Typography>
       </Grid>
       <Grid item>
