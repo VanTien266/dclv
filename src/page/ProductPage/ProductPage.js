@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import ProductList from "../../components/ProductList/ProductList";
 import { makeStyles } from "@material-ui/styles";
 import Filter from "./components/Filter";
-import { Grid } from "@material-ui/core";
+import { Grid, Container } from "@material-ui/core";
 import SearchField from "../../components/SearchField";
 import NotificationButton from "../../components/Button/NotificationButton";
 import productApi from "../../api/productApi";
+import ListTypeHeader from "./components/ListTypeHeader";
+import TypeItem from "./components/TypeItem";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -65,7 +67,7 @@ function Product() {
   const handleFilterChange = (filter) => {
     setFilter(filter);
   };
-
+  console.log(product);
   return (
     <div className={classes.root}>
       <Grid container>
@@ -85,13 +87,8 @@ function Product() {
           </Grid>
         </Grid>
       </Grid>
-
-      {product && (
-        <ProductList
-          className={classes.productList}
-          product={product.filter((item) => item.status !== false)}
-        />
-      )}
+      <ListTypeHeader/>
+      {product?.map((item, idx) => <TypeItem key={idx} fabricType={item}/>)}
     </div>
   );
 }
