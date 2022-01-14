@@ -6,8 +6,8 @@ const orderApi = {
     return axiosClient.get(url);
   },
 
-  countAllOrder: () => {
-    const url = "/countallorder";
+  countAllOrderMonthly: () => {
+    const url = "/getorderbymonth";
     return axiosClient.get(url);
   },
 

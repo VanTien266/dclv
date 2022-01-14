@@ -36,7 +36,7 @@ export default function StaffTotalSale() {
   useEffect(() => {
     const fetCountOrder = async () => {
         try {
-          const response = await orderApi.countAllOrder();
+          const response = await orderApi.countAllOrderMonthly();
           console.log(response);
           setOrderTotal(response);
         }catch (error) {
