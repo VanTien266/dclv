@@ -20,21 +20,21 @@ function ChartOrderHandle() {
           console.log(response);
           setOrderStatus(response);
         }catch (error) {
-          console.log("Failed to fetch fabric type sell", error);
+          console.log("Failed to fetch order status", error);
         }
     }
     fetchOrderStatus();
   }, []);
   const customizePoint = (pointInfo) => {
-    if(pointInfo.argument == "completed")
+    if(pointInfo.argument === "completed")
       return {
         color: "#4caf50"
       }
-    else if(pointInfo.argument == "processing")
+    else if(pointInfo.argument === "processing")
       return {
         color: "#f8ca00"
       }
-    else if(pointInfo.argument == "cancel")
+    else if(pointInfo.argument === "cancel")
       return {
         color: "#f44336"
       }

@@ -3,14 +3,14 @@ import Paper from '@material-ui/core/Paper';
 import {
   Chart, Series, CommonSeriesSettings, Label, Format, Legend, Export,
 } from 'devextreme-react/chart';
-import productApi from "../../../api/productApi";
+import billApi from "../../../api/billApi";
 
 function ChartFabricTypeSell() {
   const [fabrictypesell, setFabricTypeSell] = useState([]);
   useEffect(() => {
     const fetchFabricTypeSell = async () => {
         try {
-          const response = await productApi.getFabricTypeSell();
+          const response = await billApi.getBillFabricTypeSell();
           console.log(response);
           setFabricTypeSell(response);
         }catch (error) {
@@ -22,7 +22,7 @@ function ChartFabricTypeSell() {
     return (
       <Paper style={{padding: 5}}>
       <Chart id="chart"
-        title="Số lượng cây trong từng loại vải đã bán"
+        title="Top sản phẩm bán chạy"
         dataSource={fabrictypesell}
         // onPointClick={this.onPointClick}
         rotated={true}
