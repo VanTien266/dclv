@@ -42,9 +42,8 @@ const useStyles = makeStyles(() => ({
 
 const SidebarItem = (props) => {
   const { path, title, icon: Icon, active } = props;
-  const role = localStorage.getItem("role");
-  const isActivate =
-    role === "customer" ? active(`${path}`) : active(`/${role}${path}`);
+
+  const isActivate = active(`${path}`);
   const [open, setOpen] = useState(isActivate);
   const classes = useStyles();
 
@@ -53,8 +52,7 @@ const SidebarItem = (props) => {
   };
 
   const getPath = () => {
-    if (role !== null && role !== "customer") return `/${role}${path}`;
-    else return `${path}`;
+    return `${path}`;
   };
 
   return (

@@ -47,8 +47,7 @@ function BillDetail() {
   }, [id]);
 
   const handleBack = () => {
-    if (role !== null)
-      history.push(`/${role}/order/orderDetail/${bill.orderID._id}`);
+    if (role !== null) history.push(`/order/orderDetail/${bill.orderID._id}`);
     else history.push(`/order/orderDetail/${bill.orderID._id}`);
   };
 

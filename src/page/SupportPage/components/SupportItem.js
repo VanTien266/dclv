@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
     },
     textTransform: "none",
     padding: theme.spacing(1.5),
-    marginRight: "10px"
+    marginRight: "10px",
   },
   btnCancelTitle: {
     ...theme.typography.buttonPrimary,
@@ -100,21 +100,26 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonBox: {
     padding: 0,
-    textAlign: "right"
+    textAlign: "right",
   },
   inpBoxWidth: {
-    width: "100%"
+    width: "100%",
   },
   titleModal: {
     textAlign: "center",
-    color: "#000040"
+    color: "#000040",
   },
   btnColor: {
-    color: "black"
-  }
+    color: "black",
+  },
+  statusOk: {
+    color: "#5A9E4B",
+  },
+  statusNotOk: { color: "#D19431" },
 }));
 
-export default function SupportItem({ item }) {
+export default function SupportItem(props) {
+  const { item } = props;
   const classes = useStyles();
   const history = useHistory();
 
@@ -147,30 +152,26 @@ export default function SupportItem({ item }) {
         xs={2}
         className={clsx(classes.orderId, classes.verticalCenter)}
       >
-        <p>{item.orderID}</p>
+        <p>MĐH{item.order.orderId}</p>
       </Grid>
       <Grid item xs={2} className={classes.verticalCenter}>
-        <p>{item.customerName}</p>
+        <p>{item.customer.name}</p>
       </Grid>
 
       <Grid item xs={2} className={classes.productList}>
-        <p>{item.customerPhoneNum}</p>
+        <p>{item.customer.phone}</p>
       </Grid>
 
       <Grid item xs={3} className={classes.verticalCenter}>
-        <p className={classes.verticalAlign}>{item.feedback}</p>
+        <p className={classes.verticalAlign}>{item.request}</p>
       </Grid>
       <Grid item xs={3} className={classes.productList}>
-        {item.status === "processing" ? (
-          <Button
-            className={classes.buttonWidth}
-            onClick={handleOpen}
-            aria-expanded={expanded}
-          >
-            Click để xem và phản hồi
-          </Button>
+        {item.status === false ? (
+          <Typography className={classes.statusNotOk}>
+            Chưa có phản hồi
+          </Typography>
         ) : (
-          <Typography>Cảm ơn bạn đã liên hệ, bên mình sẽ kiểm tra và phản hồi bạn trong thời gian sớm nhất</Typography>
+          <Typography className={classes.statusOk}>{item.response}</Typography>
         )}
       </Grid>
       <Modal
@@ -187,13 +188,21 @@ export default function SupportItem({ item }) {
       >
         <Card>
           <CardContent>
-            <Typography gutterBottom variant="h4" className={classes.titleModal}>
+            <Typography
+              gutterBottom
+              variant="h4"
+              className={classes.titleModal}
+            >
               Phản hồi yêu cầu
             </Typography>
             <form action="" className={classes.formModal}>
               <Container className={classes.feedbackContent}>
                 <InputLabel htmlFor="order-id">
-                  <Typography gutterBottom variant="h6" className={classes.btnColor}>
+                  <Typography
+                    gutterBottom
+                    variant="h6"
+                    className={classes.btnColor}
+                  >
                     Mã đơn đặt hàng
                   </Typography>
                 </InputLabel>
@@ -205,7 +214,11 @@ export default function SupportItem({ item }) {
                   className={classes.inpBoxWidth}
                 ></TextField>
                 <InputLabel htmlFor="reply-content">
-                  <Typography gutterBottom variant="h6" className={classes.btnColor}>
+                  <Typography
+                    gutterBottom
+                    variant="h6"
+                    className={classes.btnColor}
+                  >
                     Nội dung phản hồi
                   </Typography>
                 </InputLabel>
@@ -222,6 +235,7 @@ export default function SupportItem({ item }) {
                   startIcon={<Cancel />}
                   size="large"
                   className={classes.btnCancel}
+                  onClick={handleClose}
                 >
                   <Typography variant="h6" className={classes.btnCancelTitle}>
                     Hủy
