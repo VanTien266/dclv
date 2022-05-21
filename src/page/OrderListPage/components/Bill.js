@@ -15,7 +15,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper
+  Paper,
 } from "@material-ui/core";
 import clsx from "clsx";
 import productApi from "../../../api/productApi";
@@ -93,19 +93,19 @@ const useStyles = makeStyles((theme) => ({
   },
   exportedTypo: {
     color: "#ff9800",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   deliveryTypo: {
     color: "#2196f3",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   successTypo: {
     color: "#4caf50",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   failTypo: {
     color: "#f44336",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
 }));
 
@@ -125,12 +125,13 @@ export default function Bill(props) {
     e.stopPropagation();
     setOpen(false);
   };
-  
+
   useEffect(() => {
     let mounted = true;
 
     const fetchFabricRoll = async (listId) => {
       const response = await productApi.getListById(listId);
+
       if (mounted) setListFabricRoll(response);
       // console.log(response);
     };
@@ -150,7 +151,7 @@ export default function Bill(props) {
 
   const handleClick = (e) => {
     e.stopPropagation();
-    history.push(`/${localStorage.getItem("role")}/order/billDetail/${bill._id}`);
+    history.push(`/order/billDetail/${bill._id}`);
   };
 
   return (
@@ -175,13 +176,17 @@ export default function Bill(props) {
         <Button onClick={handleOpen}>Chi tiết</Button>
       </Grid>
       <Grid container item xs={2}>
-        <p className={bill.status[bill.status.length - 1].name === "exported"
-            ? classes.exportedTypo
-            : bill.status[bill.status.length - 1].name === "shipping"
-            ? classes.deliveryTypo
-            : bill.status[bill.status.length - 1].name === "completed"
-            ? classes.successTypo
-            : classes.failTypo}>
+        <p
+          className={
+            bill.status[bill.status.length - 1].name === "exported"
+              ? classes.exportedTypo
+              : bill.status[bill.status.length - 1].name === "shipping"
+              ? classes.deliveryTypo
+              : bill.status[bill.status.length - 1].name === "completed"
+              ? classes.successTypo
+              : classes.failTypo
+          }
+        >
           {bill.status[bill.status.length - 1].name === "exported"
             ? "Đã xuất"
             : bill.status[bill.status.length - 1].name === "shipping"
@@ -209,19 +214,19 @@ export default function Bill(props) {
               Danh sách cây vải
             </Typography>
             <TableContainer component={Paper} className={classes.productScroll}>
-              <Table stickyHeader sx={{ minWidth: "40vh" }} aria-label="simple table">
+              <Table
+                stickyHeader
+                sx={{ minWidth: "40vh" }}
+                aria-label="simple table"
+              >
                 <TableHead>
                   <TableRow>
                     <TableCell className={classes.headerTable}>STT</TableCell>
                     <TableCell className={classes.headerTable}>
                       Mã màu
                     </TableCell>
-                    <TableCell className={classes.headerTable}>
-                      Tên
-                    </TableCell>
-                    <TableCell className={classes.headerTable}>
-                      Lô
-                    </TableCell>
+                    <TableCell className={classes.headerTable}>Tên</TableCell>
+                    <TableCell className={classes.headerTable}>Lô</TableCell>
                     <TableCell className={classes.headerTable}>
                       Chiều dài
                     </TableCell>

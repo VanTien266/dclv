@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import validate from "validate.js";
+import validate, { async } from "validate.js";
 import {
   Avatar,
   Button,
@@ -18,6 +18,7 @@ import {
 } from "@material-ui/core";
 import { LockOutlined, AccountCircle, Lock } from "@material-ui/icons";
 import axios from "axios";
+import staffApi from "../../api/staffApi";
 
 const constraints = {
   email: {
@@ -32,7 +33,7 @@ function Copyright() {
       {"Copyright © "}
       <Link color="inherit" href="#">
         BK Fabric
-      </Link>{" "}
+      </Link>
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -99,11 +100,6 @@ export default function SignIn() {
 
   useEffect(() => {
     const errors = validate(formState.values, constraints);
-    // get user data
-    const fetchUser = () => {
-      axios.post("/user").then((response) => setUser(response.data.users));
-    };
-    fetchUser();
 
     // update form validation
     setFormState((formState) => ({
@@ -114,36 +110,15 @@ export default function SignIn() {
   }, [formState.values]);
 
   // for submit form
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = user.filter(
-      (item) =>
-        item.email === formState.values.email &&
-        item.password === formState.values.password
-    );
-    switch (result[0] ? result[0].role : "") {
-      case "admin":
-        history.push("/admin/dashboard");
-        localStorage.setItem("role", result[0].role);
-        localStorage.setItem("id", result[0]._id);
-        break;
-      case "salesman":
-        history.push("/salesman/dashboard");
-        localStorage.setItem("role", result[0].role);
-        localStorage.setItem("id", result[0]._id);
-        break;
-      case "shipper":
-        history.push("/shipper/dashboard");
-        localStorage.setItem("role", result[0].role);
-        localStorage.setItem("id", result[0]._id);
-        break;
-      case "customer":
-        history.push("/dashboard");
-        localStorage.setItem("role", result[0].role);
-        localStorage.setItem("id", result[0]._id);
-        break;
-      default:
-        setAlert("Tài khoản hoăc mật khẩu không đúng!");
+    try {
+      const response = await staffApi.login(formState.values);
+      localStorage.setItem("user", JSON.stringify(response));
+      localStorage.setItem("access_token", response.access_token);
+      history.push("/dashboard");
+    } catch (error) {
+      console.log(error);
     }
   };
 

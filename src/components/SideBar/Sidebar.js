@@ -44,14 +44,7 @@ function Sidebar(props) {
   const { pathname } = useLocation();
   const role = localStorage.getItem("role");
   //Get sidebar list item with role
-  let sidebarConfig =
-    role === "admin"
-      ? AdminSidebarConfig
-      : role === "salesman"
-      ? SalesmanSidebarConfig
-      : role === "shipper"
-      ? []
-      : CustomerSidebarConfig;
+  let sidebarConfig = AdminSidebarConfig;
 
   //check path is activate
   const match = (path) => (path ? !!matchPath(pathname, { path }) : false);

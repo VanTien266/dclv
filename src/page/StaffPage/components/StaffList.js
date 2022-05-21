@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Grid,
-  Button,
-} from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 import clsx from "clsx";
 import { useHistory } from "react-router";
 import moment from "moment";
@@ -26,12 +23,12 @@ const useStyles = makeStyles((theme) => ({
       transition: "box-shadow 0.3s ease-in-out",
     },
   },
-  verticalCenterEmail:{
+  verticalCenterEmail: {
     direction: "row",
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
-    paddingLeft: "20px"
+    paddingLeft: "20px",
   },
   verticalCenter: {
     direction: "row",
@@ -84,44 +81,48 @@ export default function StaffList(props) {
   const history = useHistory();
 
   const handleClick = (id) => {
-    history.push(`/admin/staff/staffinfo/${id}`);
+    history.push(`/staff/staffinfo/${id}`);
   };
   return (
     <>
-    {staff.map((item) => (
-      
-    <Grid container className={classes.root} onClick={() => handleClick(item._id)}>
-      {/* <Button className={classes.buttonList} onClick={handleClick}> */}
-      <Grid
-        item
-        xs={1}
-        className={clsx(classes.orderId, classes.verticalCenter)}
-      > 
-        <p>{item.id}</p>
-      </Grid>
-      <Grid item xs={3} className={classes.verticalCenter}>
-        <p>{item.name}</p>
-      </Grid>
+      {staff.map((item) => (
+        <Grid
+          container
+          className={classes.root}
+          onClick={() => handleClick(item._id)}
+          key={item._id}
+        >
+          <Grid
+            item
+            xs={1}
+            className={clsx(classes.orderId, classes.verticalCenter)}
+          >
+            <p>{item.id}</p>
+          </Grid>
+          <Grid item xs={3} className={classes.verticalCenter}>
+            <p>{item.name}</p>
+          </Grid>
 
-      <Grid item xs={2} className={classes.verticalCenter}>
-        <p>{item.role}</p>
-      </Grid>
+          <Grid item xs={2} className={classes.verticalCenter}>
+            <p>{item.role}</p>
+          </Grid>
 
-      <Grid item xs={1} className={classes.verticalCenter}>
-        <p className={classes.verticalAlign}>{moment(item.birthday).subtract(1, "days").format("DD/MM/YYYY")}</p>
-      </Grid>
-      <Grid item xs={1} className={classes.verticalCenter}>
-        <p className={classes.verticalAlign}>{item.phone}</p>
-      </Grid>
-      <Grid item xs={3} className={classes.verticalCenterEmail}>
-        <p className={classes.verticalAlign}>{item.email}</p>
-      </Grid>
-      <Grid item xs={1} className={classes.verticalCenterEmail}>
-        <p className={classes.verticalAlign}>{item.gender}</p>
-      </Grid>
-    </Grid>
-    
-    ))}
+          <Grid item xs={1} className={classes.verticalCenter}>
+            <p className={classes.verticalAlign}>
+              {moment(item.birthday).subtract(1, "days").format("DD/MM/YYYY")}
+            </p>
+          </Grid>
+          <Grid item xs={1} className={classes.verticalCenter}>
+            <p className={classes.verticalAlign}>{item.phone}</p>
+          </Grid>
+          <Grid item xs={3} className={classes.verticalCenterEmail}>
+            <p className={classes.verticalAlign}>{item.email}</p>
+          </Grid>
+          <Grid item xs={1} className={classes.verticalCenterEmail}>
+            <p className={classes.verticalAlign}>{item.gender}</p>
+          </Grid>
+        </Grid>
+      ))}
     </>
   );
 }

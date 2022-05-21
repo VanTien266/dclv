@@ -31,8 +31,6 @@ export default function OrderListPage() {
     };
   }, [filter]);
 
-  console.log(orderList, filter);
-
   const handleFilterChange = (value) => {
     setFilter(value);
   };
