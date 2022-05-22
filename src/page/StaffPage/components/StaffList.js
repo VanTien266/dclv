@@ -81,7 +81,7 @@ export default function StaffList(props) {
   const history = useHistory();
 
   const handleClick = (id) => {
-    history.push(`/staff/staffinfo/${id}`);
+    history.push(`/staff/${id}`);
   };
   return (
     <>

@@ -14,6 +14,7 @@ import {
   MenuItem,
   Box,
 } from "@material-ui/core";
+import moment from "moment";
 import clsx from "clsx";
 import { Done, Cancel } from "@material-ui/icons";
 import DefaultButton from "../../../components/Button/DefaultButton";
@@ -127,18 +128,30 @@ const roles = [
     value: "Nhân viên giao hàng",
   },
 ];
-export default function AddStaffModal() {
+export default function AddStaffModal({ setRefresh }) {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
-  const [gender, setGender] = React.useState("");
-  const [role, setRole] = React.useState("");
+  const [gender, setGender] = useState("");
+  const [role, setRole] = useState("");
+  const [err, setErr] = useState(true);
+  const [staff, setStaff] = useState({
+    name: null,
+    email: null,
+    phone: null,
+    address: null,
+    birthday: null,
+    role: null,
+    password: null,
+  });
 
   const handleSelectGender = (event) => {
-    setGender(event.target.value);
+    setErr(event.target.value === "");
+    setStaff({ ...staff, gender: event.target.value });
   };
   const handleSelectRole = (event) => {
-    setRole(event.target.value);
+    setErr(event.target.value === "");
+    setStaff({ ...staff, role: event.target.value });
   };
 
   const handleOpenAddStaff = (e) => {
@@ -153,13 +166,19 @@ export default function AddStaffModal() {
   };
 
   const handleCreateStaff = async () => {
-    try {
-      await staffApi.createStaff();
-      setOpen(false);
-    } catch (error) {
-      console.log(error);
+    if (!err) {
+      if (Object.values(staff).filter((i) => i === null).length > 0)
+        alert("Vui lòng điền đầy đủ thông tin nhân viên!");
+      else {
+        try {
+          await staffApi.createStaff(staff);
+          setOpen(false);
+          setRefresh((prevState) => !prevState);
+        } catch (error) {
+          alert("Thông tin không hợp lệ");
+        }
+      }
     }
-    console.log("OK");
   };
 
   const [expanded, setExpanded] = useState(false);
@@ -211,33 +230,17 @@ export default function AddStaffModal() {
                     variant="h6"
                     className={classes.btnColor}
                   >
-                    Họ, tên đệm
+                    Họ và tên
                   </Typography>
                   <TextField
                     required
                     id="standard-required"
                     name="firstname-staff"
                     variant="outlined"
-                  />
-                </FormControl>
-                <FormControl
-                  fullWidth
-                  margin="dense"
-                  style={{ marginLeft: "10px" }}
-                >
-                  <InputLabel htmlFor="lastname-staff"></InputLabel>
-                  <Typography
-                    gutterBottom
-                    variant="h6"
-                    className={classes.btnColor}
-                  >
-                    Tên
-                  </Typography>
-                  <TextField
-                    required
-                    id="standard-required"
-                    name="lastname-staff"
-                    variant="outlined"
+                    onChange={(e) => {
+                      setErr(e.target.value === "");
+                      setStaff({ ...staff, name: e.target.value });
+                    }}
                   />
                 </FormControl>
               </Box>
@@ -255,6 +258,10 @@ export default function AddStaffModal() {
                   id="standard-required"
                   name="telephone-staff"
                   variant="outlined"
+                  onChange={(e) => {
+                    setErr(e.target.value === "");
+                    setStaff({ ...staff, phone: e.target.value });
+                  }}
                 />
               </FormControl>
               <FormControl fullWidth margin="dense">
@@ -272,6 +279,35 @@ export default function AddStaffModal() {
                   name="email-staff"
                   variant="outlined"
                   className={classes.inputPassword}
+                  onChange={(e) => {
+                    setErr(e.target.value === "");
+                    setStaff({ ...staff, email: e.target.value });
+                  }}
+                />
+              </FormControl>
+              <FormControl fullWidth margin="dense">
+                <InputLabel htmlFor="email-staff"></InputLabel>
+                <Typography
+                  gutterBottom
+                  variant="h6"
+                  className={classes.btnColor}
+                >
+                  Mật khẩu
+                </Typography>
+                <TextField
+                  required
+                  id="standard-required"
+                  name="password-staff"
+                  variant="outlined"
+                  className={classes.inputPassword}
+                  onChange={(e) => {
+                    setErr(e.target.value === "");
+                    setStaff({ ...staff, password: e.target.value });
+                  }}
+                  error={staff.password === ""}
+                  helperText={
+                    staff.password === "" ? "Vui lòng nhập mật khẩu" : ""
+                  }
                 />
               </FormControl>
               <Box className={classes.formSelect}>
@@ -324,6 +360,13 @@ export default function AddStaffModal() {
                       shrink: true,
                     }}
                     variant="outlined"
+                    onChange={(e) => {
+                      setErr(e.target.value === "");
+                      setStaff({
+                        ...staff,
+                        birthday: new Date(e.target.value),
+                      });
+                    }}
                   />
                 </FormControl>
               </Box>
@@ -341,6 +384,10 @@ export default function AddStaffModal() {
                   id="standard-required"
                   name="address-staff"
                   variant="outlined"
+                  onChange={(e) => {
+                    setErr(e.target.value === "");
+                    setStaff({ ...staff, address: e.target.value });
+                  }}
                 />
               </FormControl>
               <FormControl
