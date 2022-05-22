@@ -10,6 +10,8 @@ import OrderDetail from "./page/OrderDetail";
 import OrderEdit from "./page/OrderEdit";
 import NotificationPage from "./page/NotificationPage/NotificationPage";
 import StaffPage from "./page/StaffPage/StaffPage";
+import StaffDetail from "./page/StaffPage/components/StaffDetail";
+
 import SupportPage from "./page/SupportPage/SupportPage";
 import InfoPage from "./page/InfoPage/InfoPage";
 
@@ -49,6 +51,11 @@ const routes = [
         path: "/staff",
         exact: true,
         component: StaffPage,
+      },
+      {
+        path: "/staff/:id",
+        exact: true,
+        component: StaffDetail,
       },
       {
         path: "/order/orderDetail/:id",

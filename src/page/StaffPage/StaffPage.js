@@ -15,21 +15,25 @@ const useStyles = makeStyles((theme) => ({
 function StaffPage() {
   const classes = useStyles();
   const [staff, setStaff] = useState([]);
+  const [refresh, setRefresh] = useState(true);
+  const [filter, setFilter] = useState(["ADMIN", "SALESMAN", "SHIPPER"]);
 
   useEffect(() => {
     const fetchStaff = async () => {
       try {
         const response = await staffApi.getAll();
-        setStaff(response);
+        const data = response.filter((i) => filter.includes(i.role));
+        console.log({ data });
+        setStaff(data);
       } catch (error) {
         console.log("Failed to fetch staff list", error);
       }
     };
     fetchStaff();
-  }, []);
+  }, [filter]);
   return (
     <div className={classes.root}>
-      <FilterBarStaff />
+      <FilterBarStaff filter={filter} setFilter={setFilter} />
       <StaffHeader />
       {staff && <StaffList className={classes.staffList} staff={staff} />}
     </div>

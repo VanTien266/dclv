@@ -25,26 +25,44 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function FilterBarStaff() {
+function FilterBarStaff(props) {
   const classes = useStyles();
+  const { filter, setFilter } = props;
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item container md={4} sm={6} xs={12}>
-          <Grid item md={6} sm={6} xs={6} className={classes.checkBoxCustom}>
-            <CustomCheckbox />
+        <Grid item container md={6} sm={6} xs={12}>
+          <Grid item md={4} sm={4} xs={4} className={classes.checkBoxCustom}>
+            <CustomCheckbox
+              filter={filter}
+              setFilter={setFilter}
+              role="SALESMAN"
+            />
             <Typography variant="h6" className={classes.checkboxText}>
               Nhân viên bán hàng
             </Typography>
           </Grid>
-          <Grid item md={6} sm={6} xs={6} className={classes.checkBoxCustom}>
-            <CustomCheckbox />
+          <Grid item md={4} sm={4} xs={4} className={classes.checkBoxCustom}>
+            <CustomCheckbox
+              filter={filter}
+              setFilter={setFilter}
+              role="SHIPPER"
+            />
             <Typography variant="h6" className={classes.checkboxText}>
               Nhân viên giao hàng
             </Typography>
           </Grid>
+          <Grid item md={4} sm={4} xs={4} className={classes.checkBoxCustom}>
+            <CustomCheckbox
+              filter={filter}
+              setFilter={setFilter}
+              role="ADMIN"
+            />
+            <Typography variant="h6" className={classes.checkboxText}>
+              Quản lý
+            </Typography>
+          </Grid>
         </Grid>
-        <Grid item container md={2}></Grid>
         <Grid item container md={2} sm={3} xs={12}>
           <AddStaffModal />
         </Grid>
