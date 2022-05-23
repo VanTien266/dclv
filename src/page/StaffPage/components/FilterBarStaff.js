@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
 
 function FilterBarStaff(props) {
   const classes = useStyles();
-  const { filter, setFilter } = props;
+  const { filter, setFilter, setRefresh } = props;
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
@@ -64,7 +64,7 @@ function FilterBarStaff(props) {
           </Grid>
         </Grid>
         <Grid item container md={2} sm={3} xs={12}>
-          <AddStaffModal />
+          <AddStaffModal setRefresh={setRefresh} />
         </Grid>
         <Grid
           item
