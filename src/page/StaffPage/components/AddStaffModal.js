@@ -123,9 +123,11 @@ const genders = [
 const roles = [
   {
     value: "Nhân viên bán hàng",
+    role: "SALESMAN",
   },
   {
     value: "Nhân viên giao hàng",
+    role: "SHIPPER",
   },
 ];
 export default function AddStaffModal({ setRefresh }) {
@@ -147,16 +149,19 @@ export default function AddStaffModal({ setRefresh }) {
 
   const handleSelectGender = (event) => {
     setErr(event.target.value === "");
+    setGender(event.target.value);
     setStaff({ ...staff, gender: event.target.value });
   };
   const handleSelectRole = (event) => {
     setErr(event.target.value === "");
+    setRole(event.target.value);
     setStaff({ ...staff, role: event.target.value });
   };
 
   const handleOpenAddStaff = (e) => {
     e.stopPropagation();
     setOpen(true);
+
     console.log("Click Add Staff");
   };
 
@@ -171,6 +176,7 @@ export default function AddStaffModal({ setRefresh }) {
         alert("Vui lòng điền đầy đủ thông tin nhân viên!");
       else {
         try {
+          console.log(staff);
           await staffApi.createStaff(staff);
           setOpen(false);
           setRefresh((prevState) => !prevState);
@@ -411,7 +417,7 @@ export default function AddStaffModal({ setRefresh }) {
                   variant="outlined"
                 >
                   {roles.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
+                    <MenuItem key={option.value} value={option.role}>
                       {option.value}
                     </MenuItem>
                   ))}

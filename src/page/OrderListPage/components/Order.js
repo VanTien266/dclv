@@ -201,7 +201,9 @@ export default function Order(props) {
       </Grid>
 
       <Grid item xs={2} className={classes.verticalCenter}>
-        <p className={classes.verticalAlign}>{order.clientID.name}</p>
+        <p className={classes.verticalAlign}>
+          {order.clientID ? order.clientID.name : order.receiverName}
+        </p>
       </Grid>
       <Grid item xs={1} className={classes.verticalCenter}>
         <p className={classes.verticalAlign}>
