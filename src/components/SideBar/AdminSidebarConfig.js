@@ -27,14 +27,13 @@ const sideBarConfig = [
     href: "",
     icon: PersonPinRoundedIcon,
   },
-
-  {
-    tag: "notification",
-    path: "/notification",
-    name: "Thông báo",
-    href: "",
-    icon: LocalPostOfficeIcon,
-  },
+  // {
+  //   tag: "notification",
+  //   path: "/notification",
+  //   name: "Thông báo",
+  //   href: "",
+  //   icon: LocalPostOfficeIcon,
+  // },
   {
     tag: "help",
     path: "/help",

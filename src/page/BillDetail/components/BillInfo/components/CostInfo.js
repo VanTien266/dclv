@@ -30,7 +30,7 @@ function CostInfo(props) {
 
   return (
     <div className={classes.root}>
-      <Divider className={classes.divider} />
+      {/* <Divider className={classes.divider} />
       <Grid container className={classes.itemInfo} alignItems="flex-end">
         <Grid item>
           <Typography variant="body1">Tổng tiền</Typography>
@@ -62,7 +62,7 @@ function CostInfo(props) {
             suffix=" vnđ"
           />
         </Typography>
-      </Grid>
+      </Grid> */}
       <Divider className={classes.divider} />
       <Grid container className={classes.itemInfo}>
         <Typography variant="h6">Thành tiền</Typography>

@@ -1,38 +1,42 @@
-import React from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Checkbox from '@material-ui/core/Checkbox';
+import React, { useEffect, useState } from "react";
+import clsx from "clsx";
+import { makeStyles } from "@material-ui/core/styles";
+import Checkbox from "@material-ui/core/Checkbox";
+import { fi } from "date-fns/locale";
 
 const useStyles = makeStyles({
   root: {
-    '&:hover': {
-      backgroundColor: 'transparent',
+    "&:hover": {
+      backgroundColor: "transparent",
     },
   },
   icon: {
     borderRadius: 3,
     width: 20,
     height: 20,
-    boxShadow: 'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
-    backgroundColor: '#f5f8fa',
-    backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
-    '$root.Mui-focusVisible &': {
-      outline: '2px auto rgba(19,124,189,.6)',
+    boxShadow:
+      "inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)",
+    backgroundColor: "#f5f8fa",
+    backgroundImage:
+      "linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))",
+    "$root.Mui-focusVisible &": {
+      outline: "2px auto rgba(19,124,189,.6)",
       outlineOffset: 2,
     },
-    'input:hover ~ &': {
-      backgroundColor: '#ebf1f5',
+    "input:hover ~ &": {
+      backgroundColor: "#ebf1f5",
     },
-    'input:disabled ~ &': {
-      boxShadow: 'none',
-      background: 'rgba(206,217,224,.5)',
+    "input:disabled ~ &": {
+      boxShadow: "none",
+      background: "rgba(206,217,224,.5)",
     },
   },
   checkedIcon: {
-    backgroundColor: '#000040',
-    backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
-    '&:before': {
-      display: 'block',
+    backgroundColor: "#000040",
+    backgroundImage:
+      "linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))",
+    "&:before": {
+      display: "block",
       width: 20,
       height: 20,
       backgroundImage:
@@ -41,8 +45,8 @@ const useStyles = makeStyles({
         "1.003 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1.003 1.003 0 0012 5z' fill='%23fff'/%3E%3C/svg%3E\")",
       content: '""',
     },
-    'input:hover ~ &': {
-      backgroundColor: '#106ba3',
+    "input:hover ~ &": {
+      backgroundColor: "#106ba3",
     },
   },
 });
@@ -50,6 +54,17 @@ const useStyles = makeStyles({
 // Inspired by blueprintjs
 function CustomCheckbox(props) {
   const classes = useStyles();
+  const [checked, setChecked] = useState(true);
+  const { filter, setFilter, role } = props;
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
+
+  useEffect(() => {
+    if (!checked) setFilter(filter.filter((i) => i !== role));
+    else if (!filter.includes(role)) setFilter([...filter, role]);
+  }, [checked]);
 
   return (
     <Checkbox
@@ -58,9 +73,10 @@ function CustomCheckbox(props) {
       color="default"
       checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
       icon={<span className={classes.icon} />}
-      inputProps={{ 'aria-label': 'decorative checkbox' }}
+      inputProps={{ "aria-label": "decorative checkbox" }}
       {...props}
-      checked
+      onChange={handleChange}
+      checked={checked}
     />
   );
 }

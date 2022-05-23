@@ -140,9 +140,7 @@ export default function Bill(props) {
   };
 
   const handleClick = () => {
-    history.push(
-      `/${localStorage.getItem("role")}/order/billDetail/${bill?._id}`
-    );
+    history.push(`/order/billDetail/${bill?._id}`);
   };
 
   return (
@@ -197,19 +195,19 @@ export default function Bill(props) {
               Số cây vải đã xuất hóa đơn
             </Typography>
             <TableContainer component={Paper} className={classes.productScroll}>
-              <Table stickyHeader sx={{ minWidth: "40vh" }} aria-label="simple table">
+              <Table
+                stickyHeader
+                sx={{ minWidth: "40vh" }}
+                aria-label="simple table"
+              >
                 <TableHead>
                   <TableRow>
                     <TableCell className={classes.headerTable}>STT</TableCell>
                     <TableCell className={classes.headerTable}>
                       Mã màu
                     </TableCell>
-                    <TableCell className={classes.headerTable}>
-                      Tên
-                    </TableCell>
-                    <TableCell className={classes.headerTable}>
-                      Lô
-                    </TableCell>
+                    <TableCell className={classes.headerTable}>Tên</TableCell>
+                    <TableCell className={classes.headerTable}>Lô</TableCell>
                     <TableCell className={classes.headerTable}>
                       Chiều dài&nbsp;(m)
                     </TableCell>

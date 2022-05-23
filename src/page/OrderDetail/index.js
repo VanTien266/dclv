@@ -82,12 +82,7 @@ export default function OrderDetail() {
   console.log(detail);
 
   const handleBack = () => {
-    history.push(`/${role}/order`);
-  };
-
-  const handleExportBill = async (orderId) => {
-    await orderApi.updateStatus(orderId, JSON.stringify({status: "processing", reason: ""}));
-    history.push(`/${role}/order/billExport/${id}`);
+    history.push(`/order`);
   };
 
   return (
@@ -97,13 +92,6 @@ export default function OrderDetail() {
           <Typography variant="h4" className={classes.titlePage}>
             {"Chi tiết đơn đặt hàng MDH" + detail.orderId}
           </Typography>
-        </Grid>
-        <Grid item xs={3} className={classes.alignStatusRight}>
-          <DefaultButton
-            title="Xuất hóa đơn"
-            icon={Publish}
-            clickEvent={async () => { await handleExportBill(id); }}
-          />
         </Grid>
       </Grid>
       <Grid container spacing={2} className={classes.root}>

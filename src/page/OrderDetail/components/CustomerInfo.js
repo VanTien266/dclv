@@ -44,7 +44,7 @@ export default function CustomerInfo(props) {
   const role = localStorage.getItem("role");
 
   const handleClick = () => {
-    history.push(`/${role}/order/orderEdit/${props.id}`);
+    history.push(`/order/orderEdit/${props.id}`);
   };
 
   return (

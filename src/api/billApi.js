@@ -5,38 +5,51 @@ class BillApi {
     const url = "/bill";
     return axiosClient.get(url);
   };
+  getUncomplete = () => {
+    const url = "/bill/list/uncomplete";
+    return axiosClient.get(url);
+  };
+  getComplete = () => {
+    const url = "/bill/list/complete";
+    return axiosClient.get(url);
+  };
   getOne = (params) => {
     const url = `/bill/detail/${params}`;
     return axiosClient.get(url);
   };
   getFabricRollByBillId = (params) => {
-    const url = "/bill/list";
+    const url = "/bill/list/ids";
     return axiosClient.get(url, { params });
   };
   getListByIds = (data) => {
     const url = "/bill/list";
     return axiosClient.post(url, data);
   };
-  getBillCompleted = () => {
-    const url = "/bill/completed";
+  getBillCompleted = (date) => {
+    const url = `/bill/countcompleted?date=${date}`;
     return axiosClient.get(url);
   };
-  getFabricRollBillCompleted = () => {
-    const url = "/bill/fabricrollcompleted";
+  getFabricRollBillCompleted = (date) => {
+    const url = `/bill/fabricrollcompleted?date=${date}`;
     return axiosClient.get(url);
   };
-  getBillStatus = () => {
-    const url = "/bill/status";
+  getBillStatus = (date) => {
+    const url = `/bill/status?date=${date}`;
     return axiosClient.get(url);
   };
   createBill = (data) => {
     const url = "/bill/create";
     return axiosClient.post(url, data);
   };
-  getBillFabricTypeSell = () => {
-    const url = "/bill/fabrictypesell";
+  getBillFabricTypeSell = (date) => {
+    const url = `/bill/fabrictypesell?date=${date}`;
     return axiosClient.get(url);
   };
- }
+  updateStatus = (billId, data) => {
+    const url = `/bill/${billId}/updateStatus`;
+    console.log(url, data);
+    return axiosClient.put(url, data);
+  };
+}
 const billApi = new BillApi();
 export default billApi;
