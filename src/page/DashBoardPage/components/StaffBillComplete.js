@@ -37,7 +37,7 @@ export default function StaffBillComplete(props) {
     const fetCountBillComplete = async () => {
         try {
           const response = await billApi.getBillCompleted(props.date.toISOString().slice(0, 10));
-          console.log(response);
+          // console.log(response);
           setBillComplete(response);
         }catch (error) {
           console.log("Failed to fetch bill complete count", error);

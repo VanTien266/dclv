@@ -13,7 +13,7 @@ function ChartOrderMonthly(props) {
                 const response = await orderApi.countOrderDailyMonthly(
                     props.date.toISOString().slice(0, 10)
                 );
-                console.log(response);
+                // console.log(response);
                 setOrderMonthly(response);
             } catch (error) {
                 console.log("Failed to fetch order monthly", error);
@@ -21,7 +21,7 @@ function ChartOrderMonthly(props) {
         }
         fetchOrderMonthly();
     }, [props.date]);
-    console.log('orderMonthly', orderMonthly);
+    // console.log('orderMonthly', orderMonthly);
     return (
         <Paper style={{ padding: 5 }}>
             {orderMonthly.length > 0 ?

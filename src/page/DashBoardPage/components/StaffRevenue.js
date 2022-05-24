@@ -38,7 +38,7 @@ export default function StaffRevenue(props) {
     const fetTotalDeposit = async () => {
       try {
         const response = await orderApi.totalDeposit(props.date.toISOString().slice(0, 10));
-        console.log(response);
+        // console.log(response);
         setTotalDeposit(response);
       }catch (error) {
         console.log("Failed to fetch deposit", error);

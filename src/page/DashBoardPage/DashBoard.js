@@ -22,13 +22,13 @@ function DashBoard() {
   const classes = useStyles();
   
   const [date, setDate] = useState(new Date(Date.now()));
-  console.log('date today', new Date(Date.now()));
+  // console.log('date today', new Date(Date.now()));
   let year = date.getFullYear();
   let month = date.getUTCMonth() + 1;
   const handleChangeDate = (event) => {
     setDate(new Date(event.target.value));
   };
-  console.log('date change', date);
+  // console.log('date change', date);
   return (
     <Box className={classes.root}>
       <Container maxWidth="xl">

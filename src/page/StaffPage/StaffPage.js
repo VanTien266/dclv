@@ -23,7 +23,7 @@ function StaffPage() {
       try {
         const response = await staffApi.getAll();
         const data = response.filter((i) => filter.includes(i.role));
-        console.log({ data });
+        // console.log({ data });
         setStaff(data);
       } catch (error) {
         console.log("Failed to fetch staff list", error);

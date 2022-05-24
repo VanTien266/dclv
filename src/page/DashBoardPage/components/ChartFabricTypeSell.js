@@ -11,7 +11,7 @@ function ChartFabricTypeSell(props) {
     const fetchFabricTypeSell = async () => {
         try {
           const response = await billApi.getBillFabricTypeSell(props.date.toISOString().slice(0, 10));
-          console.log(response);
+          // console.log(response);
           setFabricTypeSell(response);
         }catch (error) {
           console.log("Failed to fetch fabric type sell", error);

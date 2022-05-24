@@ -71,7 +71,7 @@ function ChartFabricWarehouse() {
     const fetChartWarehouse = async () => {
       try {
         const response = await productApi.getChartWarehouseTrue();
-        console.log(response);
+        // console.log(response);
         setChartWarehouse(response);
       }catch (error) {
         console.log("Failed to fetch warehouse", error);

@@ -35,7 +35,7 @@ function InfoStaff() {
         const fetchStaffInfo = async () => {
             try {
               const response = await staffApi.getInfoById();
-              console.log(response);
+            //   console.log(response);
               setStaffInfo(response);
             }catch (error) {
               console.log("Failed to fetch staff info", error);

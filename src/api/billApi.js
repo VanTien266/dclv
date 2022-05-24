@@ -47,7 +47,7 @@ class BillApi {
   };
   updateStatus = (billId, data) => {
     const url = `/bill/${billId}/updateStatus`;
-    console.log(url, data);
+    // console.log(url, data);
     return axiosClient.put(url, data);
   };
 }
