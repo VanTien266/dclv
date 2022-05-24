@@ -207,7 +207,7 @@ export default function Order(props) {
       </Grid>
       <Grid item xs={1} className={classes.verticalCenter}>
         <p className={classes.verticalAlign}>
-          {getNumberWithCommas(order.deposit)}
+          {order.deposit ? getNumberWithCommas(order.deposit) : 0}
         </p>
       </Grid>
       <Grid item xs={2} className={classes.productList}>
