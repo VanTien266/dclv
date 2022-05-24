@@ -31,20 +31,21 @@ const IconWrapperStyle = styled("div")(({ theme }) => ({
   )} 0%, ${alpha(theme.palette.primary.dark, 0.24)} 100%)`,
 }));
 
-export default function StaffTotalSale() {
-  const [orderTotal, setOrderTotal] = useState([]);
+export default function StaffTotalSale(props) {
+  const [orderTotal, setOrderTotal] = useState();
   useEffect(() => {
     const fetCountOrder = async () => {
-        try {
-          const response = await orderApi.countAllOrderMonthly();
-          console.log(response);
-          setOrderTotal(response);
-        }catch (error) {
+      try {
+        const response = await orderApi.countAllOrderMonthly(
+          props.date.toISOString().slice(0, 10)
+        );
+        setOrderTotal(response);
+        } catch (error) {
           console.log("Failed to fetch order count", error);
         }
     }
     fetCountOrder();
-  }, []);
+  }, [props.date]);
   return (
     <RootStyle>
       <IconWrapperStyle>
@@ -55,7 +56,7 @@ export default function StaffTotalSale() {
           height="35"
         />
       </IconWrapperStyle>
-      <Typography variant="h4">{fNumber(orderTotal)}</Typography>
+      <Typography variant="h4">{orderTotal ? fNumber(orderTotal) : orderTotal}</Typography>
       <Typography variant="h6" sx={{ opacity: 0.72 }}>
         Tổng đơn hàng
       </Typography>

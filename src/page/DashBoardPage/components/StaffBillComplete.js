@@ -31,12 +31,12 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
   )} 100%)`
 }));
 
-export default function StaffBillComplete() {
-  const [billComplete, setBillComplete] = useState([]);
+export default function StaffBillComplete(props) {
+  const [billComplete, setBillComplete] = useState();
   useEffect(() => {
     const fetCountBillComplete = async () => {
         try {
-          const response = await billApi.getBillCompleted();
+          const response = await billApi.getBillCompleted(props.date.toISOString().slice(0, 10));
           console.log(response);
           setBillComplete(response);
         }catch (error) {
@@ -44,13 +44,13 @@ export default function StaffBillComplete() {
         }
     }
     fetCountBillComplete();
-  }, []);
+  }, [props.date]);
   return (
     <RootStyle>
       <IconWrapperStyle>
         <Icon icon="carbon:task-complete" color="rgb(12, 83, 183)" width="35" height="35" />
       </IconWrapperStyle>
-      <Typography variant="h4">{fNumber(billComplete)}</Typography>
+      <Typography variant="h4">{billComplete ? fNumber(billComplete) : billComplete}</Typography>
       <Typography variant="h6" sx={{ opacity: 0.72 }}>
         Hóa đơn giao thành công
       </Typography>

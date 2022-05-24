@@ -32,12 +32,12 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
   )} 100%)`
 }));
 
-export default function StaffRevenue() {
-  const [totalDeposit, setTotalDeposit] = useState([]);
+export default function StaffRevenue(props) {
+  const [totalDeposit, setTotalDeposit] = useState();
   useEffect(() => {
     const fetTotalDeposit = async () => {
       try {
-        const response = await orderApi.totalDeposit();
+        const response = await orderApi.totalDeposit(props.date.toISOString().slice(0, 10));
         console.log(response);
         setTotalDeposit(response);
       }catch (error) {
@@ -45,13 +45,13 @@ export default function StaffRevenue() {
       }
   }
     fetTotalDeposit();
-  },[]);
+  },[props.date]);
   return (
     <RootStyle>
       <IconWrapperStyle> 
         <Icon icon="dashicons:money-alt" color="rgb(183, 129, 3)" width="40" height="40" />
       </IconWrapperStyle>
-      <Typography variant="h4">{fNumberCurrency(totalDeposit)}</Typography>
+      <Typography variant="h4">{totalDeposit ? fNumberCurrency(totalDeposit) : totalDeposit}</Typography>
       <Typography variant="h6" sx={{ opacity: 0.72 }}>
         Doanh thu
       </Typography>

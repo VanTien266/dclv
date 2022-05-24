@@ -32,12 +32,12 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
   backgroundImage: 'linear-gradient(135deg, rgba(183, 33, 54, 0) 0%, rgba(183, 33, 54, 0.24) 100%)'
 }));
 
-export default function FabricRollBillCompleted() {
+export default function FabricRollBillCompleted(props) {
   const [fabricrollTotal, setFabricRollTotal] = useState([]);
   useEffect(() => {
     const fetchFabricRollTotal = async () => {
         try {
-          const response = await billApi.getFabricRollBillCompleted();
+          const response = await billApi.getFabricRollBillCompleted(props.date.toISOString().slice(0, 10));
           console.log(response);
           setFabricRollTotal(response);
         }catch (error) {
@@ -45,13 +45,13 @@ export default function FabricRollBillCompleted() {
         }
     }
     fetchFabricRollTotal();
-  }, []);
+  }, [props]);
   return (
     <RootStyle>
       <IconWrapperStyle> 
         <Icon icon="ic:outline-local-shipping" color="rgb(183, 33, 54)" width="35" height="35" />
       </IconWrapperStyle>
-      <Typography variant="h4">{fNumber(fabricrollTotal)}</Typography>
+      <Typography variant="h4">{fabricrollTotal ? fNumber(fabricrollTotal) : fabricrollTotal}</Typography>
       <Typography variant="h6" sx={{ opacity: 0.72 }}>
         Cây vải giao thành công
       </Typography>

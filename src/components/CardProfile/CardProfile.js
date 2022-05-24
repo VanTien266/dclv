@@ -70,17 +70,18 @@ function CardProfile() {
           {role ? "Nguyễn Văn Tĩnh" : " "}
         </Typography>
         <Typography variant="body1">
-          {role === "admin"
+          {/* {role === "admin"
             ? "Quản lí"
             : role === "salesman"
             ? "Nhân viên bán hàng"
             : role === "shipper"
             ? "Nhân viên vận chuyển"
-            : "Khách hàng"}
+            : "Khách hàng"} */}
+            Quản lý
         </Typography>
       </Box>
       <Button className={classes.button} onClick={handleClick}>
-        {role ? "Đăng xuất" : "Đăng nhập"}
+        {!role ? "Đăng xuất" : "Đăng nhập"}
       </Button>
     </Box>
   );
