@@ -79,7 +79,6 @@ export default function StaffList(props) {
   const { className, staff } = props;
   const classes = useStyles();
   const history = useHistory();
-
   const handleClick = (id) => {
     history.push(`/staff/${id}`);
   };

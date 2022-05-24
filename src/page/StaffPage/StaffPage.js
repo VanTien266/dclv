@@ -30,10 +30,14 @@ function StaffPage() {
       }
     };
     fetchStaff();
-  }, [filter]);
+  }, [filter, refresh]);
   return (
     <div className={classes.root}>
-      <FilterBarStaff filter={filter} setFilter={setFilter} />
+      <FilterBarStaff
+        filter={filter}
+        setFilter={setFilter}
+        setRefresh={setRefresh}
+      />
       <StaffHeader />
       {staff && <StaffList className={classes.staffList} staff={staff} />}
     </div>

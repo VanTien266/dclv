@@ -21,7 +21,7 @@ class StaffApi {
   };
   getAll = (params) => {
     const url = "/user/admin/liststaff";
-    return axiosClient.get(url, { params });
+    return axiosClient.get(url);
   };
   getInfoById = (id) => {
     const url = `/user/admin/staffInfo/${id}`;
