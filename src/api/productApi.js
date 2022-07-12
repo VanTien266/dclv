@@ -32,7 +32,7 @@ class ProductApi {
   };
   getOne = (id) => {
     const url = `/fabric/product/${id}`;
-    console.log(url);
+    // console.log(url);
     return axiosClient.get(url);
   };
   getListById = (data) => {

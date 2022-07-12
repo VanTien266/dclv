@@ -44,7 +44,7 @@ function ItemTable(props) {
     "",
   ];
 
-  console.log("ItemTable render", listProductAdded);
+  // console.log("ItemTable render", listProductAdded);
 
   const getTotalLength = (prevVal, nextItem) => prevVal + nextItem?.length;
   return (

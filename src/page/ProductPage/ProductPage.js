@@ -67,7 +67,7 @@ function Product() {
   const handleFilterChange = (filter) => {
     setFilter(filter);
   };
-  console.log(product);
+  // console.log(product);
   return (
     <div className={classes.root}>
       <Grid container>

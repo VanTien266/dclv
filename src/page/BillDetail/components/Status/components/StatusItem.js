@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 function StatusItem(props) {
   const { index, item, isLast, numberOfFailed } = props;
   const classes = useStyles();
-  console.log(index);
+  // console.log(index);
   return (
     <TimelineItem>
       <TimelineSeparator>

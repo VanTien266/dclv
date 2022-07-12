@@ -117,7 +117,7 @@ export default function Bill(props) {
       // console.log(listId);
       const response = await productApi.getListById(listId);
       if (mounted) setFabricRolls(response);
-      console.log(response);
+      // console.log(response);
     };
 
     fetchFabricRoll({ ids: bill.fabricRoll });

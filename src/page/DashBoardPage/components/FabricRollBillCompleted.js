@@ -38,7 +38,7 @@ export default function FabricRollBillCompleted(props) {
     const fetchFabricRollTotal = async () => {
         try {
           const response = await billApi.getFabricRollBillCompleted(props.date.toISOString().slice(0, 10));
-          console.log(response);
+          // console.log(response);
           setFabricRollTotal(response);
         }catch (error) {
           console.log("Failed to fetch fabric roll bill completed count", error);

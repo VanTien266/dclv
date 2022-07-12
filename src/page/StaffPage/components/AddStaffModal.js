@@ -162,7 +162,7 @@ export default function AddStaffModal({ setRefresh }) {
     e.stopPropagation();
     setOpen(true);
 
-    console.log("Click Add Staff");
+    // console.log("Click Add Staff");
   };
 
   const handleClose = (e) => {

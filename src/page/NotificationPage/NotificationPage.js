@@ -116,7 +116,7 @@ function NotificationPage() {
       axios.get("notificationsstaff").then((response) => {
         if (mounted) {
           setNotification(response.data.notificationStaff);
-          console.log(response.data.notificationStaff);
+          // console.log(response.data.notificationStaff);
         }
       });
     };

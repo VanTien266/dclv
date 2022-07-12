@@ -5,14 +5,14 @@ import productApi from "../../../../../../api/productApi";
 function EnterItemId(props) {
   const { handleAddProduct, listProductAdded, order, error, setError } = props;
   const [productId, setProductId] = useState("");
-  console.log("EnterItem render", listProductAdded);
+  // console.log("EnterItem render", listProductAdded);
 
   useEffect(() => {
     console.log(error);
     const fetchProductById = async (productId) => {
       try {
         const response = await productApi.getOne({ id: productId });
-        console.log(response);
+        // console.log(response);
         if (response.length > 0) {
           if (!error.status) handleAddProduct(response);
         } else setError({ status: true, message: "Mã sản phẩm không hợp lệ" });

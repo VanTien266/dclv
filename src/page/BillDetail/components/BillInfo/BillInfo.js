@@ -11,12 +11,12 @@ function BillInfo(props) {
   const { fabricRoll } = props;
   const [listFabricRoll, setListFabricRoll] = useState([]);
 
-  console.log("Bill Info");
+  // console.log("Bill Info");
   useEffect(() => {
     let mounted = true;
 
     const fetchFabricRoll = async (listId) => {
-      console.log(listId);
+      // console.log(listId);
       const response = await productApi.getListById(listId);
       if (mounted) setListFabricRoll(response);
       // console.log(response);

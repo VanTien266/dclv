@@ -56,7 +56,7 @@ export default function OrderDetail() {
   const history = useHistory();
   const { id } = useParams();
   const role = localStorage.getItem("role");
-  console.log(id);
+  // console.log(id);
   const [detail, setDetail] = useState({
     orderStatus: [],
     products: [],
@@ -67,7 +67,7 @@ export default function OrderDetail() {
     let mounted = true;
     const fetchOrderDetail = async () => {
       const response = await orderApi.getOne(id);
-      console.log(response);
+      // console.log(response);
       if (mounted) {
         setDetail(response);
       }
@@ -79,7 +79,7 @@ export default function OrderDetail() {
     };
   }, [id]);
 
-  console.log(detail);
+  // console.log(detail);
 
   const handleBack = () => {
     history.push(`/order`);

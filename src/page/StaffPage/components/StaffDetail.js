@@ -43,7 +43,7 @@ function StaffDetail() {
       mounted = false;
     };
   }, [id]);
-  console.log(staff);
+  // console.log(staff);
   return (
     <Box className={classes.root}>
       <Grid container className={classes.contain} space={3}>

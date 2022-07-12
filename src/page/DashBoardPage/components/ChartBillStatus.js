@@ -17,7 +17,7 @@ function ChartBillStatus(props) {
     const fetchBillStatus = async () => {
       try {
         const response = await billApi.getBillStatus(props.date.toISOString().slice(0, 10));
-        console.log(response);
+        // console.log(response);
         setBillStatus(response);
       } catch (error) {
         console.log("Failed to fetch bill status", error);
