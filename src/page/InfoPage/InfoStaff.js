@@ -29,13 +29,11 @@ const useStyles = makeStyles(() => ({
 
 function InfoStaff() {
     const classes = useStyles();
-
-    const [staffInfo, setStaffInfo] = useState([]);
+    const [staffInfo, setStaffInfo] = useState({});
     useEffect(() => {
         const fetchStaffInfo = async () => {
             try {
-              const response = await staffApi.getInfoById();
-              console.log(response);
+              const response = await staffApi.getInfoAdmin();
               setStaffInfo(response);
             }catch (error) {
               console.log("Failed to fetch staff info", error);
@@ -48,7 +46,7 @@ function InfoStaff() {
             <Grid container className={classes.contain} space={3} >
                 <Grid item contain sm={3} md={3} xs={12} className={classes.buttonProfile}>
                     <Grid item sm={12} md={12} xs={12} className={classes.ProfileCard}>
-                        <ProfileCardComp />
+                        <ProfileCardComp staff={staffInfo}/>
                     </Grid>
                     
                 </Grid>
@@ -56,11 +54,8 @@ function InfoStaff() {
                 <Grid item contain sm={1} md={1}>
                 </Grid>
 
-                <Grid item contain sm={6} md={6} xs={12} className={classes.infoTable}>
-                {staffInfo.map((item, idx) => {
-                    return <InfoStaffTable key={idx} infostaff={item} />
-                    })}
-                    {/* // <InfoStaffTable /> */}
+                <Grid item contain sm={6} md={6} xs={12} className={classes.infoTable}>                
+                    <InfoStaffTable staff={staffInfo} />                   
                 </Grid>
 
                 <Grid item contain sm={2} md={2}>

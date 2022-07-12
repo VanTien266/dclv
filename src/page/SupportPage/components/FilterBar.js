@@ -6,6 +6,7 @@ import {
   InputLabel,
   Select,
   Button,
+  Typography
 } from "@material-ui/core";
 import DateFilter from "../../../components/DateFilter";
 import SearchField from "../../../components/SearchField";
@@ -34,24 +35,7 @@ export default function FilterBar() {
   return (
     <>
       <Grid container className={classes.root}>
-        <Grid item xs={2}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Trạng thái</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={statusFilter}
-              label="Trạng thái"
-              onChange={handleChange}
-            >
-              <option value={"pending"}>Đang xử lý</option>
-              <option value={"complete"}>Đã xử lý</option>
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={1}></Grid>
-        <Grid item xs={6}>
-          <DateFilter />
+        <Grid item xs={9}>
         </Grid>
         <Grid container item xs={3}>
           <Grid item xs={2} className={classes.verticalCenter}>

@@ -32,6 +32,12 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "flex-start",
   },
+  verticalCenterPhoneNum: {
+    direction: "row",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  }
   
 });
 
@@ -46,7 +52,7 @@ export default function StaffHeader() {
       >
         <p>ID</p>
       </Grid>
-      <Grid item xs={3} className={classes.verticalCenter}>
+      <Grid item xs={2} className={classes.verticalCenter}>
         <p>Tên nhân viên</p>
       </Grid>
       <Grid item xs={2} className={classes.verticalCenter}>
@@ -55,7 +61,7 @@ export default function StaffHeader() {
       <Grid container item xs={1} className={classes.verticalCenter}>
         <p>Ngày sinh</p>
       </Grid>
-      <Grid item xs={1} className={classes.verticalCenter}>
+      <Grid item xs={2} className={classes.verticalCenterPhoneNum}>
         <p>Số điện thoại</p>
       </Grid>
       <Grid container item xs={3} className={classes.verticalCenterEmail}>

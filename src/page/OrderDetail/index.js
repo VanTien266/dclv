@@ -90,7 +90,7 @@ export default function OrderDetail() {
       <Grid container spacing={2}>
         <Grid item xs={9}>
           <Typography variant="h4" className={classes.titlePage}>
-            {"Chi tiết đơn đặt hàng MDH" + detail.orderId}
+            {"Chi tiết đơn đặt hàng MĐH" + detail.orderId}
           </Typography>
         </Grid>
       </Grid>

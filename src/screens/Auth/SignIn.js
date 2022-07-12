@@ -145,7 +145,7 @@ export default function SignIn() {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
+          <Avatar className={classes.avatar} src="https://lvtn.trongnghia.xyz/assets/logobkfabric.png">
             <LockOutlined />
           </Avatar>
           <Typography component="h1" variant="h5">

@@ -188,7 +188,7 @@ export default function Order(props) {
         xs={2}
         className={clsx(classes.orderId, classes.verticalCenter)}
       >
-        <p>MDH{order.orderId}</p>
+        <p>MĐH{order.orderId}</p>
       </Grid>
       <Grid item xs={1} className={classes.verticalCenter}>
         <p>

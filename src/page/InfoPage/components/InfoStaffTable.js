@@ -27,7 +27,8 @@ const useStyles = makeStyles(() => ({
 }));
 function InfoStaffTable(props) {
     const classes = useStyles();
-    const {infostaff} = props;
+    const {staff} = props;
+    console.log(staff.name);
     // const [staffInfo, setStaffInfo] = useState([]);
     // useEffect(() => {
     //     const fetchStaffInfo = async () => {
@@ -59,7 +60,7 @@ function InfoStaffTable(props) {
           <Typography className={classes.titleInfo}>Họ tên</Typography>
           <TextField className={classes.textFieldInfo}
             id="outlined-read-only-input"
-            defaultValue={infostaff.name}
+            value={staff.name}
             InputProps={{
               readOnly: true,
             }}
@@ -70,7 +71,7 @@ function InfoStaffTable(props) {
           <Typography className={classes.titleInfo}>Số điện thoại</Typography>
           <TextField className={classes.textFieldInfo}
             id="outlined-read-only-input"
-            defaultValue={infostaff.phone}
+            value={staff.phone}
             InputProps={{
               readOnly: true,
             //   endAdornment: 
@@ -92,7 +93,7 @@ function InfoStaffTable(props) {
           <Typography className={classes.titleInfo}>Email</Typography>
           <TextField className={classes.textFieldInfo}
             id="outlined-read-only-input"
-            defaultValue={infostaff.email}
+            value={staff.email}
             InputProps={{
               readOnly: true,
             }}
@@ -103,7 +104,7 @@ function InfoStaffTable(props) {
           <Typography className={classes.titleInfo}>Giới tính</Typography>
           <TextField className={classes.textFieldInfo}
             id="outlined-read-only-input"
-            defaultValue={infostaff.gender}
+            value={staff.gender}
             InputProps={{
               readOnly: true,
             }}
@@ -114,7 +115,7 @@ function InfoStaffTable(props) {
           <Typography className={classes.titleInfo}>Ngày sinh</Typography>
           <TextField className={classes.textFieldInfo}
             id="outlined-read-only-input"
-            defaultValue={infostaff.birthday}
+            value={staff.birthday}
             InputProps={{
               readOnly: true,
             }}
@@ -125,7 +126,7 @@ function InfoStaffTable(props) {
           <Typography className={classes.titleInfo}>Địa chỉ</Typography>
           <TextField className={classes.textFieldInfo}
             id="outlined-read-only-input"
-            defaultValue={infostaff.address}
+            value={staff.address}
             InputProps={{
               readOnly: true,
             //   endAdornment: 
@@ -147,7 +148,7 @@ function InfoStaffTable(props) {
           <Typography className={classes.titleInfo}>Role</Typography>
           <TextField className={classes.textFieldInfo}
             id="outlined-read-only-input"
-            defaultValue={infostaff.role}
+            value={staff.role}
             variant="outlined"
             fullWidth
             InputProps={{

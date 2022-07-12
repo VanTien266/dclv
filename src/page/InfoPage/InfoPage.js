@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
 
 function InfoPage() {
   const classes = useStyles();
-
+  console.log("haha");
   return (
     <Box className={classes.root}>
       <Grid container className={classes.contain} space={3}>

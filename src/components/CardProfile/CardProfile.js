@@ -61,7 +61,7 @@ function CardProfile() {
         <Avatar
           className={classes.avatar}
           alt="Person"
-          src={process.env.PUBLIC_URL + "/assets/avatar.png"}
+          src="https://lvtn.trongnghia.xyz/assets/fabricRoll.jpg"
         />
       </Button>
 

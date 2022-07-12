@@ -51,6 +51,13 @@ export default function ListHeader() {
         xs={2}
         className={clsx(classes.orderId, classes.verticalCenter)}
       >
+        <p>Mã yêu cầu</p>
+      </Grid>
+      <Grid
+        item
+        xs={2}
+        className={clsx(classes.orderId, classes.verticalCenter)}
+      >
         <p>Mã đơn đặt hàng</p>
       </Grid>
       <Grid item xs={2} className={classes.verticalCenter}>
@@ -59,10 +66,10 @@ export default function ListHeader() {
       <Grid item xs={2} className={classes.billQuantity}>
         <p>Số điện thoại</p>
       </Grid>
-      <Grid item xs={3} className={classes.verticalCenter}>
-        <p>Nội dung</p>
+      <Grid item xs={2} className={classes.verticalCenter}>
+        <p>Nội dung yêu cầu</p>
       </Grid>
-      <Grid item xs={3} className={classes.billQuantity}>
+      <Grid item xs={2} className={classes.billQuantity}>
         <p>Phản hồi</p>
       </Grid>
     </Grid>

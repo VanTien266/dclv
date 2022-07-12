@@ -36,6 +36,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "flex-start",
   },
+  verticalCenterPhoneNum: {
+    direction: "row",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   buttonWidth: {
     minWidth: "24px",
     padding: "0px",
@@ -98,7 +104,7 @@ export default function StaffList(props) {
           >
             <p>{item.id}</p>
           </Grid>
-          <Grid item xs={3} className={classes.verticalCenter}>
+          <Grid item xs={2} className={classes.verticalCenter}>
             <p>{item.name}</p>
           </Grid>
 
@@ -111,7 +117,7 @@ export default function StaffList(props) {
               {moment(item.birthday).subtract(1, "days").format("DD/MM/YYYY")}
             </p>
           </Grid>
-          <Grid item xs={1} className={classes.verticalCenter}>
+          <Grid item xs={2} className={classes.verticalCenterPhoneNum}>
             <p className={classes.verticalAlign}>{item.phone}</p>
           </Grid>
           <Grid item xs={3} className={classes.verticalCenterEmail}>

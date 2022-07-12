@@ -55,7 +55,7 @@ function Sidebar(props) {
         <Link href="/">
           <Box className={classes.logo}>
             <img
-              src={process.env.PUBLIC_URL + "/assets/logobkfabric.png"}
+              src="https://lvtn.trongnghia.xyz/assets/logobkfabric.png"
               alt="logo"
               width="50"
               height="50"

@@ -41,14 +41,14 @@ function ProfileCardComp({ staff }) {
       <Avatar
         className={classes.avatar}
         alt="Person"
-        src={process.env.PUBLIC_URL + "/assets/avatar.png"}
+        src="https://lvtn.trongnghia.xyz/assets/fabricRoll.jpg"
       />
 
       <Box className={classes.content}>
         <Typography variant="body1" gutterBottom className={classes.text}>
           {staff.name}
         </Typography>
-        <Typography variant="body1">{staff.role}</Typography>
+        <Typography variant="body1">{staff.role == "SHIPPER" ? "Nhân viên giao hàng" : (staff.role == "ADMIN" ? "Quản lý" : "Nhân viên bán hàng")}</Typography>
       </Box>
     </Box>
   );

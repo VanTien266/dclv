@@ -13,7 +13,7 @@ import StaffPage from "./page/StaffPage/StaffPage";
 import StaffDetail from "./page/StaffPage/components/StaffDetail";
 
 import SupportPage from "./page/SupportPage/SupportPage";
-import InfoPage from "./page/InfoPage/InfoPage";
+import InfoStaff from "./page/InfoPage/InfoStaff";
 
 const routes = [
   {
@@ -85,7 +85,7 @@ const routes = [
       {
         path: "/info",
         exact: true,
-        component: InfoPage,
+        component: InfoStaff,
       },
     ],
   },

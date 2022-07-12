@@ -91,7 +91,7 @@ export default function OrderInfo(props) {
                 </TableCell>
                 <TableCell component="th" scope="row">
                   <Typography variant="subtitle2">
-                    {item.colorCode.colorCode}
+                    {item.colorCode.name}
                   </Typography>
                 </TableCell>
                 <TableCell>

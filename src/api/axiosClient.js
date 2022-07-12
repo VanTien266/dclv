@@ -2,7 +2,7 @@ import axios from "axios";
 import qs from "qs";
 
 const axiosClient = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: "https://lvtn-server.trongnghia.xyz/api",
   headers: {
     "content-type": "application/json",
   },

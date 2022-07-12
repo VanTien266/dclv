@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "right",
   },
   inpBoxWidth: {
-    width: "100%",
+    width: "100%"
   },
   titleModal: {
     textAlign: "center",
@@ -116,10 +116,17 @@ const useStyles = makeStyles((theme) => ({
     color: "#5A9E4B",
   },
   statusNotOk: { color: "#D19431" },
+  requestWidth: {
+    maxWidth: "100%",
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis"
+  }
 }));
 
 export default function SupportItem(props) {
   const { item } = props;
+  console.log(item);
   const classes = useStyles();
   const history = useHistory();
 
@@ -128,13 +135,13 @@ export default function SupportItem(props) {
   const handleOpen = (e) => {
     //Seperate onClick in child and parents component
     e.stopPropagation();
-    setOpen(true);
+    setOpen(open => !open);
   };
 
   const handleClose = (e) => {
     //Seperate onClick in child and parents component
     e.stopPropagation();
-    setOpen(false);
+    setOpen(open => !open);
   };
 
   const [expanded, setExpanded] = useState(false);
@@ -146,7 +153,14 @@ export default function SupportItem(props) {
   };
 
   return (
-    <Grid container className={classes.root}>
+    <Grid container className={classes.root} onClick={handleOpen}>
+      <Grid
+        item
+        xs={2}
+        className={clsx(classes.orderId, classes.verticalCenter)}
+      >
+        <p>MYC{item.supportId}</p>
+      </Grid>
       <Grid
         item
         xs={2}
@@ -162,16 +176,16 @@ export default function SupportItem(props) {
         <p>{item.customer.phone}</p>
       </Grid>
 
-      <Grid item xs={3} className={classes.verticalCenter}>
-        <p className={classes.verticalAlign}>{item.request}</p>
+      <Grid item xs={2} className={classes.verticalCenter}>
+        <p className={clsx(classes.verticalAlign, classes.requestWidth)}>{item.request}</p>
       </Grid>
-      <Grid item xs={3} className={classes.productList}>
+      <Grid item xs={2} className={classes.productList}>
         {item.status === false ? (
           <Typography className={classes.statusNotOk}>
-            Chưa có phản hồi
+            Chưa phản hồi
           </Typography>
         ) : (
-          <Typography className={classes.statusOk}>{item.response}</Typography>
+          <Typography className={classes.statusOk}>Đã phản hồi</Typography>
         )}
       </Grid>
       <Modal
@@ -193,7 +207,7 @@ export default function SupportItem(props) {
               variant="h4"
               className={classes.titleModal}
             >
-              Phản hồi yêu cầu
+              Chi tiết yêu cầu hỗ trợ
             </Typography>
             <form action="" className={classes.formModal}>
               <Container className={classes.feedbackContent}>
@@ -209,8 +223,24 @@ export default function SupportItem(props) {
                 <TextField
                   id="order-id"
                   variant="outlined"
-                  disabled
-                  defaultValue="MDH1234"
+                  defaultValue={"MĐH" + item.order.orderId}
+                  className={classes.inpBoxWidth}
+                ></TextField>
+                <InputLabel htmlFor="request-content">
+                  <Typography
+                    gutterBottom
+                    variant="h6"
+                    className={classes.btnColor}
+                  >
+                    Nội dung yêu cầu
+                  </Typography>
+                </InputLabel>
+                <TextField
+                  id="request-content"
+                  variant="outlined"
+                  defaultValue={item.request}
+                  multiline
+                  rows={4}
                   className={classes.inpBoxWidth}
                 ></TextField>
                 <InputLabel htmlFor="reply-content">
@@ -225,8 +255,9 @@ export default function SupportItem(props) {
                 <TextField
                   id="reply-content"
                   variant="outlined"
+                  defaultValue={item.response}
                   multiline
-                  rows={6}
+                  rows={4}
                   className={classes.inpBoxWidth}
                 ></TextField>
               </Container>
@@ -238,10 +269,9 @@ export default function SupportItem(props) {
                   onClick={handleClose}
                 >
                   <Typography variant="h6" className={classes.btnCancelTitle}>
-                    Hủy
+                    Đóng
                   </Typography>
                 </Button>
-                <DefaultButton title="Xác nhận" icon={Done} />
               </Container>
             </form>
           </CardContent>
