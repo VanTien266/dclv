@@ -23,8 +23,9 @@
 
 ## Các bước để chạy dự án
 
-1. Truy cập vào thư mục chứa dự án, chạy lệnh `npm i hoặc npm install` để tải các thư viện cần thiết.
-2. Chạy lệnh `npm start` để chạy dự án lên [http://localhost:3000](http://localhost:3000) trên cửa sổ trình duyệt.
-3. Màn hình login sẽ được hiển thị như bên dưới:
+1. Clone dự án về bằng lệnh `git clone https://github.com/VanTien266/dclv.git`
+2. Truy cập vào thư mục chứa dự án, chạy lệnh `npm i hoặc npm install` để tải các thư viện cần thiết.
+3. Chạy lệnh `npm start` để chạy dự án lên [http://localhost:3000](http://localhost:3000) trên cửa sổ trình duyệt.
+4. Màn hình login sẽ được hiển thị như bên dưới:
    ![This is an image](./public/assets/login.PNG)
    Sử dụng tên đăng nhập `admin.tien@bk.fabric.com` và mật khẩu `Tien@123` để đăng nhập vào ứng dụng.
