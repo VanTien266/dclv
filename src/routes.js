@@ -10,15 +10,16 @@ import OrderDetail from "./page/OrderDetail";
 import OrderEdit from "./page/OrderEdit";
 import NotificationPage from "./page/NotificationPage/NotificationPage";
 import StaffPage from "./page/StaffPage/StaffPage";
+import StaffDetail from "./page/StaffPage/components/StaffDetail";
+
 import SupportPage from "./page/SupportPage/SupportPage";
-import InfoStaff from "./page/InfoPage/InfoStaff";
 import InfoPage from "./page/InfoPage/InfoPage";
 
 const routes = [
   {
     path: "/",
     exact: true,
-    component: () => <Redirect to="/dashboard" />,
+    component: () => <Redirect to="/signin" />,
   },
 
   {
@@ -31,139 +32,40 @@ const routes = [
     path: "*",
     component: Main,
     routes: [
-      // for salesman
-      {
-        path: "/salesman/dashboard",
-        exact: true,
-        component: DashBoard,
-      },
-      {
-        path: "/salesman/product",
-        exact: true,
-        component: Product,
-      },
-      {
-        path: "/salesman/order",
-        exact: true,
-        component: OrderListPage,
-      },
-      {
-        path: "/salesman/order/orderDetail/:id",
-        exact: true,
-        component: OrderDetail,
-      },
-      {
-        path: "/salesman/order/orderEdit/:id",
-        exact: true,
-        component: OrderEdit,
-      },
-      {
-        path: "/salesman/order/billDetail/:id",
-        exact: true,
-        component: lazy(() => import("./page/BillDetail")),
-      },
-      {
-        path: "/salesman/order/billExport/:id",
-        exact: true,
-        component: lazy(() => import("./page/BillExport")),
-      },
-      {
-        path: "/salesman/notification",
-        exact: true,
-        component: NotificationPage,
-      },
-      {
-        path: "/salesman/notification",
-        exact: true,
-        component: NotificationPage,
-      },
-      {
-        path: "/salesman/help",
-        exact: true,
-        component: SupportPage,
-      },
-      {
-        path: "/salesman/info",
-        exact: true,
-        component: InfoPage,
-      },
-
-      // for admin
-      {
-        path: "/admin/dashboard",
-        exact: true,
-        component: DashBoard,
-      },
-      {
-        path: "/admin/product",
-        exact: true,
-        component: Product,
-      },
-      {
-        path: "/admin/order",
-        exact: true,
-        component: OrderListPage,
-      },
-      {
-        path: "/admin/order/orderDetail/:id",
-        exact: true,
-        component: OrderDetail,
-      },
-      {
-        path: "/admin/order/orderEdit",
-        exact: true,
-        component: OrderEdit,
-      },
-      {
-        path: "/admin/staff",
-        exact: true,
-        component: StaffPage,
-      },
-      {
-        path: "/admin/order/billDetail/:id",
-        exact: true,
-        component: lazy(() => import("./page/BillDetail")),
-      },
-      {
-        path: "/admin/order/billExport",
-        exact: true,
-        component: lazy(() => import("./page/BillExport")),
-      },
-      {
-        path: "/admin/notification",
-        exact: true,
-        component: NotificationPage,
-      },
-      {
-        path: "/admin/help",
-        exact: true,
-        component: SupportPage,
-      },
-      {
-        path: "/admin/info",
-        exact: true,
-        component: InfoPage,
-      },
-      // for customer
       {
         path: "/dashboard",
         exact: true,
         component: DashBoard,
       },
-      // {
-      //   path: "/product",
-      //   exact: true,
-      //    component: Product,
-      // },
+      {
+        path: "/product",
+        exact: true,
+        component: Product,
+      },
       {
         path: "/order",
         exact: true,
         component: OrderListPage,
       },
       {
+        path: "/staff",
+        exact: true,
+        component: StaffPage,
+      },
+      {
+        path: "/staff/:id",
+        exact: true,
+        component: StaffDetail,
+      },
+      {
         path: "/order/orderDetail/:id",
         exact: true,
         component: OrderDetail,
+      },
+      {
+        path: "/order/orderEdit",
+        exact: true,
+        component: OrderEdit,
       },
       {
         path: "/order/billDetail/:id",
@@ -176,9 +78,14 @@ const routes = [
         component: NotificationPage,
       },
       {
-        path: "/support",
+        path: "/help",
         exact: true,
         component: SupportPage,
+      },
+      {
+        path: "/info",
+        exact: true,
+        component: InfoPage,
       },
     ],
   },

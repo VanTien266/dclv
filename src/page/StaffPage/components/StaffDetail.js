@@ -3,10 +3,12 @@ import axios from "axios";
 import { makeStyles } from "@material-ui/styles";
 import { Grid } from "@material-ui/core";
 import { Box, Avatar, Typography, Button } from "@material-ui/core";
+import { useParams } from "react-router-dom";
 
-import InfoProfile from "../../components/CardProfile/InfoProfile";
-import ProfileCardComp from "../../components/CardProfile/ProfileCardComp";
-import InfoButton from "../../components/Button/InfoButton";
+import InfoProfile from "../../../components/CardProfile/InfoProfile";
+import ProfileCardComp from "../../../components/CardProfile/ProfileCardComp";
+import InfoButton from "../../../components/Button/InfoButton";
+import staffApi from "../../../api/staffApi";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -23,9 +25,25 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function InfoPage() {
+function StaffDetail() {
   const classes = useStyles();
+  const { id } = useParams();
+  const [staff, setStaff] = useState({});
 
+  useEffect(() => {
+    let mounted = true;
+    const fetchStaff = async () => {
+      const response = await staffApi.getInfoById(id);
+      if (mounted) {
+        setStaff(response);
+      }
+    };
+    fetchStaff();
+    return () => {
+      mounted = false;
+    };
+  }, [id]);
+  console.log(staff);
   return (
     <Box className={classes.root}>
       <Grid container className={classes.contain} space={3}>
@@ -38,15 +56,15 @@ function InfoPage() {
           className={classes.buttonProfile}
         >
           <Grid item sm={12} md={12} xs={12} className={classes.ProfileCard}>
-            <ProfileCardComp />
+            <ProfileCardComp staff={staff} />
           </Grid>
           <Grid item sm={12} md={12} xs={12}>
-            <InfoButton />
+            {/* <InfoButton  /> */}
           </Grid>
         </Grid>
         <Grid item contain sm={1} md={1}></Grid>
         <Grid item contain sm={6} md={6} xs={12} className={classes.infoTable}>
-          <InfoProfile />
+          <InfoProfile staff={staff} />
         </Grid>
         <Grid item contain sm={2} md={2}></Grid>
       </Grid>
@@ -54,4 +72,4 @@ function InfoPage() {
   );
 }
 
-export default InfoPage;
+export default StaffDetail;

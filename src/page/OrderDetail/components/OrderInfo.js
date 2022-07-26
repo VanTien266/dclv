@@ -53,9 +53,14 @@ const useStyles = makeStyles({
 });
 export default function OrderInfo(props) {
   const classes = useStyles();
-  let totalPrice = props.products.reduce(
-    (totalPrice, item) =>
-      totalPrice + item.length * item.colorCode.marketPriceId[0].price,
+
+  let totalLength = props.products.reduce(
+    (totalLength, item) => totalLength + item.length,
+    0
+  );
+
+  let totalShippedLength = props.products.reduce(
+    (totalShippedLength, item) => totalShippedLength + item.shippedLength,
     0
   );
   return (
@@ -70,9 +75,9 @@ export default function OrderInfo(props) {
               <TableCell>STT</TableCell>
               <TableCell>Loại vải</TableCell>
               <TableCell>Mã màu</TableCell>
+              <TableCell>Đã đặt&nbsp;(m)</TableCell>
               <TableCell>Đã giao&nbsp;(m)</TableCell>
               <TableCell>Còn lại&nbsp;(m)</TableCell>
-              <TableCell>Đơn giá&nbsp;(vnđ/m)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -86,13 +91,16 @@ export default function OrderInfo(props) {
                 </TableCell>
                 <TableCell component="th" scope="row">
                   <Typography variant="subtitle2">
-                    {item.colorCode.typeId.name}
+                    {item.colorCode.colorCode}
                   </Typography>
                 </TableCell>
                 <TableCell>
                   <Typography variant="subtitle2">
                     {item.colorCode.colorCode}
                   </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2">{item.length}</Typography>
                 </TableCell>
                 <TableCell>
                   <Typography variant="subtitle2">
@@ -104,11 +112,6 @@ export default function OrderInfo(props) {
                     {item.length - item.shippedLength}
                   </Typography>
                 </TableCell>
-                <TableCell>
-                  <Typography variant="subtitle2">
-                    {getNumberWithCommas(item.colorCode.marketPriceId[0].price)}
-                  </Typography>
-                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -118,27 +121,18 @@ export default function OrderInfo(props) {
       <Grid container>
         <Grid item xs={6}>
           <Typography component="p" className={classes.estimateMoney}>
-            Ước tính
+            Tổng chiều dài đã đặt
           </Typography>
           <Typography component="p" className={classes.estimateMoney}>
-            Đã đặt cọc
-          </Typography>
-          <Typography component="p" className={classes.totalMoney}>
-            Thành tiền
+            Tổng chiều dài đã giao
           </Typography>
         </Grid>
         <Grid item xs={6} className={classes.alignMoneyRight}>
           <Typography component="p" className={classes.estimateMoney}>
-            {totalPrice ? getNumberWithCommas(totalPrice) : ""} vnđ
+            {totalLength} mét
           </Typography>
           <Typography component="p" className={classes.estimateMoney}>
-            {props.deposit ? getNumberWithCommas(props.deposit) : ""} vnđ
-          </Typography>
-          <Typography component="p" className={classes.totalMoney}>
-            {totalPrice && props.deposit
-              ? getNumberWithCommas(totalPrice - props.deposit)
-              : ""}{" "}
-            vnđ
+            {totalShippedLength} mét
           </Typography>
         </Grid>
       </Grid>

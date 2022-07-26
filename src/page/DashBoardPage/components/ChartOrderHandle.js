@@ -25,19 +25,50 @@ function ChartOrderHandle() {
     }
     fetchOrderStatus();
   }, []);
+  const customizePoint = (pointInfo) => {
+    if(pointInfo.argument == "completed")
+      return {
+        color: "#4caf50"
+      }
+    else if(pointInfo.argument == "processing")
+      return {
+        color: "#f8ca00"
+      }
+    else if(pointInfo.argument == "cancel")
+      return {
+        color: "#f44336"
+      }
+  };
+  // const customizeLegendText = (legendInfo) => {
+  //   if(legendInfo.argumentText == "completed")
+  //     return {
+  //       argumentText:"Hoàn tất"
+  //     }
+  //   else if(legendInfo.argumentText == "process")
+  //     return {
+  //       text: "Đang xử lý"
+  //     }
+  //   else if(legendInfo.argumentText == "cancel")
+  //     return {
+  //       text: "Hủy"
+  //     }
+  // };
     return (
       <Paper style={{padding: 5}}>
       <PieChart id="pie"
         palette="Bright"
         dataSource={orderstatus}
         title="Tình trạng đơn đặt hàng"
+        customizePoint={customizePoint}
       >
         <Legend
           orientation="horizontal"
           itemTextPosition="right"
           horizontalAlignment="center"
           verticalAlignment="bottom"
-          columnCount={4} />
+          columnCount={4} 
+          // customizeText={customizeLegendText}
+          />
         <Export enabled={true} />
         <Series argumentField="_id" valueField="lastStatusOrder">
           <Label

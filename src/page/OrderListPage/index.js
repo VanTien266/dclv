@@ -12,7 +12,7 @@ export default function OrderListPage() {
   useEffect(() => {
     let mounted = true;
     const fetchOrder = async () => {
-      const response = await orderApi.getAll();
+      const response = await orderApi.getAll(1, 100);
       if (mounted && response.length > 0) {
         if (filter !== "")
           setOrderList(
@@ -30,8 +30,6 @@ export default function OrderListPage() {
       mounted = false;
     };
   }, [filter]);
-
-  console.log(orderList, filter);
 
   const handleFilterChange = (value) => {
     setFilter(value);

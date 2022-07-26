@@ -174,7 +174,7 @@ export default function Order(props) {
   };
 
   const handleClick = (id) => {
-    history.push(`/${role}/order/orderDetail/${id}`);
+    history.push(`/order/orderDetail/${id}`);
   };
 
   return (
@@ -188,7 +188,6 @@ export default function Order(props) {
         xs={2}
         className={clsx(classes.orderId, classes.verticalCenter)}
       >
-        {/* <p>MDH{String(order.orderId).padStart(5, "0")}</p> */}
         <p>MDH{order.orderId}</p>
       </Grid>
       <Grid item xs={1} className={classes.verticalCenter}>
@@ -202,11 +201,13 @@ export default function Order(props) {
       </Grid>
 
       <Grid item xs={2} className={classes.verticalCenter}>
-        <p className={classes.verticalAlign}>{order.clientID.name}</p>
+        <p className={classes.verticalAlign}>
+          {order.clientID ? order.clientID.name : order.receiverName}
+        </p>
       </Grid>
       <Grid item xs={1} className={classes.verticalCenter}>
         <p className={classes.verticalAlign}>
-          {getNumberWithCommas(order.deposit)}
+          {order.deposit ? getNumberWithCommas(order.deposit) : 0}
         </p>
       </Grid>
       <Grid item xs={2} className={classes.productList}>
