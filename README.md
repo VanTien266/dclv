@@ -4,7 +4,7 @@
 
 # QUẢN LÝ ĐƠN ĐẶT HÀNG CHO DOANH NGHIỆP VẢI TRÊN MOBILE
 
-Đề tài hiện thực trên nền tảng mobile và website. Ở nền tảng website, nhóm sử dụng thư viện ReactJS để hiện thực giao diện và các chức năng cho Nhân viên quản lý.
+Đề tài hiện thực trên nền tảng mobile và website. Ở nền tảng website, nhóm sử dụng thư viện ReactJS để hiện thực giao diện và các chức năng cho **Nhân viên quản lý**.
 
 ## Giới thiệu về cấu trúc tổ chức thư mục của dự án:
 
